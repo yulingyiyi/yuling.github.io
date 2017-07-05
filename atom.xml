@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-06-21T02:09:22.000Z</updated>
+  <updated>2017-07-05T12:48:41.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo：更换电脑，如何继续写博客</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo%EF%BC%9A%E6%9B%B4%E6%8D%A2%E7%94%B5%E8%84%91%EF%BC%8C%E5%A6%82%E4%BD%95%E7%BB%A7%E7%BB%AD%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/</id>
+    <published>2017-07-05T12:46:57.000Z</published>
+    <updated>2017-07-05T12:48:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_config.yml</div><div class="line">package.json</div><div class="line">scaffolds/</div><div class="line">source/</div><div class="line">themes/</div></pre></td></tr></table></figure>
+<p>将这些目录放到一个目录下，如：hexo／</p>
+<p>2.在你的新电脑上首先配置hexo环境：安装Node.js</p>
+<p>3.安装hexo，执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<p>4.安装好之后，进入hexo／目录</p>
+<p>5.模块安装，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">npm install hexo-generator-feed --save</div><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
+<p>6.部署，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> 　hexo g</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;lin
+    
+    </summary>
+    
+      <category term="other" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/other/"/>
+    
+    
+      <category term="hexo" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>layoutSubviews</title>
@@ -936,36 +968,6 @@ dispatch-3,dispatch-4
     
       <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>CGContextRef</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/19/CGContextRef/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/19/CGContextRef/</id>
-    <published>2017-05-19T12:10:39.000Z</published>
-    <updated>2017-05-19T12:14:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Graphics Context是图形上下文,也可以理解为一块画布,我们可以在上面进行绘画操作,绘制完成后,将画布放到我们的view中显示即可,view看作是一个画框.</p>
-<p>写文字</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   - (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="comment">//顶部横线</span></div><div class="line">    <span class="built_in">CGContextMoveToPoint</span>(ctx, <span class="number">0</span>, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextAddLineToPoint</span>(ctx, <span class="keyword">self</span>.bounds.size.width, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextStrokePath</span>(ctx);</div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>画直线</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="comment">//顶部横线</span></div><div class="line">    <span class="built_in">CGContextMoveToPoint</span>(ctx, <span class="number">0</span>, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextAddLineToPoint</span>(ctx, <span class="keyword">self</span>.bounds.size.width, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextStrokePath</span>(ctx);</div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line">画圆</div><div class="line"></div><div class="line">``` objc</div><div class="line"></div><div class="line"></div><div class="line">  - (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="comment">//void CGContextAddArc(CGContextRef c,CGFloat x, CGFloat y,CGFloat radius,CGFloat startAngle,CGFloat endAngle, int clockwise)1弧度＝180°/π （≈57.3°） 度＝弧度×180°/π 360°＝360×π/180 ＝2π 弧度</span></div><div class="line">    <span class="comment">// x,y为圆点坐标，radius半径，startAngle为开始的弧度，endAngle为 结束的弧度，clockwise 0为顺时针，1为逆时针。</span></div><div class="line">    <span class="built_in">CGContextAddArc</span>(ctx, <span class="number">100</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">0</span>, <span class="number">2</span>*M_PI, <span class="number">0</span>); <span class="comment">//添加一个圆</span></div><div class="line">    <span class="built_in">CGContextDrawPath</span>(ctx, kCGPathStroke); <span class="comment">//绘制路径</span></div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>画矩形<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="built_in">CGContextAddRect</span>(ctx, <span class="built_in">CGRectMake</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">30</span>, <span class="number">30</span>));</div><div class="line">    <span class="built_in">CGContextStrokePath</span>(ctx);</div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Graphics Context是图形上下文,也可以理解为一块画布,我们可以在上面进行绘画操作,绘制完成后,将画布放到我们的view中显示即可,view看作是一个画框.&lt;/p&gt;
-&lt;p&gt;写文字&lt;/p&gt;
-&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="CGContextRef" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/CGContextRef/"/>
     
   </entry>
   
