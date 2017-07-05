@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-07-05T13:12:06.000Z</updated>
+  <updated>2017-07-05T13:17:40.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -20,16 +20,12 @@
     <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/"/>
     <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/</id>
     <published>2017-07-05T13:02:40.000Z</published>
-    <updated>2017-07-05T13:12:06.000Z</updated>
+    <updated>2017-07-05T13:17:40.000Z</updated>
     
     <content type="html"><![CDATA[<p> iOS SQLite 使用FMDBMigrationManager 进行数据库迁移</p>
-<blockquote>
-<p>数据库更新</p>
-</blockquote>
+<p> 数据库更新</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/// 数据库管理</div><div class="line"> FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]; </div><div class="line">BOOL resultState=NO; </div><div class="line">NSError * error=nil;</div><div class="line">///创建数据库版本信息表</div><div class="line"> if (!manager.hasMigrationsTable) &#123;</div><div class="line"> resultState=[manager createMigrationsTable:&amp;error]; </div><div class="line">&#125;</div><div class="line">///数据库更新到最新版本</div><div class="line"> resultState=[manager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&amp;error];</div><div class="line"></div><div class="line"> `</div></pre></td></tr></table></figure>
-<blockquote>
-<p>更新方式</p>
-</blockquote>
+<p> 更新方式</p>
 <p> 1.添加升级文件:所谓升级文件，就是一些sql文件，在里面写入一些对数据库操作的语句<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意：文件名的格式是固定的 (数字)_(描述性语言).sql,前面的数字就是所谓的版本号，官方建议使用时间戳，也可以使用1，2，3，4，5……升级，保持单调递增即可。文件内写入要对数据库做的操作</div></pre></td></tr></table></figure></p>
 <ol>
 <li><p>使用自定义类的形式。第一种方法，每次升级都要建立一个文件，而且大多数时候，文件里面只写一句话，感情上会难以接受，因此我们介绍一种较为简洁的方式。首先定义一个新的类：Migration</p>
@@ -48,10 +44,8 @@
     <summary type="html">
     
       &lt;p&gt; iOS SQLite 使用FMDBMigrationManager 进行数据库迁移&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;数据库更新&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
+&lt;p&gt; 数据库更新&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div clas
     
     </summary>
     
@@ -67,31 +61,23 @@
     <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo%EF%BC%9A%E6%9B%B4%E6%8D%A2%E7%94%B5%E8%84%91%EF%BC%8C%E5%A6%82%E4%BD%95%E7%BB%A7%E7%BB%AD%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
     <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/</id>
     <published>2017-07-05T12:46:57.000Z</published>
-    <updated>2017-07-05T13:00:10.000Z</updated>
+    <updated>2017-07-05T13:17:41.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：</p>
-</blockquote>
+    <content type="html"><![CDATA[<p>1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_config.yml</div><div class="line">package.json</div><div class="line">scaffolds/</div><div class="line">source/</div><div class="line">themes/</div></pre></td></tr></table></figure>
 <p>将这些目录放到一个目录下，如：hexo／</p>
-<blockquote>
 <p>2.在你的新电脑上首先配置hexo环境：安装Node.js</p>
 <p>3.安装hexo，执行命令：</p>
-</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-<blockquote>
 <p>4.安装好之后，进入hexo／目录</p>
 <p>5.模块安装，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">npm install hexo-generator-feed --save</div><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
 <p>6.部署，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> 　hexo g</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
-</blockquote>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;g
+      &lt;p&gt;1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;lin
     
     </summary>
     

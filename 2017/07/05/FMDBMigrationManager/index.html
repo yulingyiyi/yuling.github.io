@@ -5,17 +5,17 @@
   
   <title>FMDBMigrationManager | yulingyiyi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS SQLite 使用FMDBMigrationManager 进行数据库迁移  数据库更新  123456789101112/// 数据库管理 FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]">
+  <meta name="description" content="iOS SQLite 使用FMDBMigrationManager 进行数据库迁移  数据库更新 123456789101112/// 数据库管理 FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]">
 <meta name="keywords" content="FMDBMigrationManager">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FMDBMigrationManager">
 <meta property="og:url" content="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/index.html">
 <meta property="og:site_name" content="yulingyiyi">
-<meta property="og:description" content="iOS SQLite 使用FMDBMigrationManager 进行数据库迁移  数据库更新  123456789101112/// 数据库管理 FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]">
-<meta property="og:updated_time" content="2017-07-05T13:12:06.000Z">
+<meta property="og:description" content="iOS SQLite 使用FMDBMigrationManager 进行数据库迁移  数据库更新 123456789101112/// 数据库管理 FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]">
+<meta property="og:updated_time" content="2017-07-05T13:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FMDBMigrationManager">
-<meta name="twitter:description" content="iOS SQLite 使用FMDBMigrationManager 进行数据库迁移  数据库更新  123456789101112/// 数据库管理 FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]">
+<meta name="twitter:description" content="iOS SQLite 使用FMDBMigrationManager 进行数据库迁移  数据库更新 123456789101112/// 数据库管理 FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]">
   
     <link rel="alternate" href="/atom.xml" title="yulingyiyi" type="application/atom+xml">
   
@@ -95,13 +95,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p> iOS SQLite 使用FMDBMigrationManager 进行数据库迁移</p>
-<blockquote>
-<p>数据库更新</p>
-</blockquote>
+<p> 数据库更新</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/// 数据库管理</div><div class="line"> FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]; </div><div class="line">BOOL resultState=NO; </div><div class="line">NSError * error=nil;</div><div class="line">///创建数据库版本信息表</div><div class="line"> if (!manager.hasMigrationsTable) &#123;</div><div class="line"> resultState=[manager createMigrationsTable:&amp;error]; </div><div class="line">&#125;</div><div class="line">///数据库更新到最新版本</div><div class="line"> resultState=[manager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&amp;error];</div><div class="line"></div><div class="line"> `</div></pre></td></tr></table></figure>
-<blockquote>
-<p>更新方式</p>
-</blockquote>
+<p> 更新方式</p>
 <p> 1.添加升级文件:所谓升级文件，就是一些sql文件，在里面写入一些对数据库操作的语句<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意：文件名的格式是固定的 (数字)_(描述性语言).sql,前面的数字就是所谓的版本号，官方建议使用时间戳，也可以使用1，2，3，4，5……升级，保持单调递增即可。文件内写入要对数据库做的操作</div></pre></td></tr></table></figure></p>
 <ol>
 <li><p>使用自定义类的形式。第一种方法，每次升级都要建立一个文件，而且大多数时候，文件里面只写一句话，感情上会难以接受，因此我们介绍一种较为简洁的方式。首先定义一个新的类：Migration</p>
@@ -119,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj4r0w4q6000cf0mgtdqh7f01" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj4r13aor000cgcmg87asguym" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li></ul>
