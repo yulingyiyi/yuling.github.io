@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>yulingyiyi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="／****\n 注释 \n****／">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yulingyiyi">
+<meta property="og:url" content="https://yulingyiyi.github.io/yuling.github.io/index.html">
+<meta property="og:site_name" content="yulingyiyi">
+<meta property="og:description" content="／****\n 注释 \n****／">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="yulingyiyi">
+<meta name="twitter:description" content="／****\n 注释 \n****／">
+  
+    <link rel="alternate" href="/atom.xml" title="yulingyiyi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/yuling.github.io/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/yuling.github.io/" id="logo">yulingyiyi</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/yuling.github.io/" id="subtitle">万丈高楼平地起</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/yuling.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/yuling.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yulingyiyi.github.io/yuling.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-layoutSubviews" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/06/21/layoutSubviews/" class="article-date">
+  <time datetime="2017-06-21T02:06:38.000Z" itemprop="datePublished">2017-06-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/06/21/layoutSubviews/">layoutSubviews</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 什么时候调用layoutSubviews</p>
+<p>总结一下什么时候会触发layoutSubviews：<br>layoutSubviews在以下情况下会被调用：<br>1、init初始化不会触发layoutSubviews<br>2、addSubview会触发layoutSubviews<br>3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化<br>4、滚动一个UIScrollView会触发layoutSubviews<br>5、旋转Screen会触发父UIView上的layoutSubviews事件<br>6、改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj4qzxcs000249cmg6amvokjk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DZNEmptyDataSet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/" class="article-date">
+  <time datetime="2017-06-06T08:47:29.000Z" itemprop="datePublished">2017-06-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/">DZNEmptyDataSet</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>DZNEmptyDataSet UITableView 或 UICollectionView 的空白页扩展</p>
+<p>github：  <a href="https://github.com/dzenbot/DZNEmptyDataSet" target="_blank" rel="external">https://github.com/dzenbot/DZNEmptyDataSet</a></p>
+<p>使用</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Import</div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"UIScrollView+EmptyDataSet.h"</span></span></div><div class="line">作为框架导入：</div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;DZNEmptyDataSet/UIScrollView+EmptyDataSet.h&gt;</span></span></div><div class="line">遵循协议</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MainViewController</span> : <span class="title">UITableViewController</span> &lt;<span class="title">DZNEmptyDataSetSource</span>, <span class="title">DZNEmptyDataSetDelegate</span>&gt;</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.tableView.emptyDataSetSource = <span class="keyword">self</span>;</div><div class="line">    <span class="keyword">self</span>.tableView.emptyDataSetDelegate = <span class="keyword">self</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 删除单元格分隔线的一个小技巧</span></div><div class="line">    <span class="keyword">self</span>.tableView.tableFooterView = [<span class="built_in">UIView</span> new];</div><div class="line">&#125;</div><div class="line">实现数据源协议</div><div class="line"></div><div class="line">DZNEmptyDataSetSource</div><div class="line"></div><div class="line">返回想要在空白状态显示的内容，并且充分利用 <span class="built_in">NSAttributedString</span> 功能来自定义文本外观。</div><div class="line">空白页显示图片</div><div class="line">- (<span class="built_in">UIImage</span> *)imageForEmptyDataSet:(<span class="built_in">UIScrollView</span> *)scrollView &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"lion"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj4qzxcqv000c9cmgf53ti8qm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-IQKeyboardManager" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/06/06/IQKeyboardManager/" class="article-date">
+  <time datetime="2017-06-06T07:05:54.000Z" itemprop="datePublished">2017-06-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/06/06/IQKeyboardManager/">IQKeyboardManager</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  IQKeyboardManager的使用</p>
+<pre><code class="objc">
+框架的启用
+- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions {
+  [[IQKeyboardManager sharedManager] setEnable:<span class="literal">YES</span>];
+  [[IQKeyboardManager sharedManager] setEnableAutoToolbar:<span class="literal">YES</span>];
+    <span class="keyword">return</span> <span class="literal">YES</span>;
+}
+enable 控制整个功能是否启用。
+
+shouldResignOnTouchOutside 控制点击背景是否收起键盘。
+
+shouldToolbarUsesTextFieldTintColor 控制键盘上的工具条文字颜色是否用户自定义。
+
+enableAutoToolbar 控制是否显示键盘上的工具条。
+
+以上设置，就启用了这个库。
+
+有时想在某个界面启用,可以在
+
+- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated 和 - (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated 
+
+里面进行开启关闭
+
+<span class="number">1.</span>修改IQKeyBoardManager的右边的Done按钮 
+  manager.toolbarDoneBarButtonItemText = <span class="string">@"1234"</span>;
+或者
+  manager.toolbarDoneBarButtonItemImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"IQKeyboardManagerScreenshot"</span>];
+
+<span class="number">2.</span>修改IQKeyBoardManager的Toolbar颜色等
+  manager.shouldToolbarUsesTextFieldTintColor = <span class="literal">NO</span>;
+  manager.toolbarTintColor = [<span class="built_in">UIColor</span> redColor];
+
+<span class="number">3.</span>是否显示响应者的水印和字号
+  manager.shouldShowTextFieldPlaceholder = <span class="literal">YES</span>;
+  manager.placeholderFont = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14.0</span>];
+<span class="number">4.</span> 设置键盘textField的距离。不能小于零。默认是<span class="number">10.0</span>。&lt;触发条件是textField需要改变y时 &gt;
+  manager.keyboardDistanceFromTextField = <span class="number">10.0</span>f;
+<span class="number">5.</span>防止IQKeyboardManager让rootview上滑过度,默认是<span class="literal">YES</span>
+  manager.preventShowingBottomBlankSpace = <span class="literal">NO</span>;
+
+
+<span class="number">6.</span> IQKeyBoardManager的右边的Done按钮的响应事件doneAction 事件未公开API,不过可以通过代理
+- (<span class="keyword">void</span>)textFieldDidEndEditing:(<span class="built_in">UITextField</span> *)textField
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj4qzxcqs00089cmgxxcwqo2n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-autoLayout" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/06/05/autoLayout/" class="article-date">
+  <time datetime="2017-06-05T11:13:21.000Z" itemprop="datePublished">2017-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/06/05/autoLayout/">autoLayout</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> NSLayoutConstraint</p>
+<pre><code class="objc"> 使用AutoLayout之前需要知道以下两点：
+
+<span class="number">1.</span>必须设置 translatesAutoresizingMaskIntoConstraints为<span class="literal">NO</span>。
+
+<span class="number">2.</span>如果是viewControl则AutoLayout适配写在[- updateViewConstraints]中；
+
+如果是view则AutoLayout适配写在[- updateConstraints]中。
+
+一、 要讲解的方法:
+
+ <span class="number">1</span> <span class="comment">/* Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant" 
+ 2  If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.
+ 3  */</span>
+ <span class="number">4</span> +(<span class="keyword">instancetype</span>)constraintWithItem:(<span class="keyword">id</span>)view1 
+ <span class="number">5</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr1 
+ <span class="number">6</span>                         relatedBy:(<span class="built_in">NSLayoutRelation</span>)relation 
+ <span class="number">7</span>                            toItem:(<span class="keyword">id</span>)view2
+ <span class="number">8</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr2 
+ <span class="number">9</span>                        multiplier:(<span class="built_in">CGFloat</span>)multiplier 
+<span class="number">10</span>                          constant:(<span class="built_in">CGFloat</span>)c;
+参数说明：
+
+第一个参数 view1: 要设置的视图；
+
+第二个参数 attr1: view1要设置的属性，稍后详解；
+
+第三个参数 relation: 视图view1和view2的指定属性之间的关系，稍后详解；
+
+第四个参数 view2: 参照的视图；
+
+第五个参数 attr2: 参照视图view2的属性，稍后详解；
+
+第六个参数 multiplier: 视图view1的指定属性是参照视图view2制定属性的多少倍；
+
+第七个参数 c: 视图view1的指定属性需要加的浮点数。
+
+根据参数的讲解，得出计算公式如下：
+
+view1.attr1 [= , &gt;= , &lt;=] view2.attr2 * multiplier + c;
+
+参数详解：
+
+<span class="number">1</span>、<span class="built_in">NSLayoutAttribute</span>
+
+  <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutAttribute</span>) {
+      <span class="built_in">NSLayoutAttributeLeft</span> = <span class="number">1</span>, 
+      <span class="built_in">NSLayoutAttributeRight</span>,
+      <span class="built_in">NSLayoutAttributeTop</span>,
+      <span class="built_in">NSLayoutAttributeBottom</span>,
+      <span class="built_in">NSLayoutAttributeLeading</span>,
+      <span class="built_in">NSLayoutAttributeTrailing</span>,
+      <span class="built_in">NSLayoutAttributeWidth</span>,
+      <span class="built_in">NSLayoutAttributeHeight</span>,
+     <span class="built_in">NSLayoutAttributeCenterX</span>,
+     <span class="built_in">NSLayoutAttributeCenterY</span>,
+     <span class="built_in">NSLayoutAttributeBaseline</span>,
+     <span class="built_in">NSLayoutAttributeLastBaseline</span> = <span class="built_in">NSLayoutAttributeBaseline</span>,
+     <span class="built_in">NSLayoutAttributeFirstBaseline</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+
+
+     <span class="built_in">NSLayoutAttributeLeftMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+     <span class="built_in">NSLayoutAttributeRightMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeTopMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+     <span class="built_in">NSLayoutAttributeBottomMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeLeadingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeTrailingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeCenterXWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeCenterYWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+
+     <span class="built_in">NSLayoutAttributeNotAnAttribute</span> = <span class="number">0</span>
+ };
+分三部分解释 <span class="built_in">NSLayoutAttribute</span>
+
+第一部分：常用的
+
+<span class="built_in">NSLayoutAttributeLeft</span>:  <span class="built_in">CGRectGetMinX</span>(view.frame) ;
+
+<span class="built_in">NSLayoutAttributeRight</span>:  <span class="built_in">CGRectGetMaxX</span>(view.frame);
+
+<span class="built_in">NSLayoutAttributeTop</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
+
+<span class="built_in">NSLayoutAttributeBottom</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
+
+<span class="built_in">NSLayoutAttributeWidth</span>:  <span class="built_in">CGRectGetWidth</span>(view.frame) ;
+
+<span class="built_in">NSLayoutAttributeHeight</span>: <span class="built_in">CGRectGetHeight</span>(view.frame) ;
+
+<span class="built_in">NSLayoutAttribute</span> CenterX : view.center.x ;
+
+<span class="built_in">NSLayoutAttribute</span> CenterY : view.center.y  ;
+
+<span class="built_in">NSLayoutAttributeBaseline</span>: 文本底标线，在大多数视图中等同于<span class="built_in">NSLayoutAttributeBottom</span>； 在少数视图，如<span class="built_in">UILabel</span>，是指字母的底部出现的位置 ;
+
+<span class="built_in">NSLayoutAttributeLastBaseline</span>: 相当于<span class="built_in">NSLayoutAttributeBaseline</span> ;
+
+<span class="built_in">NSLayoutAttributeFirstBaseline</span>: 文本上标线 ;
+
+<span class="built_in">NSLayoutAttribute</span> NotAnAttribute: None ;
+
+第二部分： 根据国家使用习惯不同表示的意思不同
+
+<span class="built_in">NSLayoutAttributeLeading</span>: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span> ;
+
+<span class="built_in">NSLayoutAttribute</span> Trailing: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span> ;
+
+第三部分：ios8新增属性，各种间距，具体用法下节介绍
+
+<span class="built_in">NSLayoutAttributeLeftMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeRightMargin</span>，
+
+<span class="built_in">NSLayoutAttributeTopMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeBottomMargin</span>，
+
+<span class="built_in">NSLayoutAttributeLeadingMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeTrailingMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeCenterXWithinMargins</span>，
+
+<span class="built_in">NSLayoutAttributeCenterYWithinMargins</span>， 
+
+从网上找了一张图，标注以上属性
+
+
+<span class="number">2</span>、 <span class="built_in">NSLayoutRelation</span>
+
+<span class="number">1</span> <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutRelation</span>) {
+<span class="number">2</span>     <span class="built_in">NSLayoutRelationLessThanOrEqual</span> = <span class="number">-1</span>,
+<span class="number">3</span>     <span class="built_in">NSLayoutRelationEqual</span> = <span class="number">0</span>,
+<span class="number">4</span>     <span class="built_in">NSLayoutRelationGreaterThanOrEqual</span> = <span class="number">1</span>,
+<span class="number">5</span> };
+<span class="built_in">NSLayoutRelationLessThanOrEqual</span>: &lt;=;
+
+<span class="built_in">NSLayoutRelationEqual</span>: =;
+
+<span class="built_in">NSLayoutRelationGreaterThanOrEqual</span>: &gt;=;
+
+二、要讲解的方法
+
+<span class="number">1</span>、获取当前view中所有的  <span class="built_in">NSLayoutConstraint</span>
+
+<span class="number">1</span> - (<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);
+<span class="number">2</span>、旧版方法，将指定的<span class="built_in">NSLayoutConstraint</span>添加到页面或者从页面中移除
+
+<span class="number">1</span> <span class="number">1</span> - (<span class="keyword">void</span>)addConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead, set NSLayoutConstraint's active property to YES.</span>
+<span class="number">2</span> <span class="number">2</span> - (<span class="keyword">void</span>)addConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint activateConstraints:].</span>
+<span class="number">3</span> <span class="number">3</span> - (<span class="keyword">void</span>)removeConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead set NSLayoutConstraint's active property to NO.</span>
+<span class="number">4</span> <span class="number">4</span> - (<span class="keyword">void</span>)removeConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint deactivateConstraints:].</span>
+<span class="number">3</span>、ios8新加方法，激活或者停用指定约束
+
+<span class="number">1</span> <span class="comment">/* The receiver may be activated or deactivated by manipulating this property.  Only active constraints affect the calculated layout.  Attempting to activate a constraint whose items have no common ancestor will cause an exception to be thrown.  Defaults to NO for newly created constraints. */</span>
+<span class="number">2</span> <span class="keyword">@property</span> (<span class="keyword">getter</span>=isActive) <span class="built_in">BOOL</span> active <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
+<span class="number">3</span> 
+<span class="number">4</span> <span class="comment">/* Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually. */</span>
+<span class="number">5</span> + (<span class="keyword">void</span>)activateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
+<span class="number">6</span> 
+<span class="number">7</span> <span class="comment">/* Convenience method that deactivates each constraint in the contained array, in the same manner as setting active=NO. This is often more efficient than deactivating each constraint individually. */</span>
+<span class="number">8</span> + (<span class="keyword">void</span>)deactivateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
+三、Coding Time
+
+a&gt; 设置视图view1为 宽度=<span class="number">20</span>的正方形
+
+两种写法，第一种 宽度=<span class="number">20</span>，高度=<span class="number">20</span>
+
+<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
+<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
+第二种 宽度=<span class="number">20</span>， 高度=宽度
+
+<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
+<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]];
+第二种方法的优势是，如果想修改view1的大小，只需要修改一处。
+
+b&gt;设置视图view1.frame. origin.x = 视图view2.frame.origin.x
+
+<span class="built_in">NSLayoutConstraint</span> *leftConstraint = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeLeft</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view2 attribute:<span class="built_in">NSLayoutAttributeLeft</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]；
+
+<span class="comment">//旧版方法</span>
+<span class="comment">//[self addConstraint:leftConstraint];</span>
+
+<span class="comment">//新版方法1</span>
+[<span class="built_in">NSLayoutConstraint</span> activateConstraints:@[leftConstraint]]; 
+<span class="comment">//新版方法2</span>
+leftConstraint.active = <span class="literal">YES</span>;
+</code></pre>
+<p>Auto Layout 关于更新约束的几个方法</p>
+<p>setNeedsLayout：告知页面需要更新，但是不会立刻开始更新。执行后会立刻调用layoutSubviews。</p>
+<p>layoutIfNeeded：告知页面布局立刻更新。所以一般都会和setNeedsLayout一起使用。如果希望立刻生成新的frame需要调用此方法，利用这点一般布局动画可以在更新布局后直接使用这个方法让动画生效。</p>
+<p>layoutSubviews：系统重写布局。</p>
+<p>setNeedsUpdateConstraints：告知需要更新约束，但是不会立刻开始。</p>
+<p>updateConstraintsIfNeeded：告知立刻更新约束。</p>
+<p>updateConstraints：系统更新约束。</p>
+<p>这么多方法中，目前我使用比较多的是 layoutIfNeeded 。因为在Auto Layout 实现动画的时候，layoutIfNeeded 方法可以立刻生成新的frame特性是一大利器。</p>
+<p>五、使用 Auto Layout （NSLayoutConstraint）实现动画</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj4qzxcrm001h9cmgogjemrac" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CATransform3D" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/06/04/CATransform3D/" class="article-date">
+  <time datetime="2017-06-04T15:14:21.000Z" itemprop="datePublished">2017-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/06/04/CATransform3D/">CATransform3D</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  关于CATransform3D </p>
+<p>  链接：<a href="http://www.jianshu.com/p/69ba0a4b2df9" target="_blank" rel="external">http://www.jianshu.com/p/69ba0a4b2df9</a></p>
+<p>  图层的几个坐标系</p>
+<pre><code>对于iOS来说，坐标系的（0，0）点在左上角，就是越往下，Y值越大。越往右，X值越大。
+一个图层的frame，它是position，bounds，anchorPoint和transform属性的一部分。
+设置一个新的frame将会相应的改变图层的position和bounds，但是frame本身并没有保存。
+position：是一个CGPoint值，它指定图层相当于它父图层的位置，该值基于父图层的坐标系。
+bounds：是一个CGRect值，指定图层的大小（bounds.size）和图层的原点（bounds.origin），这个坐标系是基于自身的。如果改变bounds的origin，那么在该图层的子图层，坐标会跟着改变。也就是说，改变自身的坐标系，本身在父图层的位置不变，但它上的子图层位置变化。
+anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合坐标系的位置。锚点（anchor point）制定了bounds相对于position的值，同时也作为一个变化时候的中心点。锚点使用空间坐标系取值范围是0-1之间的数。默认是0.5，也就是秃瓢的中心点，如果是（0，0）那么，图层向左上方移动。如果是（1，1）就向右下方移动。
+看下面的两个图，就能够够清晰的看出锚点变化所带来的不一样。
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cj4qzxcqm00059cmgfkqwp5ys" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cocoaPods" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/26/cocoaPods/" class="article-date">
+  <time datetime="2017-05-26T07:51:08.000Z" itemprop="datePublished">2017-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/26/cocoaPods/">cocoaPods</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CocoaPods 【warning: Insecure world writable dir /usr/local/bin in PATH, mode 040777】</p>
+<p>解决方法：</p>
+<p>提示含义：</p>
+<p>目录被赋予777的权限，不安全。</p>
+<p>如何解决：</p>
+<p>将提示权限改为775，问题即可解决。</p>
+<p>具体实现：</p>
+<p>在终端写入下列命令行，即可消除上面的提示。</p>
+<p>sudo chmod go-w /usr/local/bin<br>sudo chmod 775 /usr/local</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/" data-id="cj4qzxcrl001e9cmg9kpe09m0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-添加pod支持" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/26/添加pod支持/" class="article-date">
+  <time datetime="2017-05-26T04:16:01.000Z" itemprop="datePublished">2017-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/26/添加pod支持/">添加pod支持</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>利用github cocoaPod  创建第三方库文件</p>
+<p>#CY  项目目录</p>
+<ol>
+<li><p>添加项目到github </p>
+</li>
+<li><p>用终端命令 在项目根目录创建podspec 文件</p>
+</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$cd CY</div><div class="line">$ pod spec create CY</div></pre></td></tr></table></figure>
+<p>2.用编辑器打开.podspec文件 (我自己用Sublime Text)<br>删除不必要的注释(这里只简单介绍基本用法，所以只用到一部分必须得字段 更多字段请移步<a href="http://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="external">http://guides.cocoapods.org/syntax/podspec.html</a>)</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> |s|</div><div class="line">  s.name         = <span class="string">"CY"</span></div><div class="line">  s.version      = <span class="string">"0.0.1"</span></div><div class="line">  <span class="meta">#简单描述</span></div><div class="line">  s.summary      = <span class="string">"all kinds of categories for iOS develop"</span></div><div class="line">  <span class="meta">#简单介绍</span></div><div class="line">  s.description  = &lt;&lt;-DESC</div><div class="line">                      <span class="keyword">this</span> project provide all kinds of categories <span class="keyword">for</span> iOS developer </div><div class="line">                   DESC</div><div class="line">  <span class="meta">#项目主页</span></div><div class="line">  s.homepage     = <span class="string">"https://github.com/yongqianvip/CY"</span></div><div class="line">  <span class="meta">#开源协议 </span></div><div class="line">  s.license      = <span class="string">"MIT"</span></div><div class="line">  s.license      = &#123; :type =&gt; <span class="string">"MIT"</span>， :file =&gt; <span class="string">"LICENSE"</span> &#125;</div><div class="line">  <span class="meta"># 作者信息</span></div><div class="line">  s.author             = &#123; <span class="string">"yongqianvip"</span> =&gt; <span class="string">"yongqianvip@***.com"</span> &#125;</div><div class="line">  <span class="meta"># 版本支持</span></div><div class="line">  s.platform     = :ios</div><div class="line">  <span class="meta">#文件资源</span></div><div class="line">  s.source       = &#123; :git =&gt; <span class="string">"https://github.com/yongqianvip/CY.git"</span>， :tag =&gt; <span class="string">"0.0.1"</span> &#125;</div><div class="line">  s.source_files  = <span class="string">"Classes"</span>， <span class="string">"CY/Classes/**/*.&#123;h，m&#125;"</span></div><div class="line">  s.exclude_files = <span class="string">"Classes/Exclude"</span></div><div class="line">  s.public_header_files = <span class="string">"CY/Classes/UIKit/UI_Categories.h"</span>，<span class="string">"CY/Classes/Foundation/Foundation_Category.h"</span>，<span class="string">"CY/Classes/**/*.h"</span></div><div class="line">  <span class="meta">#是否支持ARC</span></div><div class="line">  s.requires_arc = <span class="literal">true</span></div><div class="line">end</div></pre></td></tr></table></figure>
+<p>3.验证podspec</p>
+<p>编辑完podspec文件后需要验证一下这个文件是否可用podspec文件不允许有任何的Warning或者Error<br>执行命令</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$pod lib lint</div></pre></td></tr></table></figure>
+<p>如果出现</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CY passed validation.</div></pre></td></tr></table></figure>
+<p>则说明验证通过， 否则， 根据提示修改podspec文件再次验证直到验证通过<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">附带说一下，Xcode允许警告存在，所以可以通过命令屏蔽警告</div><div class="line"></div><div class="line">$ pod lib lint --allow-warnings</div><div class="line">如果出现Error但是提示信息不足，可以添加--verbose 以获取更多错误信息</div><div class="line"></div><div class="line">$ pod lib lint --verbose</div></pre></td></tr></table></figure></p>
+<p>….. 填坑 </p>
+<ul>
+<li>ERROR | license: Sample license type.<br>在GitHub项目 根目录上传一个 开源协议license 文件</li>
+<li><p>WARN  | source: The version should be included in the Git tag.<br>在github 项目中tag 标记一下版本 必须和<br>s.version      = “0.0.1”<br>s.source       = { :git =&gt; “<a href="https://github.com/yongqianvip/CY.git&quot;，" target="_blank" rel="external">https://github.com/yongqianvip/CY.git&quot;，</a> :tag =&gt; “0.0.1” }</p>
+<p>中的version 和tag 一致<br>-出现 <code>echo &quot;2.3&quot; &gt; .swift-version</code>:<br>在终端输入 echo “2.3” &gt; .swift-version</p>
+</li>
+</ul>
+<p>4.打tag 上传podspec</p>
+<p>podspec文件中需要指定的tag， 完成上述操作后给项目打tag<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag -m<span class="string">"first release iOS_Category with podspec"</span> <span class="string">"0.0.1"</span></div><div class="line">$ git push --tags</div></pre></td></tr></table></figure></p>
+<p>最后使用pod trunk命令，把podspec文件推送到CocoaPod官方库</p>
+<p>pod trunk 需要注册 具体做法这里不再赘述 请移步CocoaPod官网</p>
+<p>pod trunk 设置完毕后执行命令<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk push iOS_Category.podspec</div></pre></td></tr></table></figure></p>
+<p>这个过程可能会比较耗时，原因你懂的</p>
+<p>4.最后</p>
+<p>如果一切顺利<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search iOS_Category</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/" data-id="cj4qzxcsc002q9cmgj4msf0t7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-GCD读取文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/GCD读取文件/" class="article-date">
+  <time datetime="2017-05-25T05:29:34.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/GCD读取文件/">GCD读取文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code class="objc">
+<span class="comment">//GCD读写文件</span>
+    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
+
+    <span class="keyword">int</span> intbuffer[] = { <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> };
+    <span class="keyword">char</span> charbuffer[]={<span class="string">"fdafdsafsdfasdfa"</span>};
+    dispatch_data_t data = dispatch_data_create(charbuffer, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, <span class="literal">NULL</span>);
+
+    dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);
+    <span class="comment">// Write</span>
+    dispatch_fd_t fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+
+    printf(<span class="string">"FD: %d\n"</span>, fd);
+
+    dispatch_write(fd, data, queue,^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Written %zu bytes!\n"</span>, dispatch_data_get_size(data) - (d ? dispatch_data_get_size(d) : <span class="number">0</span>));
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    close(fd);
+
+    <span class="comment">// Read</span>
+    fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR);
+
+    dispatch_read(fd, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, ^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Read %zu bytes!\n"</span>, dispatch_data_get_size(d));
+        <span class="keyword">const</span> <span class="keyword">void</span> *buffer = <span class="literal">NULL</span>;
+        size_t size = dispatch_data_get_size(d);
+        dispatch_data_t tmpData = dispatch_data_create_map(data, &amp;buffer, &amp;size);
+        <span class="built_in">NSData</span> *nsdata = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:size];
+        <span class="built_in">NSString</span> *s=[[<span class="built_in">NSString</span> alloc] initWithData:nsdata encoding:<span class="built_in">NSUTF8StringEncoding</span>];
+        <span class="built_in">NSLog</span>(<span class="string">@"buffer %@"</span>,s);
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    close(fd);
+
+    <span class="comment">// Exit confirmation</span>
+    getchar();
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD读取文件/" data-id="cj4qzxcqy000f9cmgouq3kqoz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-suspend-dispatch-resume" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" class="article-date">
+  <time datetime="2017-05-25T02:25:03.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>dispatch_suspend/dispatch_resume </p>
+<p>当追加大量处理到Dispatch Queue时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。<br>在这种情况下，只要挂起Dispatch Queue即可。当可以执行时再恢复。<br>dispatch_suspend函数挂起指定的Dispatch Queue。</p>
+<p>dispatch_suspend(queue);<br>1<br>1<br>dispatch_resume函数恢复指定的Dispatch Queue。</p>
+<p>dispatch_resume(queue);<br>1<br>1<br>这些函数对已经执行的处理没有影响。挂起后，追加到Dispatch Queue中但尚未执行的处理在此之后停止执行。而恢复则使这些处理能够继续执行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" data-id="cj4qzxcry00219cmg7g6bp65c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-get-specific" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/dispatch-get-specific/" class="article-date">
+  <time datetime="2017-05-25T02:23:01.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/dispatch-get-specific/">dispatch_get_specific</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>dispatch_queue_set_specific就是向指定队列里面设置一个标识 如：</p>
+<p>dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1,NULL);<br>就是向queue1对了中设置一个queueKey1标识。</p>
+<p>dispatch_get_specific就是在当前队列中取出标识，注意iOS中线程和队列的关系，所有的动作都是在队列中执行的！ 如：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  main.m  </span></div><div class="line"><span class="comment">//  gcd  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yongpengliang on 16/2/19.  </span></div><div class="line"><span class="comment">//  Copyright © 2016年 jerry. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line">  </div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></div><div class="line">  </div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </div><div class="line">        <span class="keyword">static</span> voidvoid *queueKey1 = <span class="string">"queueKey1"</span>;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(queueKey1, DISPATCH_QUEUE_SERIAL);  </div><div class="line">        dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1, <span class="literal">NULL</span>);  </div><div class="line">          </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">          </div><div class="line">        <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">            <span class="comment">//当前队列是主队列，不是queue1队列，所以取不到queueKey1对应的值，故而不执行  </span></div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"2. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"3. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_sync</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"4. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">                 <span class="comment">//当前队列是queue1队列，所以能取到queueKey1对应的值，故而执行  </span></div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"5. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"6. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;  </div><div class="line">        &#125;);  </div><div class="line">        <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"7. t当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;);  </div><div class="line">          </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">5</span>];  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"></div><div class="line">输出结果：</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.390</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">1.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.391</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">3.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">24.396</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">4.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">25.400</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">5.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">26.402</span> gcd[<span class="number">96865</span>:<span class="number">820367</span>] <span class="number">7.</span> t当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x100105e10</span>&gt;&#123;number = <span class="number">2</span>, name = (null)&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line">Program ended with exit code: <span class="number">0</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/" data-id="cj4qzxcrt001t9cmgq3o5qqr4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/yuling.github.io/page/2/">2</a><a class="page-number" href="/yuling.github.io/page/3/">3</a><a class="page-number" href="/yuling.github.io/page/4/">4</a><a class="extend next" rel="next" href="/yuling.github.io/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/诗/">诗</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/21/layoutSubviews/">layoutSubviews</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/">DZNEmptyDataSet</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/06/IQKeyboardManager/">IQKeyboardManager</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/05/autoLayout/">autoLayout</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/04/CATransform3D/">CATransform3D</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 yuling<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/yuling.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/yuling.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/yuling.github.io/fancybox/jquery.fancybox.css">
+  <script src="/yuling.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/yuling.github.io/js/script.js"></script>
+
+  </div>
+</body>
+</html>

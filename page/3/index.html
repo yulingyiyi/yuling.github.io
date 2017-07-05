@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>yulingyiyi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="／****\n 注释 \n****／">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yulingyiyi">
+<meta property="og:url" content="https://yulingyiyi.github.io/yuling.github.io/page/3/index.html">
+<meta property="og:site_name" content="yulingyiyi">
+<meta property="og:description" content="／****\n 注释 \n****／">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="yulingyiyi">
+<meta name="twitter:description" content="／****\n 注释 \n****／">
+  
+    <link rel="alternate" href="/atom.xml" title="yulingyiyi" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/yuling.github.io/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/yuling.github.io/" id="logo">yulingyiyi</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/yuling.github.io/" id="subtitle">万丈高楼平地起</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/yuling.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/yuling.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yulingyiyi.github.io/yuling.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-画一个图片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/16/画一个图片/" class="article-date">
+  <time datetime="2017-05-16T02:37:38.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/16/画一个图片/"> 画一个图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>画一个一个颜色的图片<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIImage</span> *)createImageWithColor: (<span class="built_in">UIColor</span> *) color</div><div class="line">&#123;</div><div class="line">    <span class="built_in">CGRect</span> rect=<span class="built_in">CGRectMake</span>(<span class="number">0.0</span>f, <span class="number">0.0</span>f, <span class="number">1.0</span>f, <span class="number">1.0</span>f);</div><div class="line">    <span class="built_in">UIGraphicsBeginImageContext</span>(rect.size);</div><div class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="built_in">CGContextSetFillColorWithColor</span>(context, [color <span class="built_in">CGColor</span>]);</div><div class="line">    <span class="built_in">CGContextFillRect</span>(context, rect);</div><div class="line">    </div><div class="line">    <span class="built_in">UIImage</span> *theImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">    <span class="keyword">return</span> theImage;</div><div class="line">&#125;</div><div class="line"></div><div class="line">   <span class="comment">//去掉UISearchBar 的上下线</span></div><div class="line"> [_ssearchBar setBackgroundImage:[<span class="keyword">self</span> createImageWithColor:[<span class="built_in">UIColor</span> groupTableViewBackgroundColor]]];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/16/画一个图片/" data-id="cj4qzxcsf002w9cmghcyjzezf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/image/">image</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-YTKNetwork" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/13/YTKNetwork/" class="article-date">
+  <time datetime="2017-05-13T03:18:59.000Z" itemprop="datePublished">2017-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/13/YTKNetwork/">YTKNetwork</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>// 猿题库 网络层框架 在AFNetwork 基础之上 </p>
+<p>github : <a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="external">https://github.com/yuantiku/YTKNetwork</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/13/YTKNetwork/" data-id="cj4qzxcrh00189cmg70vwwv5r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-反省" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/03/25/反省/" class="article-date">
+  <time datetime="2017-03-25T11:47:09.000Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/诗/">诗</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/03/25/反省/">反省</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>现在的生活，是一潭浑水，该是时候反省一下了；
+
+已过加冠之年，恍惚二行，知之靡靡，行之往往；
+少年之抱负，定江山，乔氏左右，俯察宇宙之志，
+察观今日之容貌，难掩悲愤之情，再看昨日豪言，望望？
+
+身躯尚在，林木未老，男儿担当，尤志不可消。
+再战江湖，或逆，或顺，心定身安，尤不可再言弃，放之无地。
+昨日少年之抱负， 望今日壮年之身躯；
+今日之身躯，务必知行合一，不负昨日之少年，不待明日之暮年。
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/反省/" data-id="cj4qzxcs3002a9cmgswj26y0j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-禁止输入表情符号emjoy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/" class="article-date">
+  <time datetime="2017-03-25T11:34:43.000Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/">禁止输入表情符号emjoy </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>// 检查字符串是否包含emoji<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)containsEmoji</div><div class="line">&#123;</div><div class="line">	__block <span class="built_in">BOOL</span> contain = <span class="literal">NO</span>;</div><div class="line">	[<span class="keyword">self</span> enumerateSubstringsInRange:<span class="built_in">NSMakeRange</span>(<span class="number">0</span>, <span class="keyword">self</span>.length) options:<span class="built_in">NSStringEnumerationByComposedCharacterSequences</span> usingBlock:^(<span class="built_in">NSString</span> * _Nullable substring, <span class="built_in">NSRange</span> substringRange, <span class="built_in">NSRange</span> enclosingRange, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">		<span class="keyword">if</span> ([substring isEmoji]) &#123;</div><div class="line">			contain = <span class="literal">YES</span>;</div><div class="line">			*stop = <span class="literal">YES</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;];</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> contain;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>// 检查一个‘字符’是否是emoji表情<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)isEmoji</div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">self</span>.length &lt;= <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">unichar</span> first = [<span class="keyword">self</span> characterAtIndex:<span class="number">0</span>];</div><div class="line">	<span class="keyword">switch</span> (<span class="keyword">self</span>.length) &#123;</div><div class="line">		<span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xa9</span> || first == <span class="number">0xae</span> || first == <span class="number">0x2122</span> ||</div><div class="line">				first == <span class="number">0x3030</span> || (first &gt;= <span class="number">0x25b6</span> &amp;&amp; first &lt;= <span class="number">0x27bf</span>) ||</div><div class="line">				first == <span class="number">0x2328</span> || (first &gt;= <span class="number">0x23e9</span> &amp;&amp; first &lt;= <span class="number">0x23fa</span>)) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unichar</span> c = [<span class="keyword">self</span> characterAtIndex:<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (c == <span class="number">0xfe0f</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first &gt;= <span class="number">0x203c</span> &amp;&amp; first &lt;= <span class="number">0x3299</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (first &gt;= <span class="number">0xd83c</span> &amp;&amp; first &lt;= <span class="number">0xd83e</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unichar</span> c = [<span class="keyword">self</span> characterAtIndex:<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (c == <span class="number">0xfe0f</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first &gt;= <span class="number">0x23</span> &amp;&amp; first &lt;= <span class="number">0x39</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="number">0xd83c</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first == <span class="number">0x26f9</span> || first == <span class="number">0x261d</span> || (first &gt;= <span class="number">0x270a</span> &amp;&amp; first &lt;= <span class="number">0x270d</span>)) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xd83c</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unichar</span> c = [<span class="keyword">self</span> characterAtIndex:<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (c == <span class="number">0xd83c</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first == <span class="number">0x261d</span> || first == <span class="number">0x270c</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (first &gt;= <span class="number">0xd83c</span> &amp;&amp; first &lt;= <span class="number">0xd83e</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">5</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xd83d</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">8</span>:</div><div class="line">		<span class="keyword">case</span> <span class="number">11</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xd83d</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">default</span>:</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/" data-id="cj4qzxcsj00329cmghfdryzfm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-捕捉异常" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/03/04/捕捉异常/" class="article-date">
+  <time datetime="2017-03-04T14:38:40.000Z" itemprop="datePublished">2017-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>-<br>title: 捕捉异常<br>date: 2017-03-04 22:38:40<br>categories: iOS<br>tags: @try
+</em>-</p>
+<p> 如果想在app出现异常的情况下，不出现闪退状况</p>
+<p>Objective-C 异常机制 :</p>
+<ul>
+<li>作用 : 开发者将引发异常的代码放在 @try 代码块中, 程序出现异常 使用 @catch 代码块进行捕捉;</li>
+<li>每个代码块作用 : @try 代码块存放可能出现异常的代码, @catch 代码块 异常处理逻辑, @finally 代码块回收资源;<br>语法示例 :</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">  <span class="keyword">@try</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 业务逻辑</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">@catch</span> (异常类型名<span class="number">1</span> ex)</div><div class="line">&#123;</div><div class="line">    <span class="comment">//异常处理代码</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">@catch</span> (异常类型名<span class="number">2</span> ex)</div><div class="line">&#123;</div><div class="line">    <span class="comment">//异常处理代码</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 可以捕捉 N 个 异常 ...</span></div><div class="line"><span class="keyword">@finally</span></div><div class="line">&#123;</div><div class="line"><span class="comment">//回收资源</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Objective-C 异常处理过程</p>
+<p>异常处理过程 :</p>
+<ul>
+<li>生成异常对象 : @try 中出现异常, 系统会生成一个异常对象, 该对象提交到系统中 系统就会抛出异常;</li>
+<li>异常处理流程 : 运行环境接收到 异常对象时, 如果存在能处理该异常对象的 @catch 代码块, 就将该异常对象交给 @catch 处理, 该过程就是捕获异常, 如果没有 @catch 代码块处理异常, 程序就会终止;</li>
+<li>@catch 代码块捕获过程 : 运行环境接收到 异常对象 时, 会依次判断该异常对象类型是否是 @catch 代码块中异常或其子类实例, 如果匹配成功, 被匹配的 @catch 就会处理该异常, 都则就会跟下一个 @catch 代码块对比;</li>
+<li>@catch 处理异常 : 系统将异常对象传递给 @catch 形参, @catch 通过该形参获取异常对象详细信息;</li>
+</ul>
+<p>其它注意点 :</p>
+<ul>
+<li>@try 与 @catch 对应关系 : 一个 @try 代码块 可以对应 多个 @catch 代码块;</li>
+<li>{} 省略问题 : 异常捕获的 @try @catch @finally 的花括号不可省略;</li>
+</ul>
+<p>NSException 异常类 :</p>
+<ul>
+<li>简介 : NSException 是 OC 中所有异常的父类;</li>
+<li>位置永远在最后 : @catch 代码块捕获异常时查看 异常对象类型是否是 捕获的异常类型 或者其子类, 一旦放在开头, 后面的异常永远不可能捕获;</li>
+</ul>
+<p>(3) 异常信息访问</p>
+<p>异常信息访问 :</p>
+<ul>
+<li>name : 返回异常的详细名称;</li>
+<li>reason : 返回异常引发的原因;</li>
+<li>userInfo : 返回异常的用户信息, 一个 NSDictionary 对象;</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/04/捕捉异常/" data-id="cj4qzxcs9002m9cmgcl13evil" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-中英文-字符川长度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/02/26/中英文-字符川长度/" class="article-date">
+  <time datetime="2017-02-26T01:36:19.000Z" itemprop="datePublished">2017-02-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/02/26/中英文-字符川长度/">中英文 字符川长度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>判断中英文混合字符串的长度<br>两种方式：</p>
+<pre><code class="objc">- (<span class="keyword">void</span>)viewDidLoad
+{
+[<span class="keyword">super</span> viewDidLoad];
+<span class="comment">// Do any additional setup after loading the view.</span>
+<span class="comment">//第一种方法</span>
+<span class="built_in">NSLog</span>(<span class="string">@"--first-%i"</span>,[<span class="keyword">self</span> convertToInt:<span class="string">@"123我爱你"</span>]);
+<span class="comment">//第二种方法</span>
+<span class="built_in">NSLog</span>(<span class="string">@"--second--%ld"</span>,[<span class="keyword">self</span> getToInt:<span class="string">@"123我爱你"</span>]);
+}
+
+
+<span class="comment">//得到中英文混合字符串长度 方法1</span>
+- (<span class="keyword">int</span>)convertToInt:(<span class="built_in">NSString</span>*)strtemp
+{
+        <span class="keyword">int</span> strlength = <span class="number">0</span>;
+        <span class="keyword">int</span> a = <span class="number">0</span> ;
+        <span class="keyword">char</span>* p = (<span class="keyword">char</span>*)[strtemp cStringUsingEncoding:<span class="built_in">NSUnicodeStringEncoding</span>];
+        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span> ; i&lt;[strtemp lengthOfBytesUsingEncoding:<span class="built_in">NSUnicodeStringEncoding</span>] ;i++) {
+            <span class="keyword">if</span> (*p) {
+                p++;
+                strlength++;
+            }
+            <span class="keyword">else</span> {
+                p++;
+                a++;
+            }
+        }
+        <span class="keyword">return</span> (strlength - a) / <span class="number">2</span> + a;
+}
+<span class="comment">//得到中英文混合字符串字节长度 方法2</span>
+- (<span class="built_in">NSInteger</span>)getToInt:(<span class="built_in">NSString</span>*)strtemp
+{
+<span class="built_in">NSStringEncoding</span> enc = <span class="built_in">CFStringConvertEncodingToNSStringEncoding</span>(kCFStringEncodingGB_18030_2000);
+<span class="built_in">NSData</span>* da = [strtemp dataUsingEncoding:enc];
+<span class="keyword">return</span> [da length];
+}
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/26/中英文-字符川长度/" data-id="cj4qzxcs7002g9cmgbao3t585" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-NSArry-使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/02/22/NSArry-使用/" class="article-date">
+  <time datetime="2017-02-22T14:47:51.000Z" itemprop="datePublished">2017-02-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/02/22/NSArry-使用/">NSArry 使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用代码块传递遍历操作过滤条件：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//查找数组中第一个符合条件的对象（代码块过滤），返回对应索引  </span></div><div class="line">- (<span class="built_in">NSUInteger</span>)indexOfObjectPassingTest:(<span class="built_in">BOOL</span> (^)(<span class="keyword">id</span> obj,<span class="built_in">NSUInteger</span> idx, BOOLBOOL *stop))predicate <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_6,<span class="number">4</span>_0);  </div><div class="line"><span class="comment">// 以下代码用于获取值等于@"e3"的元素索引：</span></div><div class="line">		<span class="built_in">NSUInteger</span> index = [array indexOfObjectPassingTest:^<span class="built_in">BOOL</span>(<span class="keyword">id</span> obj, <span class="built_in">NSUInteger</span> idx, BOOLBOOL *stop) &#123;  </div><div class="line">		    <span class="keyword">if</span> ([obj isEqualToString:<span class="string">@"e3"</span>]) &#123;  </div><div class="line">		        <span class="keyword">return</span> <span class="literal">YES</span>;  </div><div class="line">		        *stop = <span class="literal">YES</span>; <span class="comment">// 中止遍历，break  </span></div><div class="line">		    &#125; <span class="keyword">else</span> &#123;  </div><div class="line">		        *stop = <span class="literal">NO</span>; <span class="comment">// 继续遍历，continue  </span></div><div class="line">		    &#125;  </div><div class="line">		&#125;]; </div><div class="line"></div><div class="line">	<span class="comment">//	查找数组中所有符合条件的对象（代码块过滤），返回对应索引集合：</span></div><div class="line">- (<span class="built_in">NSIndexSet</span> *)indexesOfObjectsPassingTest:(<span class="built_in">BOOL</span> (^)(<span class="keyword">id</span> obj,<span class="built_in">NSUInteger</span> idx, BOOLBOOL *stop)) predicate <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_6,<span class="number">4</span>_0);  </div><div class="line">``` </div><div class="line">``` objc</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//在指定索引集合处插入一个数组元素，相当于批次insertObject: atIndex:  </span></div><div class="line">- (<span class="keyword">void</span>)insertObjects:(<span class="built_in">NSArray</span>&lt;ObjectType&gt; *)objects atIndexes:(<span class="built_in">NSIndexSet</span>*)indexes; </div><div class="line"></div><div class="line"> <span class="built_in">NSMutableArray</span> *data= @[a,b,c];</div><div class="line"></div><div class="line"> <span class="built_in">NSIndexSet</span> *indexSet = [<span class="built_in">NSIndexSet</span> indexSetWithIndexesInRange:<span class="built_in">NSMakeRange</span>(<span class="number">0</span>, data.count)];</div><div class="line"> <span class="built_in">NSMutableArray</span> *data=  [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="number">1</span>]</div><div class="line"> [data2 insertObjects:data atIndexes:[<span class="built_in">NSIndexSet</span> indexSetWithIndex:<span class="number">0</span>]];</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/NSArry-使用/" data-id="cj4qzxcqz000i9cmgmjc62ao8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-线程同步——信号量机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/02/22/线程同步——信号量机制/" class="article-date">
+  <time datetime="2017-02-22T14:16:03.000Z" itemprop="datePublished">2017-02-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/02/22/线程同步——信号量机制/">线程同步——信号量机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>GCD提供两种方式支持dispatch队列同步，即dispatch组和信号量。<br>一、dispatch组（dispatch group）</p>
+<ol>
+<li>创建dispatch组</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatch_group_t group = dispatch_group_create();</div></pre></td></tr></table></figure>
+<ol>
+<li><p>启动dispatch队列中的block关联到group中</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dispatch_group_async(group, queue, ^&#123; </div><div class="line"></div><div class="line">　　<span class="comment">// 。。。 </span></div><div class="line"></div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>等待group关联的block执行完毕，也可以设置超时参数</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</div></pre></td></tr></table></figure>
+</li>
+<li><p>为group设置通知一个block，当group关联的block执行完毕后，就调用这个block。类似dispatch_barrier_async。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dispatch_group_notify(group, queue, ^&#123;</div><div class="line"></div><div class="line">　　<span class="comment">// 。。。 </span></div><div class="line"></div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>手动管理group关联的block的运行状态（或计数），进入和退出group次数必须匹配</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dispatch_group_enter(group);</div><div class="line"></div><div class="line">dispatch_group_leave(group);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>所以下面的两种调用其实是等价的， </p>
+<p>A)<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dispatch_group_async(group, queue, ^&#123; </div><div class="line"></div><div class="line">　　<span class="comment">// 。。。 </span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>B)<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">dispatch_group_enter(group);</div><div class="line"></div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line"></div><div class="line">　　<span class="comment">//。。。</span></div><div class="line"></div><div class="line">　　dispatch_group_leave(group);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>所以，可以利用dispatch_group_enter、 dispatch_group_leave和dispatch_group_wait来实现同步，具体例子：<a href="http://stackoverflow.com/questions/10643797/wait-until-multiple-operations-executed-including-completion-block-afnetworki/10644282#10644282。" target="_blank" rel="external">http://stackoverflow.com/questions/10643797/wait-until-multiple-operations-executed-including-completion-block-afnetworki/10644282#10644282。</a></p>
+<p>二、dispatch信号量（dispatch semaphore）</p>
+<ol>
+<li><p>创建信号量，可以设置信号量的资源数。0表示没有资源，调用dispatch_semaphore_wait会立即等待。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatch_semaphore_t semaphore = dispatch_semaphore_create(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>等待信号，可以设置超时参数。该函数返回0表示得到通知，非0表示超时。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div></pre></td></tr></table></figure>
+</li>
+<li><p>通知信号，如果等待线程被唤醒则返回非0，否则返回0。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dispatch_semaphore_signal(semaphore);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后，还是回到生成消费者的例子，使用dispatch信号量是如何实现同步：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123; <span class="comment">//消费者队列</span></div><div class="line"></div><div class="line">      <span class="keyword">while</span> (condition) &#123;</div><div class="line"></div><div class="line">　　　　<span class="keyword">if</span> (dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, <span class="number">10</span>*<span class="built_in">NSEC_PER_SEC</span>))) <span class="comment">//等待10秒</span></div><div class="line"></div><div class="line">　　　　　　<span class="keyword">continue</span>;</div><div class="line"></div><div class="line">　　　　<span class="comment">//得到数据</span></div><div class="line"></div><div class="line">　　&#125;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123; <span class="comment">//生产者队列</span></div><div class="line"></div><div class="line">      <span class="keyword">while</span> (condition) &#123;</div><div class="line"></div><div class="line"> 　　　　<span class="keyword">if</span> (!dispatch_semaphore_signal(sem))</div><div class="line"></div><div class="line">　　　　&#123;</div><div class="line"></div><div class="line">　　　　　　sleep(<span class="number">1</span>); <span class="comment">//wait for a while</span></div><div class="line"></div><div class="line">　　　　　　<span class="keyword">continue</span>;</div><div class="line"></div><div class="line">　　　　&#125;</div><div class="line"></div><div class="line">　　　　<span class="comment">//通知成功</span></div><div class="line"></div><div class="line">　　&#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>实现同步<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line"><span class="comment">// 1..   dispatch_semaphore_t sema = dispatch_semaphore_create(0);</span></div><div class="line">  [manager POST:url parameters:p progress:^(<span class="built_in">NSProgress</span> * _Nonnull downloadProgress) &#123;</div><div class="line">       <span class="comment">// 这里可以获取到目前数据请求的进度</span></div><div class="line"></div><div class="line">   &#125; success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</div><div class="line"> <span class="comment">//2.. dispatch_semaphore_signal(sema);</span></div><div class="line">   &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</div><div class="line">       </div><div class="line">  <span class="comment">//2..dispatch_semaphore_signal(sema);</span></div><div class="line">   &#125;];</div><div class="line">  <span class="comment">//3..dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/线程同步——信号量机制/" data-id="cj4qzxcsh002z9cmgf2t0iag2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-UISegmentedControl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/02/17/UISegmentedControl/" class="article-date">
+  <time datetime="2017-02-17T14:40:58.000Z" itemprop="datePublished">2017-02-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/02/17/UISegmentedControl/">UISegmentedControl</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初始化的方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//一次性初始化多个control，items可以是图片或者是文字array，系统会自动控制每个单元的大小</span></div><div class="line"> <span class="comment">//也可通过正常View的初始化进行</span></div><div class="line"> - (<span class="keyword">instancetype</span>)initWithItems:(<span class="built_in">NSArray</span> *)items;</div><div class="line">事件添加</div><div class="line"></div><div class="line"> <span class="comment">//通过UIControl的方法来设置，当改变segments的时候通过事件UIControlEventValueChanged，</span></div><div class="line"> <span class="comment">//通过action来处理事件</span></div><div class="line"> [<span class="keyword">self</span>.mySegmentedControl addTarget:<span class="keyword">self</span></div><div class="line">                     action:<span class="keyword">@selector</span>(myAction:)</div><div class="line">           forControlEvents:<span class="built_in">UIControlEventValueChanged</span>];</div></pre></td></tr></table></figure></p>
+<p>Segmented Controls的内容设置<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//通过索引设置以及获取Title和Image          </span></div><div class="line">- (<span class="keyword">void</span>)setTitle:(<span class="built_in">NSString</span> *)title forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">NSString</span> *)titleForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="keyword">void</span>)setImage:(<span class="built_in">UIImage</span> *)image forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">UIImage</span> *)imageForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div></pre></td></tr></table></figure></p>
+<p>Segmented Controls Segments的设置</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在索引点插入一个新的标题的segment</span></div><div class="line">- (<span class="keyword">void</span>)insertSegmentWithTitle:(<span class="built_in">NSString</span> *)title atIndex:(<span class="built_in">NSUInteger</span>)segment animated:(<span class="built_in">BOOL</span>)animated;</div><div class="line"><span class="comment">//在索引点插入一个新的图片的segment</span></div><div class="line">- (<span class="keyword">void</span>)insertSegmentWithImage:(<span class="built_in">UIImage</span> *)image  atIndex:(<span class="built_in">NSUInteger</span>)segment animated:(<span class="built_in">BOOL</span>)animated;</div><div class="line">- (<span class="keyword">void</span>)removeSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment animated:(<span class="built_in">BOOL</span>)animated;</div><div class="line">- (<span class="keyword">void</span>)removeAllSegmens;</div><div class="line"><span class="comment">//Segment的数量</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>) <span class="built_in">NSUInteger</span> numberOfSegments;  </div><div class="line"><span class="comment">//被选中的索引</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> selectedSegmentIndex;</div></pre></td></tr></table></figure>
+<p>Segmented Controls显示和行为设置<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//默认值为NO，即点击后保持选中状态，如果设置为YES则，只是短暂的显示选中状态</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">getter</span>=isMomentary) <span class="built_in">BOOL</span> momentary;</div><div class="line"><span class="comment">//通过索引调整每个segment的width，如果设置为0.0则表示自动调整大小，默认为0.0</span></div><div class="line">- (<span class="keyword">void</span>)setWidth:(<span class="built_in">CGFloat</span>)width forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">CGFloat</span>)widthForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line"><span class="comment">//通过索引调整文字或者图片在segment的offset，默认为（0,0）</span></div><div class="line">- (<span class="keyword">void</span>)setContentOffset:(<span class="built_in">CGSize</span>)offset forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">CGSize</span>)contentOffsetForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line"><span class="comment">//设置segment是否能选中</span></div><div class="line">- (<span class="keyword">void</span>)setEnabled:(<span class="built_in">BOOL</span>)enabled forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;       </div><div class="line">- (<span class="built_in">BOOL</span>)isEnabledForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line"><span class="comment">//是否根据内容的大小自动调整宽度</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">BOOL</span> apportionsSegmentWidthsByContent <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</div></pre></td></tr></table></figure></p>
+<p>自定义的外观<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置UISegmentedControl的边框，分隔线，文字，点击后的颜色</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">retain</span>) <span class="built_in">UIColor</span> *tintColor;</div><div class="line"><span class="comment">//获取和设置背景图片，通过UIControlState和barMetrics的进行设置和获取，主要需要先设置</span></div><div class="line"><span class="comment">//UIControlStateNormal才会有效果</span></div><div class="line">- (<span class="built_in">UIImage</span> *)backgroundImageForState:(<span class="built_in">UIControlState</span>)state barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics</div><div class="line">- (<span class="keyword">void</span>)setBackgroundImage:(<span class="built_in">UIImage</span> *)backgroundImage forState:(<span class="built_in">UIControlState</span>)state barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics</div><div class="line"><span class="comment">//设置分割线的图片样式，首先需要设置UIControlStateNormal不管左边还是右边，</span></div><div class="line"><span class="comment">//设置完成后再调用设置方法，根据UIControlState显示分割线</span></div><div class="line">- (<span class="keyword">void</span>)setDividerImage:(<span class="built_in">UIImage</span> *)dividerImage forLeftSegmentState:(<span class="built_in">UIControlState</span>)leftState rightSegmentState:(<span class="built_in">UIControlState</span>)rightState barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics</div><div class="line">- (<span class="built_in">UIImage</span> *)dividerImageForLeftSegmentState:(<span class="built_in">UIControlState</span>)leftState rightSegmentState:(<span class="built_in">UIControlState</span>)rightState barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetric        <span class="comment">//设置Title的样式，包括 font, text color,  shadow。通过NSAttributedString.h里面的键值对</span></div><div class="line">- (<span class="keyword">void</span>)setTitleTextAttributes:(<span class="built_in">NSDictionary</span> *)attributes forState:(<span class="built_in">UIControlState</span>)state <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>;</div><div class="line">- (<span class="built_in">NSDictionary</span> *)titleTextAttributesForState:(<span class="built_in">UIControlState</span>)state <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>;</div><div class="line"><span class="comment">//调整title和image的位置，通过给定的segment </span></div><div class="line">- (<span class="keyword">void</span>)setContentPositionAdjustment:(<span class="built_in">UIOffset</span>)adjustment forSegmentType:(<span class="built_in">UISegmentedControlSegment</span>)leftCenterRightOrAlone barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>; </div><div class="line">- (<span class="built_in">UIOffset</span>)contentPositionAdjustmentForSegmentType:(<span class="built_in">UISegmentedControlSegment</span>)leftCenterRightOrAlone barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>;</div></pre></td></tr></table></figure></p>
+<p>在做ios开发时，经常使用到UISegmentedControl控件，而我们也经常需要去改变UISegmentedControl的颜色，而总是发现无法改变，其实并非无法改变，而是UISegmentedControl的样式选择错了。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">segmentedControl.segmentedControlStyle= <span class="built_in">UISegmentedControlStyleBar</span>;<span class="comment">//设置</span></div><div class="line"></div><div class="line">  segmentedControl.tintColor= [<span class="built_in">UIColorcolorWithRed</span>:<span class="number">0.23</span>green:<span class="number">0.50</span>blue:<span class="number">0.82</span>alpha:<span class="number">0.90</span>];</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/17/UISegmentedControl/" data-id="cj4qzxcrd00139cmg3il9u771" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-UISearchViewController" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/02/16/UISearchViewController/" class="article-date">
+  <time datetime="2017-02-16T14:50:50.000Z" itemprop="datePublished">2017-02-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/02/16/UISearchViewController/">UISearchViewController</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> UISearchViewController 的使用方法</p>
+<pre><code class="objc">- (<span class="built_in">UITableViewController</span> *)searchTVC
+{
+
+    <span class="keyword">if</span> (_searchTVC == <span class="literal">nil</span>) {
+
+         _searchTVC = [[<span class="built_in">UITableViewController</span> alloc] initWithStyle:<span class="built_in">UITableViewStylePlain</span>];
+       <span class="comment">//在目前控制器内处置数据 ，也可以自定义</span>
+        _searchTVC.tableView.delegate = <span class="keyword">self</span>;
+        _searchTVC.tableView.dataSource = <span class="keyword">self</span>;
+
+    }
+
+    <span class="keyword">return</span> _searchTVC;
+}
+
+- (<span class="built_in">UISearchController</span> *)searchController{
+
+    <span class="keyword">if</span> (_searchController == <span class="literal">nil</span>) {
+        _searchController = [[<span class="built_in">UISearchController</span> alloc] initWithSearchResultsController:<span class="keyword">self</span>.searchTVC];
+        _searchController.view.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];
+         <span class="comment">// Searchbar 的内容发生改变的代理</span>
+        _searchController.searchResultsUpdater = <span class="keyword">self</span>;
+        <span class="comment">// UISearchViewController 模态前后 与 消失前后的代理</span>
+        _searchController.delegate = <span class="keyword">self</span>;
+    }
+    <span class="keyword">return</span> _searchController;
+}
+
+- (<span class="keyword">void</span>)searchBarTextDidBeginEditing:(<span class="built_in">UISearchBar</span> *)searchBar
+{
+
+    [<span class="keyword">self</span> presentViewController:<span class="keyword">self</span>.searchController animated:<span class="literal">YES</span> completion:^{
+<span class="comment">//        self.view.hidden = YES;a</span>
+    }];
+
+}
+<span class="meta">#pragma mark -- UISearchResultsUpdating</span>
+<span class="comment">// 搜索的结果</span>
+- (<span class="keyword">void</span>)updateSearchResultsForSearchController:(<span class="built_in">UISearchController</span> *)searchController{
+
+
+}
+<span class="meta">#pragma mark ---UISearchControllerDelegate</span>
+
+- (<span class="keyword">void</span>)didDismissSearchController:(<span class="built_in">UISearchController</span> *)searchController{
+
+
+}
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/16/UISearchViewController/" data-id="cj4qzxcra000x9cmg08jkje9v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/yuling.github.io/page/2/">&laquo; __('prev')</a><a class="page-number" href="/yuling.github.io/">1</a><a class="page-number" href="/yuling.github.io/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/yuling.github.io/page/4/">4</a><a class="extend next" rel="next" href="/yuling.github.io/page/4/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/诗/">诗</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/21/layoutSubviews/">layoutSubviews</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/">DZNEmptyDataSet</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/06/IQKeyboardManager/">IQKeyboardManager</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/05/autoLayout/">autoLayout</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/06/04/CATransform3D/">CATransform3D</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 yuling<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/yuling.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/yuling.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/yuling.github.io/fancybox/jquery.fancybox.css">
+  <script src="/yuling.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/yuling.github.io/js/script.js"></script>
+
+  </div>
+</body>
+</html>

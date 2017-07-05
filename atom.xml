@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>yulingyiyi</title>
+  <subtitle>万丈高楼平地起</subtitle>
+  <link href="/yuling.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
+  <updated>2017-06-21T02:09:22.000Z</updated>
+  <id>https://yulingyiyi.github.io/yuling.github.io/</id>
+  
+  <author>
+    <name>yuling</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>layoutSubviews</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/</id>
+    <published>2017-06-21T02:06:38.000Z</published>
+    <updated>2017-06-21T02:09:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p> 什么时候调用layoutSubviews</p>
+<p>总结一下什么时候会触发layoutSubviews：<br>layoutSubviews在以下情况下会被调用：<br>1、init初始化不会触发layoutSubviews<br>2、addSubview会触发layoutSubviews<br>3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化<br>4、滚动一个UIScrollView会触发layoutSubviews<br>5、旋转Screen会触发父UIView上的layoutSubviews事件<br>6、改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 什么时候调用layoutSubviews&lt;/p&gt;
+&lt;p&gt;总结一下什么时候会触发layoutSubviews：&lt;br&gt;layoutSubviews在以下情况下会被调用：&lt;br&gt;1、init初始化不会触发layoutSubviews&lt;br&gt;2、addSubview会触发lay
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="layoutSubviews" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/layoutSubviews/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DZNEmptyDataSet</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/</id>
+    <published>2017-06-06T08:47:29.000Z</published>
+    <updated>2017-06-06T08:55:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>DZNEmptyDataSet UITableView 或 UICollectionView 的空白页扩展</p>
+<p>github：  <a href="https://github.com/dzenbot/DZNEmptyDataSet" target="_blank" rel="external">https://github.com/dzenbot/DZNEmptyDataSet</a></p>
+<p>使用</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Import</div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"UIScrollView+EmptyDataSet.h"</span></span></div><div class="line">作为框架导入：</div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;DZNEmptyDataSet/UIScrollView+EmptyDataSet.h&gt;</span></span></div><div class="line">遵循协议</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MainViewController</span> : <span class="title">UITableViewController</span> &lt;<span class="title">DZNEmptyDataSetSource</span>, <span class="title">DZNEmptyDataSetDelegate</span>&gt;</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.tableView.emptyDataSetSource = <span class="keyword">self</span>;</div><div class="line">    <span class="keyword">self</span>.tableView.emptyDataSetDelegate = <span class="keyword">self</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 删除单元格分隔线的一个小技巧</span></div><div class="line">    <span class="keyword">self</span>.tableView.tableFooterView = [<span class="built_in">UIView</span> new];</div><div class="line">&#125;</div><div class="line">实现数据源协议</div><div class="line"></div><div class="line">DZNEmptyDataSetSource</div><div class="line"></div><div class="line">返回想要在空白状态显示的内容，并且充分利用 <span class="built_in">NSAttributedString</span> 功能来自定义文本外观。</div><div class="line">空白页显示图片</div><div class="line">- (<span class="built_in">UIImage</span> *)imageForEmptyDataSet:(<span class="built_in">UIScrollView</span> *)scrollView &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"lion"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;DZNEmptyDataSet UITableView 或 UICollectionView 的空白页扩展&lt;/p&gt;
+&lt;p&gt;github：  &lt;a href=&quot;https://github.com/dzenbot/DZNEmptyDataSet&quot; target=&quot;_blank
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="DZNEmptyDataSet" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/DZNEmptyDataSet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IQKeyboardManager</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/</id>
+    <published>2017-06-06T07:05:54.000Z</published>
+    <updated>2017-06-06T07:07:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>  IQKeyboardManager的使用</p>
+<pre><code class="objc">
+框架的启用
+- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions {
+  [[IQKeyboardManager sharedManager] setEnable:<span class="literal">YES</span>];
+  [[IQKeyboardManager sharedManager] setEnableAutoToolbar:<span class="literal">YES</span>];
+    <span class="keyword">return</span> <span class="literal">YES</span>;
+}
+enable 控制整个功能是否启用。
+
+shouldResignOnTouchOutside 控制点击背景是否收起键盘。
+
+shouldToolbarUsesTextFieldTintColor 控制键盘上的工具条文字颜色是否用户自定义。
+
+enableAutoToolbar 控制是否显示键盘上的工具条。
+
+以上设置，就启用了这个库。
+
+有时想在某个界面启用,可以在
+
+- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated 和 - (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated 
+
+里面进行开启关闭
+
+<span class="number">1.</span>修改IQKeyBoardManager的右边的Done按钮 
+  manager.toolbarDoneBarButtonItemText = <span class="string">@"1234"</span>;
+或者
+  manager.toolbarDoneBarButtonItemImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"IQKeyboardManagerScreenshot"</span>];
+
+<span class="number">2.</span>修改IQKeyBoardManager的Toolbar颜色等
+  manager.shouldToolbarUsesTextFieldTintColor = <span class="literal">NO</span>;
+  manager.toolbarTintColor = [<span class="built_in">UIColor</span> redColor];
+
+<span class="number">3.</span>是否显示响应者的水印和字号
+  manager.shouldShowTextFieldPlaceholder = <span class="literal">YES</span>;
+  manager.placeholderFont = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14.0</span>];
+<span class="number">4.</span> 设置键盘textField的距离。不能小于零。默认是<span class="number">10.0</span>。&lt;触发条件是textField需要改变y时 &gt;
+  manager.keyboardDistanceFromTextField = <span class="number">10.0</span>f;
+<span class="number">5.</span>防止IQKeyboardManager让rootview上滑过度,默认是<span class="literal">YES</span>
+  manager.preventShowingBottomBlankSpace = <span class="literal">NO</span>;
+
+
+<span class="number">6.</span> IQKeyBoardManager的右边的Done按钮的响应事件doneAction 事件未公开API,不过可以通过代理
+- (<span class="keyword">void</span>)textFieldDidEndEditing:(<span class="built_in">UITextField</span> *)textField
+</code></pre>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  IQKeyboardManager的使用&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
+框架的启用
+- (&lt;span class=&quot;built_in&quot;&gt;BOOL&lt;/span&gt;)application:(&lt;span class=&quot;built_in&quot;&gt;UIApp
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="IQKeyboardManager" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/IQKeyboardManager/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>autoLayout</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/</id>
+    <published>2017-06-05T11:13:21.000Z</published>
+    <updated>2017-06-05T12:43:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p> NSLayoutConstraint</p>
+<pre><code class="objc"> 使用AutoLayout之前需要知道以下两点：
+
+<span class="number">1.</span>必须设置 translatesAutoresizingMaskIntoConstraints为<span class="literal">NO</span>。
+
+<span class="number">2.</span>如果是viewControl则AutoLayout适配写在[- updateViewConstraints]中；
+
+如果是view则AutoLayout适配写在[- updateConstraints]中。
+
+一、 要讲解的方法:
+
+ <span class="number">1</span> <span class="comment">/* Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant" 
+ 2  If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.
+ 3  */</span>
+ <span class="number">4</span> +(<span class="keyword">instancetype</span>)constraintWithItem:(<span class="keyword">id</span>)view1 
+ <span class="number">5</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr1 
+ <span class="number">6</span>                         relatedBy:(<span class="built_in">NSLayoutRelation</span>)relation 
+ <span class="number">7</span>                            toItem:(<span class="keyword">id</span>)view2
+ <span class="number">8</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr2 
+ <span class="number">9</span>                        multiplier:(<span class="built_in">CGFloat</span>)multiplier 
+<span class="number">10</span>                          constant:(<span class="built_in">CGFloat</span>)c;
+参数说明：
+
+第一个参数 view1: 要设置的视图；
+
+第二个参数 attr1: view1要设置的属性，稍后详解；
+
+第三个参数 relation: 视图view1和view2的指定属性之间的关系，稍后详解；
+
+第四个参数 view2: 参照的视图；
+
+第五个参数 attr2: 参照视图view2的属性，稍后详解；
+
+第六个参数 multiplier: 视图view1的指定属性是参照视图view2制定属性的多少倍；
+
+第七个参数 c: 视图view1的指定属性需要加的浮点数。
+
+根据参数的讲解，得出计算公式如下：
+
+view1.attr1 [= , &gt;= , &lt;=] view2.attr2 * multiplier + c;
+
+参数详解：
+
+<span class="number">1</span>、<span class="built_in">NSLayoutAttribute</span>
+
+  <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutAttribute</span>) {
+      <span class="built_in">NSLayoutAttributeLeft</span> = <span class="number">1</span>, 
+      <span class="built_in">NSLayoutAttributeRight</span>,
+      <span class="built_in">NSLayoutAttributeTop</span>,
+      <span class="built_in">NSLayoutAttributeBottom</span>,
+      <span class="built_in">NSLayoutAttributeLeading</span>,
+      <span class="built_in">NSLayoutAttributeTrailing</span>,
+      <span class="built_in">NSLayoutAttributeWidth</span>,
+      <span class="built_in">NSLayoutAttributeHeight</span>,
+     <span class="built_in">NSLayoutAttributeCenterX</span>,
+     <span class="built_in">NSLayoutAttributeCenterY</span>,
+     <span class="built_in">NSLayoutAttributeBaseline</span>,
+     <span class="built_in">NSLayoutAttributeLastBaseline</span> = <span class="built_in">NSLayoutAttributeBaseline</span>,
+     <span class="built_in">NSLayoutAttributeFirstBaseline</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+
+
+     <span class="built_in">NSLayoutAttributeLeftMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+     <span class="built_in">NSLayoutAttributeRightMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeTopMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+     <span class="built_in">NSLayoutAttributeBottomMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeLeadingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeTrailingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeCenterXWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+    <span class="built_in">NSLayoutAttributeCenterYWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
+
+     <span class="built_in">NSLayoutAttributeNotAnAttribute</span> = <span class="number">0</span>
+ };
+分三部分解释 <span class="built_in">NSLayoutAttribute</span>
+
+第一部分：常用的
+
+<span class="built_in">NSLayoutAttributeLeft</span>:  <span class="built_in">CGRectGetMinX</span>(view.frame) ;
+
+<span class="built_in">NSLayoutAttributeRight</span>:  <span class="built_in">CGRectGetMaxX</span>(view.frame);
+
+<span class="built_in">NSLayoutAttributeTop</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
+
+<span class="built_in">NSLayoutAttributeBottom</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
+
+<span class="built_in">NSLayoutAttributeWidth</span>:  <span class="built_in">CGRectGetWidth</span>(view.frame) ;
+
+<span class="built_in">NSLayoutAttributeHeight</span>: <span class="built_in">CGRectGetHeight</span>(view.frame) ;
+
+<span class="built_in">NSLayoutAttribute</span> CenterX : view.center.x ;
+
+<span class="built_in">NSLayoutAttribute</span> CenterY : view.center.y  ;
+
+<span class="built_in">NSLayoutAttributeBaseline</span>: 文本底标线，在大多数视图中等同于<span class="built_in">NSLayoutAttributeBottom</span>； 在少数视图，如<span class="built_in">UILabel</span>，是指字母的底部出现的位置 ;
+
+<span class="built_in">NSLayoutAttributeLastBaseline</span>: 相当于<span class="built_in">NSLayoutAttributeBaseline</span> ;
+
+<span class="built_in">NSLayoutAttributeFirstBaseline</span>: 文本上标线 ;
+
+<span class="built_in">NSLayoutAttribute</span> NotAnAttribute: None ;
+
+第二部分： 根据国家使用习惯不同表示的意思不同
+
+<span class="built_in">NSLayoutAttributeLeading</span>: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span> ;
+
+<span class="built_in">NSLayoutAttribute</span> Trailing: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span> ;
+
+第三部分：ios8新增属性，各种间距，具体用法下节介绍
+
+<span class="built_in">NSLayoutAttributeLeftMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeRightMargin</span>，
+
+<span class="built_in">NSLayoutAttributeTopMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeBottomMargin</span>，
+
+<span class="built_in">NSLayoutAttributeLeadingMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeTrailingMargin</span>， 
+
+<span class="built_in">NSLayoutAttributeCenterXWithinMargins</span>，
+
+<span class="built_in">NSLayoutAttributeCenterYWithinMargins</span>， 
+
+从网上找了一张图，标注以上属性
+
+
+<span class="number">2</span>、 <span class="built_in">NSLayoutRelation</span>
+
+<span class="number">1</span> <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutRelation</span>) {
+<span class="number">2</span>     <span class="built_in">NSLayoutRelationLessThanOrEqual</span> = <span class="number">-1</span>,
+<span class="number">3</span>     <span class="built_in">NSLayoutRelationEqual</span> = <span class="number">0</span>,
+<span class="number">4</span>     <span class="built_in">NSLayoutRelationGreaterThanOrEqual</span> = <span class="number">1</span>,
+<span class="number">5</span> };
+<span class="built_in">NSLayoutRelationLessThanOrEqual</span>: &lt;=;
+
+<span class="built_in">NSLayoutRelationEqual</span>: =;
+
+<span class="built_in">NSLayoutRelationGreaterThanOrEqual</span>: &gt;=;
+
+二、要讲解的方法
+
+<span class="number">1</span>、获取当前view中所有的  <span class="built_in">NSLayoutConstraint</span>
+
+<span class="number">1</span> - (<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);
+<span class="number">2</span>、旧版方法，将指定的<span class="built_in">NSLayoutConstraint</span>添加到页面或者从页面中移除
+
+<span class="number">1</span> <span class="number">1</span> - (<span class="keyword">void</span>)addConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead, set NSLayoutConstraint's active property to YES.</span>
+<span class="number">2</span> <span class="number">2</span> - (<span class="keyword">void</span>)addConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint activateConstraints:].</span>
+<span class="number">3</span> <span class="number">3</span> - (<span class="keyword">void</span>)removeConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead set NSLayoutConstraint's active property to NO.</span>
+<span class="number">4</span> <span class="number">4</span> - (<span class="keyword">void</span>)removeConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint deactivateConstraints:].</span>
+<span class="number">3</span>、ios8新加方法，激活或者停用指定约束
+
+<span class="number">1</span> <span class="comment">/* The receiver may be activated or deactivated by manipulating this property.  Only active constraints affect the calculated layout.  Attempting to activate a constraint whose items have no common ancestor will cause an exception to be thrown.  Defaults to NO for newly created constraints. */</span>
+<span class="number">2</span> <span class="keyword">@property</span> (<span class="keyword">getter</span>=isActive) <span class="built_in">BOOL</span> active <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
+<span class="number">3</span> 
+<span class="number">4</span> <span class="comment">/* Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually. */</span>
+<span class="number">5</span> + (<span class="keyword">void</span>)activateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
+<span class="number">6</span> 
+<span class="number">7</span> <span class="comment">/* Convenience method that deactivates each constraint in the contained array, in the same manner as setting active=NO. This is often more efficient than deactivating each constraint individually. */</span>
+<span class="number">8</span> + (<span class="keyword">void</span>)deactivateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
+三、Coding Time
+
+a&gt; 设置视图view1为 宽度=<span class="number">20</span>的正方形
+
+两种写法，第一种 宽度=<span class="number">20</span>，高度=<span class="number">20</span>
+
+<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
+<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
+第二种 宽度=<span class="number">20</span>， 高度=宽度
+
+<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
+<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]];
+第二种方法的优势是，如果想修改view1的大小，只需要修改一处。
+
+b&gt;设置视图view1.frame. origin.x = 视图view2.frame.origin.x
+
+<span class="built_in">NSLayoutConstraint</span> *leftConstraint = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeLeft</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view2 attribute:<span class="built_in">NSLayoutAttributeLeft</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]；
+
+<span class="comment">//旧版方法</span>
+<span class="comment">//[self addConstraint:leftConstraint];</span>
+
+<span class="comment">//新版方法1</span>
+[<span class="built_in">NSLayoutConstraint</span> activateConstraints:@[leftConstraint]]; 
+<span class="comment">//新版方法2</span>
+leftConstraint.active = <span class="literal">YES</span>;
+</code></pre>
+<p>Auto Layout 关于更新约束的几个方法</p>
+<p>setNeedsLayout：告知页面需要更新，但是不会立刻开始更新。执行后会立刻调用layoutSubviews。</p>
+<p>layoutIfNeeded：告知页面布局立刻更新。所以一般都会和setNeedsLayout一起使用。如果希望立刻生成新的frame需要调用此方法，利用这点一般布局动画可以在更新布局后直接使用这个方法让动画生效。</p>
+<p>layoutSubviews：系统重写布局。</p>
+<p>setNeedsUpdateConstraints：告知需要更新约束，但是不会立刻开始。</p>
+<p>updateConstraintsIfNeeded：告知立刻更新约束。</p>
+<p>updateConstraints：系统更新约束。</p>
+<p>这么多方法中，目前我使用比较多的是 layoutIfNeeded 。因为在Auto Layout 实现动画的时候，layoutIfNeeded 方法可以立刻生成新的frame特性是一大利器。</p>
+<p>五、使用 Auto Layout （NSLayoutConstraint）实现动画</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; NSLayoutConstraint&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt; 使用AutoLayout之前需要知道以下两点：
+
+&lt;span class=&quot;number&quot;&gt;1.&lt;/span&gt;必须设置 translatesAutoresizingMaskIn
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="autoLayout" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/autoLayout/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CATransform3D</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/</id>
+    <published>2017-06-04T15:14:21.000Z</published>
+    <updated>2017-06-04T15:17:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>  关于CATransform3D </p>
+<p>  链接：<a href="http://www.jianshu.com/p/69ba0a4b2df9" target="_blank" rel="external">http://www.jianshu.com/p/69ba0a4b2df9</a></p>
+<p>  图层的几个坐标系</p>
+<pre><code>对于iOS来说，坐标系的（0，0）点在左上角，就是越往下，Y值越大。越往右，X值越大。
+一个图层的frame，它是position，bounds，anchorPoint和transform属性的一部分。
+设置一个新的frame将会相应的改变图层的position和bounds，但是frame本身并没有保存。
+position：是一个CGPoint值，它指定图层相当于它父图层的位置，该值基于父图层的坐标系。
+bounds：是一个CGRect值，指定图层的大小（bounds.size）和图层的原点（bounds.origin），这个坐标系是基于自身的。如果改变bounds的origin，那么在该图层的子图层，坐标会跟着改变。也就是说，改变自身的坐标系，本身在父图层的位置不变，但它上的子图层位置变化。
+anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合坐标系的位置。锚点（anchor point）制定了bounds相对于position的值，同时也作为一个变化时候的中心点。锚点使用空间坐标系取值范围是0-1之间的数。默认是0.5，也就是秃瓢的中心点，如果是（0，0）那么，图层向左上方移动。如果是（1，1）就向右下方移动。
+看下面的两个图，就能够够清晰的看出锚点变化所带来的不一样。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  关于CATransform3D &lt;/p&gt;
+&lt;p&gt;  链接：&lt;a href=&quot;http://www.jianshu.com/p/69ba0a4b2df9&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/69
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="CATransform3D" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/CATransform3D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cocoaPods</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/</id>
+    <published>2017-05-26T07:51:08.000Z</published>
+    <updated>2017-05-26T07:52:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>CocoaPods 【warning: Insecure world writable dir /usr/local/bin in PATH, mode 040777】</p>
+<p>解决方法：</p>
+<p>提示含义：</p>
+<p>目录被赋予777的权限，不安全。</p>
+<p>如何解决：</p>
+<p>将提示权限改为775，问题即可解决。</p>
+<p>具体实现：</p>
+<p>在终端写入下列命令行，即可消除上面的提示。</p>
+<p>sudo chmod go-w /usr/local/bin<br>sudo chmod 775 /usr/local</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CocoaPods 【warning: Insecure world writable dir /usr/local/bin in PATH, mode 040777】&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;提示含义：&lt;/p&gt;
+&lt;p&gt;目录被赋予777的权限，不安全。&lt;/p
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="cocoaPods" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/cocoaPods/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>添加pod支持</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/%E6%B7%BB%E5%8A%A0pod%E6%94%AF%E6%8C%81/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/</id>
+    <published>2017-05-26T04:16:01.000Z</published>
+    <updated>2017-05-26T05:25:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>利用github cocoaPod  创建第三方库文件</p>
+<p>#CY  项目目录</p>
+<ol>
+<li><p>添加项目到github </p>
+</li>
+<li><p>用终端命令 在项目根目录创建podspec 文件</p>
+</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$cd CY</div><div class="line">$ pod spec create CY</div></pre></td></tr></table></figure>
+<p>2.用编辑器打开.podspec文件 (我自己用Sublime Text)<br>删除不必要的注释(这里只简单介绍基本用法，所以只用到一部分必须得字段 更多字段请移步<a href="http://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="external">http://guides.cocoapods.org/syntax/podspec.html</a>)</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> |s|</div><div class="line">  s.name         = <span class="string">"CY"</span></div><div class="line">  s.version      = <span class="string">"0.0.1"</span></div><div class="line">  <span class="meta">#简单描述</span></div><div class="line">  s.summary      = <span class="string">"all kinds of categories for iOS develop"</span></div><div class="line">  <span class="meta">#简单介绍</span></div><div class="line">  s.description  = &lt;&lt;-DESC</div><div class="line">                      <span class="keyword">this</span> project provide all kinds of categories <span class="keyword">for</span> iOS developer </div><div class="line">                   DESC</div><div class="line">  <span class="meta">#项目主页</span></div><div class="line">  s.homepage     = <span class="string">"https://github.com/yongqianvip/CY"</span></div><div class="line">  <span class="meta">#开源协议 </span></div><div class="line">  s.license      = <span class="string">"MIT"</span></div><div class="line">  s.license      = &#123; :type =&gt; <span class="string">"MIT"</span>， :file =&gt; <span class="string">"LICENSE"</span> &#125;</div><div class="line">  <span class="meta"># 作者信息</span></div><div class="line">  s.author             = &#123; <span class="string">"yongqianvip"</span> =&gt; <span class="string">"yongqianvip@***.com"</span> &#125;</div><div class="line">  <span class="meta"># 版本支持</span></div><div class="line">  s.platform     = :ios</div><div class="line">  <span class="meta">#文件资源</span></div><div class="line">  s.source       = &#123; :git =&gt; <span class="string">"https://github.com/yongqianvip/CY.git"</span>， :tag =&gt; <span class="string">"0.0.1"</span> &#125;</div><div class="line">  s.source_files  = <span class="string">"Classes"</span>， <span class="string">"CY/Classes/**/*.&#123;h，m&#125;"</span></div><div class="line">  s.exclude_files = <span class="string">"Classes/Exclude"</span></div><div class="line">  s.public_header_files = <span class="string">"CY/Classes/UIKit/UI_Categories.h"</span>，<span class="string">"CY/Classes/Foundation/Foundation_Category.h"</span>，<span class="string">"CY/Classes/**/*.h"</span></div><div class="line">  <span class="meta">#是否支持ARC</span></div><div class="line">  s.requires_arc = <span class="literal">true</span></div><div class="line">end</div></pre></td></tr></table></figure>
+<p>3.验证podspec</p>
+<p>编辑完podspec文件后需要验证一下这个文件是否可用podspec文件不允许有任何的Warning或者Error<br>执行命令</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$pod lib lint</div></pre></td></tr></table></figure>
+<p>如果出现</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CY passed validation.</div></pre></td></tr></table></figure>
+<p>则说明验证通过， 否则， 根据提示修改podspec文件再次验证直到验证通过<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">附带说一下，Xcode允许警告存在，所以可以通过命令屏蔽警告</div><div class="line"></div><div class="line">$ pod lib lint --allow-warnings</div><div class="line">如果出现Error但是提示信息不足，可以添加--verbose 以获取更多错误信息</div><div class="line"></div><div class="line">$ pod lib lint --verbose</div></pre></td></tr></table></figure></p>
+<p>….. 填坑 </p>
+<ul>
+<li>ERROR | license: Sample license type.<br>在GitHub项目 根目录上传一个 开源协议license 文件</li>
+<li><p>WARN  | source: The version should be included in the Git tag.<br>在github 项目中tag 标记一下版本 必须和<br>s.version      = “0.0.1”<br>s.source       = { :git =&gt; “<a href="https://github.com/yongqianvip/CY.git&quot;，" target="_blank" rel="external">https://github.com/yongqianvip/CY.git&quot;，</a> :tag =&gt; “0.0.1” }</p>
+<p>中的version 和tag 一致<br>-出现 <code>echo &quot;2.3&quot; &gt; .swift-version</code>:<br>在终端输入 echo “2.3” &gt; .swift-version</p>
+</li>
+</ul>
+<p>4.打tag 上传podspec</p>
+<p>podspec文件中需要指定的tag， 完成上述操作后给项目打tag<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag -m<span class="string">"first release iOS_Category with podspec"</span> <span class="string">"0.0.1"</span></div><div class="line">$ git push --tags</div></pre></td></tr></table></figure></p>
+<p>最后使用pod trunk命令，把podspec文件推送到CocoaPod官方库</p>
+<p>pod trunk 需要注册 具体做法这里不再赘述 请移步CocoaPod官网</p>
+<p>pod trunk 设置完毕后执行命令<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk push iOS_Category.podspec</div></pre></td></tr></table></figure></p>
+<p>这个过程可能会比较耗时，原因你懂的</p>
+<p>4.最后</p>
+<p>如果一切顺利<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search iOS_Category</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;利用github cocoaPod  创建第三方库文件&lt;/p&gt;
+&lt;p&gt;#CY  项目目录&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;添加项目到github &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用终端命令 在项目根目录创建podspec 文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figu
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="Pod" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/Pod/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GCD读取文件</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD读取文件/</id>
+    <published>2017-05-25T05:29:34.000Z</published>
+    <updated>2017-05-25T05:30:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code class="objc">
+<span class="comment">//GCD读写文件</span>
+    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
+
+    <span class="keyword">int</span> intbuffer[] = { <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> };
+    <span class="keyword">char</span> charbuffer[]={<span class="string">"fdafdsafsdfasdfa"</span>};
+    dispatch_data_t data = dispatch_data_create(charbuffer, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, <span class="literal">NULL</span>);
+
+    dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);
+    <span class="comment">// Write</span>
+    dispatch_fd_t fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+
+    printf(<span class="string">"FD: %d\n"</span>, fd);
+
+    dispatch_write(fd, data, queue,^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Written %zu bytes!\n"</span>, dispatch_data_get_size(data) - (d ? dispatch_data_get_size(d) : <span class="number">0</span>));
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    close(fd);
+
+    <span class="comment">// Read</span>
+    fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR);
+
+    dispatch_read(fd, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, ^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Read %zu bytes!\n"</span>, dispatch_data_get_size(d));
+        <span class="keyword">const</span> <span class="keyword">void</span> *buffer = <span class="literal">NULL</span>;
+        size_t size = dispatch_data_get_size(d);
+        dispatch_data_t tmpData = dispatch_data_create_map(data, &amp;buffer, &amp;size);
+        <span class="built_in">NSData</span> *nsdata = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:size];
+        <span class="built_in">NSString</span> *s=[[<span class="built_in">NSString</span> alloc] initWithData:nsdata encoding:<span class="built_in">NSUTF8StringEncoding</span>];
+        <span class="built_in">NSLog</span>(<span class="string">@"buffer %@"</span>,s);
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    close(fd);
+
+    <span class="comment">// Exit confirmation</span>
+    getchar();
+</code></pre>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
+&lt;span class=&quot;comment&quot;&gt;//GCD读写文件&lt;/span&gt;
+    &lt;span class=&quot;built_in&quot;&gt;dispatch_queue_t&lt;/span&gt; queue = dispatch_get_glob
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="GCD读取文件" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/GCD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dispatch_suspend/dispatch_resume</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/</id>
+    <published>2017-05-25T02:25:03.000Z</published>
+    <updated>2017-05-25T02:47:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>dispatch_suspend/dispatch_resume </p>
+<p>当追加大量处理到Dispatch Queue时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。<br>在这种情况下，只要挂起Dispatch Queue即可。当可以执行时再恢复。<br>dispatch_suspend函数挂起指定的Dispatch Queue。</p>
+<p>dispatch_suspend(queue);<br>1<br>1<br>dispatch_resume函数恢复指定的Dispatch Queue。</p>
+<p>dispatch_resume(queue);<br>1<br>1<br>这些函数对已经执行的处理没有影响。挂起后，追加到Dispatch Queue中但尚未执行的处理在此之后停止执行。而恢复则使这些处理能够继续执行。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dispatch_suspend/dispatch_resume &lt;/p&gt;
+&lt;p&gt;当追加大量处理到Dispatch Queue时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。&lt;br&gt;在这种情况下，只要挂起
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="dispatch_suspend/dispatch_resume" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-suspend-dispatch-resume/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dispatch_get_specific</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/</id>
+    <published>2017-05-25T02:23:01.000Z</published>
+    <updated>2017-05-25T02:24:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>dispatch_queue_set_specific就是向指定队列里面设置一个标识 如：</p>
+<p>dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1,NULL);<br>就是向queue1对了中设置一个queueKey1标识。</p>
+<p>dispatch_get_specific就是在当前队列中取出标识，注意iOS中线程和队列的关系，所有的动作都是在队列中执行的！ 如：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  main.m  </span></div><div class="line"><span class="comment">//  gcd  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yongpengliang on 16/2/19.  </span></div><div class="line"><span class="comment">//  Copyright © 2016年 jerry. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line">  </div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></div><div class="line">  </div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </div><div class="line">        <span class="keyword">static</span> voidvoid *queueKey1 = <span class="string">"queueKey1"</span>;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(queueKey1, DISPATCH_QUEUE_SERIAL);  </div><div class="line">        dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1, <span class="literal">NULL</span>);  </div><div class="line">          </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">          </div><div class="line">        <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">            <span class="comment">//当前队列是主队列，不是queue1队列，所以取不到queueKey1对应的值，故而不执行  </span></div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"2. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"3. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_sync</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"4. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">                 <span class="comment">//当前队列是queue1队列，所以能取到queueKey1对应的值，故而执行  </span></div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"5. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"6. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;  </div><div class="line">        &#125;);  </div><div class="line">        <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"7. t当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;);  </div><div class="line">          </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">5</span>];  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"></div><div class="line">输出结果：</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.390</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">1.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.391</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">3.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">24.396</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">4.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">25.400</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">5.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">26.402</span> gcd[<span class="number">96865</span>:<span class="number">820367</span>] <span class="number">7.</span> t当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x100105e10</span>&gt;&#123;number = <span class="number">2</span>, name = (null)&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line">Program ended with exit code: <span class="number">0</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dispatch_queue_set_specific就是向指定队列里面设置一个标识 如：&lt;/p&gt;
+&lt;p&gt;dispatch_queue_set_specific(queue1, queueKey1, &amp;amp;queueKey1,NULL);&lt;br&gt;就是向queue1对了中
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="dispatch_get_specific" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-get-specific/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dispatch_set_target_queue</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/</id>
+    <published>2017-05-25T02:20:08.000Z</published>
+    <updated>2017-05-25T02:21:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>dispatch_set_target_queue的两个作用：</p>
+<p>酷用来给新建的queue设置优先级：<br>Java代码  收藏代码<br>dispatch_queue_t serialQueue = dispatch_queue_create(“com.oukavip.www”,NULL);<br>dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0);  </p>
+<p>dispatch_set_target_queue(serialQueue, globalQueue);<br>/<em> </em> 第一个参数为要设置优先级的queue,第二个参数是参照物，既将第一个queue的优先级和第二个queue的优先级设置一样。<br>     */<br>需要注意的是，第一个参数是自定义的queue(默认优先级就是global queue的default)，而不是系统的queue（global/main）。因为你不能给系统的queue设置权限。通过上面设置，serialQueue 就有了与globalQueue一样的优先级。其实这个函数不仅可以设置queue的优先级，还可以设置queue之间的层级结构。</p>
+<p>酷修改用户队列的目标队列，使多个serial queue在目标queue上一次只有一个执行：<br>它会把需要执行的任务对象指定到不同的队列中去处理，这个任务对象可以是dispatch队列，也可以是dispatch源。而且这个过程可以是动态的，可以实现队列的动态调度管理等等。比如说有两个队列dispatchA和dispatchB，这时把dispatchA指派到dispatchB：<br>dispatch_set_target_queue(dispatchA, dispatchB);<br>那么dispatchA上还未运行的block会在dispatchB上运行。这时如果暂停dispatchA运行：<br>dispatch_suspend(dispatchA);<br>则只会暂停dispatchA上原来的block的执行，dispatchB的block则不受影响。而如果暂停dispatchB的运行，则会暂停dispatchA的运行。<br>demo：<br>一般都是把一个任务放到一个串行的queue中，如果这个任务被拆分了，被放置到多个串行的queue中，但实际还是需要这个任务同步执行，那么就会有问题，因为多个串行queue之间是并行的。这时使用dispatch_set_target_queue将多个串行的queue指定到了同一目标，那么着多个串行queue在目标queue上就是同步执行的，不再是并行执行。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  +(<span class="keyword">void</span>)testTargetQueue &#123;  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> targetQueue = dispatch_queue_create(<span class="string">"test.target.queue"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(<span class="string">"test.1"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue2 = dispatch_queue_create(<span class="string">"test.2"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue3 = dispatch_queue_create(<span class="string">"test.3"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">      </div><div class="line">    dispatch_set_target_queue(queue1, targetQueue);  </div><div class="line">    dispatch_set_target_queue(queue2, targetQueue);  </div><div class="line">    dispatch_set_target_queue(queue3, targetQueue);  </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">3.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">  </div><div class="line">    <span class="built_in">dispatch_async</span>(queue2, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">2.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">    <span class="built_in">dispatch_async</span>(queue3, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">输出  </div><div class="line"> <span class="number">1</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">1</span> <span class="keyword">out</span>  </div><div class="line"> <span class="number">2</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">2</span> <span class="keyword">out</span>  </div><div class="line"> <span class="number">3</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">3</span> <span class="keyword">out</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dispatch_set_target_queue的两个作用：&lt;/p&gt;
+&lt;p&gt;酷用来给新建的queue设置优先级：&lt;br&gt;Java代码  收藏代码&lt;br&gt;dispatch_queue_t serialQueue = dispatch_queue_create(“com.ou
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="dispatch_set_target_queue" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-set-target-queue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dispatch_barrier_async</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/</id>
+    <published>2017-05-25T01:30:44.000Z</published>
+    <updated>2017-05-25T01:34:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>   dispatch_barrier_async<br> 在执行过程中，把队列从并行队列转换成串行队列，<br> 执行完之后，队列恢复成并行队列</p>
+<pre><code class="objc">
+ dispatch_queue_t concurrentQueue = dispatch_queue_create("my.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-1");
+ });
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-2");
+ });
+ dispatch_barrier_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-barrier"); 
+ });
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-3");
+ });
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-4");
+ });
+
+ dispatch_barrier_async 
+
+ 作用是在并行队列中，等待前面两个操作并行操作完成，这里是并行输出
+
+ dispatch-1，dispatch-2
+
+然后执行
+
+ dispatch_barrier_async中的操作，(现在就只会执行这一个操作)
+
+ 执行完成后，即输出
+
+"dispatch-barrier，
+最后该并行队列恢复原有执行状态，继续并行执行
+dispatch-3,dispatch-4
+</code></pre>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   dispatch_barrier_async&lt;br&gt; 在执行过程中，把队列从并行队列转换成串行队列，&lt;br&gt; 执行完之后，队列恢复成并行队列&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
+ dispatch_queue_t concurrentQueue 
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="dispatch_barrier_async" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-barrier-async/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dispatch_group_t</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/</id>
+    <published>2017-05-24T05:00:02.000Z</published>
+    <updated>2017-05-24T05:03:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>GCD dispatch_group 实现线程同步</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"></div><div class="line">MyCoreDataObject *coreDataObject;</div><div class="line"></div><div class="line">dispatch_group_enter(group);</div><div class="line">AFHTTPRequestOperation *operation1 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation1 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute1 = responseObject;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line">[operation1 start];</div><div class="line"></div><div class="line">dispatch_group_enter(group);</div><div class="line">AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation2 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute2 = responseObject;</div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line">[operation2 start];</div><div class="line"></div><div class="line">dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</div><div class="line">dispatch_release(group);</div><div class="line"></div><div class="line">[context save:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<p>NSOperationQueue 实现线程同步</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSOperationQueue</span> *operationQueue = [[<span class="built_in">NSOperationQueue</span> alloc] init];</div><div class="line">[operationQueue setMaxConcurrentOperationCount:<span class="number">2</span>];</div><div class="line"></div><div class="line">AFHTTPRequestOperation *operation1 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation1 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute1 = responseObject;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">&#125;];</div><div class="line">[operationQueue addOperation:operation1];</div><div class="line"></div><div class="line">AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation2 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute2 = responseObject;</div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">&#125;];</div><div class="line">[operationQueue addOperation:operation2];</div><div class="line"></div><div class="line">[imageQueue waitUntilAllOperationsAreFinished];</div><div class="line">[context save:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;GCD dispatch_group 实现线程同步&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="GCD" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/GCD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>__unsafe_unretained</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/unsafe-unretained/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/24/unsafe-unretained/</id>
+    <published>2017-05-24T02:28:44.000Z</published>
+    <updated>2017-05-24T02:30:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>转载： <a href="http://www.jianshu.com/p/df0269e0d3c3" target="_blank" rel="external">http://www.jianshu.com/p/df0269e0d3c3</a></p>
+<p>__unsafe_unretained:<br>不会对对象进行retain,当对象销毁时,会依然指向之前的内存空间(野指针)</p>
+<p>__weak: 不会对对象进行retain,当对象销毁时,会自动指向nil</p>
+<p>__strong :  会对对象进行retain release</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载： &lt;a href=&quot;http://www.jianshu.com/p/df0269e0d3c3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/df0269e0d3c3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;__uns
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="__unsafe_unretained" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/unsafe-unretained/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Runtime</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/Runtime/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/23/Runtime/</id>
+    <published>2017-05-23T14:54:45.000Z</published>
+    <updated>2017-05-23T14:57:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Runtime : <a href="https://github.com/Tuccuay/RuntimeSummary" target="_blank" rel="external">https://github.com/Tuccuay/RuntimeSummary</a> </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div></pre></td><td class="code"><pre><div class="line">先选择 Scheme，然后 Run！</div><div class="line"></div><div class="line">消息机制介绍 / Messaging</div><div class="line"></div><div class="line"><span class="comment">// 创建一个对象</span></div><div class="line"><span class="comment">// Cat *harlan = [[Cat alloc] init];</span></div><div class="line"></div><div class="line"><span class="comment">// 使用 Runtime 创建一个对象</span></div><div class="line"><span class="comment">// 根据类名获取到类</span></div><div class="line">Class catClass = objc_getClass(<span class="string">"Cat"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 同过类创建实例对象</span></div><div class="line"><span class="comment">// 如果这里报错，请将 Build Setting -&gt; Enable Strict Checking of objc_msgSend Calls 改为 NO</span></div><div class="line">Cat *harlan = objc_msgSend(catClass, <span class="keyword">@selector</span>(alloc));</div><div class="line"></div><div class="line"><span class="comment">// 初始化对象</span></div><div class="line"><span class="comment">// harlan = [harlan init];</span></div><div class="line"></div><div class="line"><span class="comment">// 通过 Runtime 初始化对象</span></div><div class="line">harlan = objc_msgSend(harlan, <span class="keyword">@selector</span>(init));</div><div class="line"></div><div class="line"><span class="comment">// 调用对象方法</span></div><div class="line"><span class="comment">// [harlan eat];</span></div><div class="line"></div><div class="line"><span class="comment">// 通过 Runtime 调用对象方法</span></div><div class="line"><span class="comment">// 调用的这个方法没有声明只有实现所以这里会有警告</span></div><div class="line"><span class="comment">// 但是发送消息的时候会从方法列表里寻找方法</span></div><div class="line"><span class="comment">// 所以这个能够成功执行</span></div><div class="line">objc_msgSend(harlan, <span class="keyword">@selector</span>(eat));</div><div class="line"></div><div class="line"><span class="comment">// 输出： 2016-04-21 21:10:20.733 Messaging[20696:1825249] burbur~</span></div><div class="line"></div><div class="line"><span class="comment">// 当然，objc_msgSend 可以传递参数</span></div><div class="line">Cat *alex = objc_msgSend(objc_msgSend(objc_getClass(<span class="string">"Cat"</span>), sel_registerName(<span class="string">"alloc"</span>)), sel_registerName(<span class="string">"init"</span>));</div><div class="line">objc_msgSend(alex, <span class="keyword">@selector</span>(run:), <span class="number">10</span>);</div><div class="line">方法交换 / MethodSwizzling</div><div class="line"></div><div class="line">+ (<span class="keyword">void</span>)load &#123;</div><div class="line">    <span class="comment">// 获取到两个方法</span></div><div class="line">    Method imageNamedMethod = class_getClassMethod(<span class="keyword">self</span>, <span class="keyword">@selector</span>(imageNamed:));</div><div class="line">    Method tuc_imageNamedMethod = class_getClassMethod(<span class="keyword">self</span>, <span class="keyword">@selector</span>(tuc_imageNamed:));</div><div class="line"></div><div class="line">    <span class="comment">// 交换方法</span></div><div class="line">    method_exchangeImplementations(imageNamedMethod, tuc_imageNamedMethod);</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (<span class="built_in">UIImage</span> *)tuc_imageNamed:(<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    <span class="comment">// 因为来到这里的时候方法实际上已经被交换过了</span></div><div class="line">    <span class="comment">// 这里要调用 imageNamed: 就需要调换被交换过的 tuc_imageNamed</span></div><div class="line">    <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> tuc_imageNamed:name];</div><div class="line"></div><div class="line">    <span class="comment">// 判断是否存在图片</span></div><div class="line">    <span class="keyword">if</span> (image) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"加载成功"</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"加载失败"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> image;</div><div class="line">&#125;</div><div class="line">动态加载方法 / ResolveInstanceMethod</div><div class="line"></div><div class="line"><span class="keyword">void</span> run(<span class="keyword">id</span> <span class="keyword">self</span>, SEL _cmd,  <span class="built_in">NSNumber</span> *metre) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"跑了%@米"</span>,metre);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当调用了一个未实现的方法会来到这里</span></div><div class="line">+ (<span class="built_in">BOOL</span>)resolveInstanceMethod:(SEL)sel &#123;</div><div class="line">    <span class="keyword">if</span> (sel == <span class="built_in">NSSelectorFromString</span>(<span class="string">@"run:"</span>)) &#123;</div><div class="line">        <span class="comment">// 动态添加 run: 方法</span></div><div class="line">        class_addMethod(<span class="keyword">self</span>, <span class="keyword">@selector</span>(run:), run, <span class="string">"v@:@"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> [<span class="keyword">super</span> resolveInstanceMethod:sel];</div><div class="line">&#125;</div><div class="line">消息转发 / ForwardMessage</div><div class="line"></div><div class="line"><span class="meta">#pragma mark - 实例方法</span></div><div class="line"></div><div class="line"><span class="comment">//  第一步</span></div><div class="line"><span class="comment">//  在没有找到方法时，会先调用此方法，可用于动态添加方法</span></div><div class="line"><span class="comment">//  返回 YES 表示相应 selector 的实现已经被找到并添加到了类中，否则返回 NO</span></div><div class="line"></div><div class="line">+ (<span class="built_in">BOOL</span>)resolveInstanceMethod:(SEL)sel &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//  第二步</span></div><div class="line"><span class="comment">//  如果第一步的返回 NO 或者直接返回了 YES 而没有添加方法，该方法被调用</span></div><div class="line"><span class="comment">//  在这个方法中，我们可以指定一个可以返回一个可以响应该方法的对象</span></div><div class="line"><span class="comment">//  如果返回 self 就会死循环</span></div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)forwardingTargetForSelector:(SEL)aSelector &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//  第三步</span></div><div class="line"><span class="comment">//  如果 `forwardingTargetForSelector:` 返回了 nil，则该方法会被调用，系统会询问我们要一个合法的『类型编码(Type Encoding)』</span></div><div class="line"><span class="comment">//  https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html</span></div><div class="line"><span class="comment">//  若返回 nil，则不会进入下一步，而是无法处理消息</span></div><div class="line"></div><div class="line">- (<span class="built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)aSelector &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="built_in">NSMethodSignature</span> signatureWithObjCTypes:<span class="string">"v@:"</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当实现了此方法后，-doesNotRecognizeSelector: 将不会被调用</span></div><div class="line"><span class="comment">// 如果要测试找不到方法，可以注释掉这一个方法</span></div><div class="line"><span class="comment">// 在这里进行消息转发</span></div><div class="line">- (<span class="keyword">void</span>)forwardInvocation:(<span class="built_in">NSInvocation</span> *)anInvocation &#123;</div><div class="line">    <span class="comment">// 我们还可以改变方法选择器</span></div><div class="line">    [anInvocation setSelector:<span class="keyword">@selector</span>(touch)];</div><div class="line">    <span class="comment">// 改变方法选择器后，还需要指定是哪个对象的方法</span></div><div class="line">    [anInvocation invokeWithTarget:<span class="keyword">self</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)touch &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Cat 没有实现 -stoke 方法，并且成功的转成了 -touch 方法"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)doesNotRecognizeSelector:(SEL)aSelector &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"无法处理消息：%@"</span>, <span class="built_in">NSStringFromSelector</span>(aSelector));</div><div class="line">&#125;</div><div class="line">动态关联属性 / AssociatedObject</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setName:(<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    <span class="comment">// 把属性关联给对象</span></div><div class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, <span class="string">"name"</span>, name, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    <span class="comment">// 取出属性</span></div><div class="line">    <span class="keyword">return</span> objc_getAssociatedObject(<span class="keyword">self</span>, <span class="string">"name"</span>);</div><div class="line">&#125;</div><div class="line">字典转模型 / MakeModel</div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)modelWithDict:(<span class="built_in">NSDictionary</span> *)dict updateDict:(<span class="built_in">NSDictionary</span> *)updateDict &#123;</div><div class="line">    <span class="keyword">id</span> model = [[<span class="keyword">self</span> alloc] init];</div><div class="line">    <span class="comment">// 遍历模型中属性</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    Ivar *ivars = class_copyIvarList(<span class="keyword">self</span>, &amp;count);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count; i++) &#123;</div><div class="line">        Ivar ivar = ivars[i];</div><div class="line">        <span class="comment">// 属性名称</span></div><div class="line">        <span class="built_in">NSString</span> *ivarName = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(ivar)];</div><div class="line">        ivarName = [ivarName substringFromIndex:<span class="number">1</span>];</div><div class="line">        <span class="keyword">id</span> value = dict[ivarName];</div><div class="line">        <span class="comment">// 模型中属性名对应字典中的key</span></div><div class="line">        <span class="keyword">if</span> (value == <span class="literal">nil</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (updateDict) &#123;</div><div class="line">                <span class="built_in">NSString</span> *keyName = updateDict[ivarName];</div><div class="line">                value = dict[keyName];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        [model setValue:value forKeyPath:ivarName];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> model;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)modelWithDict:(<span class="built_in">NSDictionary</span> *)dict &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> modelWithDict:dict updateDict:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line">对象归档、解档 / ObjectArchive</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)tuc_initWithCoder:(<span class="built_in">NSCoder</span> *)aDecoder &#123;</div><div class="line">    <span class="comment">// 不光归档自身的属性，还要循环把所有父类的属性也找出来</span></div><div class="line">    Class selfClass = <span class="keyword">self</span>.class;</div><div class="line">    <span class="keyword">while</span> (selfClass &amp;&amp;selfClass != [<span class="built_in">NSObject</span> <span class="keyword">class</span>]) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> outCount = <span class="number">0</span>;</div><div class="line">        Ivar *ivars = class_copyIvarList(selfClass, &amp;outCount);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; outCount; i++) &#123;</div><div class="line">            Ivar ivar = ivars[i];</div><div class="line">            <span class="built_in">NSString</span> *key = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(ivar)];</div><div class="line"></div><div class="line">            <span class="comment">// 如果有实现忽略属性的方法</span></div><div class="line">            <span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(ignoredProperty)]) &#123;</div><div class="line">                <span class="comment">// 就跳过这个属性</span></div><div class="line">                <span class="keyword">if</span> ([[<span class="keyword">self</span> ignoredProperty] containsObject:key]) <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">id</span> value = [aDecoder decodeObjectForKey:key];</div><div class="line">            [<span class="keyword">self</span> setValue:value forKey:key];</div><div class="line">        &#125;</div><div class="line">        free(ivars);</div><div class="line">        selfClass = [selfClass superclass];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)tuc_encodeWithCoder:(<span class="built_in">NSCoder</span> *)aCoder &#123;</div><div class="line">    Class selfClass = <span class="keyword">self</span>.class;</div><div class="line">    <span class="keyword">while</span> (selfClass &amp;&amp;selfClass != [<span class="built_in">NSObject</span> <span class="keyword">class</span>]) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> outCount = <span class="number">0</span>;</div><div class="line">        Ivar *ivars = class_copyIvarList([<span class="keyword">self</span> <span class="keyword">class</span>], &amp;outCount);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; outCount; i++) &#123;</div><div class="line">            Ivar ivar = ivars[i];</div><div class="line">            <span class="built_in">NSString</span> *key = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(ivar)];</div><div class="line"></div><div class="line">            <span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(ignoredProperty)]) &#123;</div><div class="line">                <span class="keyword">if</span> ([[<span class="keyword">self</span> ignoredProperty] containsObject:key]) <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">id</span> value = [<span class="keyword">self</span> valueForKeyPath:key];</div><div class="line">            [aCoder encodeObject:value forKey:key];</div><div class="line">        &#125;</div><div class="line">        free(ivars);</div><div class="line">        selfClass = [selfClass superclass];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Runtime : &lt;a href=&quot;https://github.com/Tuccuay/RuntimeSummary&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/Tuccuay/RuntimeSummary&lt;/a
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="Runtime" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/Runtime/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bridge</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/bridge/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/23/bridge/</id>
+    <published>2017-05-23T04:54:47.000Z</published>
+    <updated>2017-05-23T05:21:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>转载自：<a href="http://blog.csdn.NET/weiwangchao_/article/details/7744972" target="_blank" rel="external">http://blog.csdn.NET/weiwangchao_/article/details/7744972</a></p>
+<p>Core Foundation框架 (CoreFoundation.framework) 是一组C语言接口，它们为iOS应用程序提供基本数据管理和服务功能。下面列举该框架支持进行管理的数据以及可提供的服务：<br>群体数据类型 (数组、集合等)<br>程序包<br>字符串管理<br>日期和时间管理<br>原始数据块管理<br>偏好管理<br>URL及数据流操作<br>线程和RunLoop<br>端口和soket通讯<br>Core Foundation框架和Foundation框架紧密相关，它们为相同功能提供接口，但Foundation框架提供Objective-C接口。如果您将Foundation对象和Core Foundation类型掺杂使用，则可利用两个框架之间的 “toll-free bridging”。所谓的Toll-free bridging是说您可以在某个框架的方法或函数同时使用Core Foundatio和Foundation 框架中的某些类型。很多数据类型支持这一特性，其中包括群体和字符串数据类型。每个框架的类和类型描述都会对某个对象是否为 toll-free bridged，应和什么对象桥接进行说明。</p>
+<p>如需进一步信息，请阅读Core Foundation 框架参考。</p>
+<p><strong>bridge<br>为了解决这一问题，我们使用 </strong>bridge 关键字来实现id类型与void*类型的相互转换。看下面的例子。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line"> </div><div class="line"><span class="keyword">void</span> *p = (__bridge <span class="keyword">void</span> *)obj;</div><div class="line"> </div><div class="line"><span class="keyword">id</span> o = (__bridge <span class="keyword">id</span>)p;</div></pre></td></tr></table></figure></p>
+<p>将Objective-C的对象类型用 <strong>bridge 转换为 void* 类型和使用 </strong>unsafe_unretained 关键字修饰的变量是一样的。被代入对象的所有者需要明确对象生命周期的管理，不要出现异常访问的问题。</p>
+<p>除过 <strong>bridge 以外，还有两个 </strong>bridge 相关的类型转换关键字：</p>
+<p><strong>bridge_retained
+</strong>bridge_transfer<br>接下来，我们将看看这两个关键字的区别。</p>
+<p><strong>bridge_retained<br>先来看使用 </strong>bridge_retained 关键字的例子程序：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line"> </div><div class="line"><span class="keyword">void</span> *p = (__bridge_retained <span class="keyword">void</span> *)obj;</div><div class="line"></div><div class="line"></div><div class="line">从名字上我们应该能理解其意义：类型被转换时，其对象的所有权也将被变换后变量所持有。如果不是ARC代码，类似下面的实现：</div><div class="line"></div><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line"> </div><div class="line"><span class="keyword">void</span> *p = obj;</div><div class="line">[(<span class="keyword">id</span>)p <span class="keyword">retain</span>];</div><div class="line"></div><div class="line"></div><div class="line">可以用一个实际的例子验证，对象所有权是否被持有。</div><div class="line"></div><div class="line"><span class="keyword">void</span> *p = <span class="number">0</span>;</div><div class="line"> </div><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line">    p = (__bridge_retained <span class="keyword">void</span> *)obj;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"class=%@"</span>, [(__bridge <span class="keyword">id</span>)p <span class="keyword">class</span>]);</div><div class="line">出了大括号的范围后，p 仍然指向一个有效的实体。说明他拥有该对象的所有权，该对象没有因为出其定义范围而被销毁。</div></pre></td></tr></table></figure></p>
+<p>_bridge_transfer<br>相反，当想把本来拥有对象所有权的变量，在类型转换后，让其释放原先所有权的时候，需要使用 __bridge_transfer 关键字。文字有点绕口，我们还是来看一段代码吧。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">如果ARC无效的时候，我们可能需要写下面的代码。</div><div class="line"></div><div class="line"><span class="comment">// p 变量原先持有对象的所有权</span></div><div class="line"><span class="keyword">id</span> obj = (<span class="keyword">id</span>)p;</div><div class="line">[obj <span class="keyword">retain</span>];</div><div class="line">[(<span class="keyword">id</span>)p release];</div><div class="line">那么ARC有效后，我们可以用下面的代码来替换：</div><div class="line"></div><div class="line"><span class="comment">// p 变量原先持有对象的所有权</span></div><div class="line"><span class="keyword">id</span> obj = (__bridge_transfer <span class="keyword">id</span>)p;</div><div class="line">可以看出来，__bridge_retained 是编译器替我们做了 <span class="keyword">retain</span> 操作，而 __bridge_transfer 是替我们做了 release1。</div></pre></td></tr></table></figure>
+<p>Toll-Free bridged<br>在iOS世界，主要有两种对象：Objective-C 对象和 Core Foundation 对象0。Core Foundation 对象主要是有C语言实现的 Core Foundation Framework 的对象，其中也有对象引用计数的概念，只是不是 Cocoa Framework::Foundation Framework 的 retain/release，而是自身的 CFRetain/CFRelease 接口。</p>
+<p>这两种对象间可以互相转换和操作，不使用ARC的时候，单纯的用C原因的类型转换，不需要消耗CPU的资源，所以叫做 Toll-Free bridged。比如 NSArray和CFArrayRef, NSString和CFStringRef，他们虽然属于不同的 Framework，但是具有相同的对象结构，所以可以用标准C的类型转换。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">比如不使用ARC时，我们用下面的代码：</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = (<span class="built_in">CFStringRef</span>)string;</div><div class="line">同样，Core Foundation类型向Objective-C类型转换时，也是简单地用标准C的类型转换即可。</div><div class="line"></div><div class="line">但是在ARC有效的情况下，将出现类似下面的编译错误：</div><div class="line"></div><div class="line">    Cast of Objective-C pointer type ‘<span class="built_in">NSString</span> *’ to C pointer type ‘<span class="built_in">CFStringRef</span>’ (aka ‘<span class="keyword">const</span> <span class="keyword">struct</span> __CFString *’) requires a bridged cast</div><div class="line">    Use __bridge to convert directly (no change <span class="keyword">in</span> ownership)</div><div class="line">    Use __bridge_retained to make an ARC object available as a +<span class="number">1</span> ‘<span class="built_in">CFStringRef</span>’ (aka ‘<span class="keyword">const</span> <span class="keyword">struct</span> __CFString *’)</div><div class="line">错误中已经提示了我们需要怎样做：用 __bridge 或者 __bridge_retained 来转型，其差别就是变更对象的所有权。</div><div class="line"></div><div class="line">正因为Objective-C是ARC管理的对象，而Core Foundation不是ARC管理的对象，所以才要特意这样转换，这与<span class="keyword">id</span>类型向<span class="keyword">void</span>*转换是一个概念。也就是说，当这两种类型（有ARC管理，没有ARC管理）在转换时，需要告诉编译器怎样处理对象的所有权。</div><div class="line"></div><div class="line">上面的例子，使用 __bridge/__bridge_retained 后的代码如下：</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = (__bridge <span class="built_in">CFStringRef</span>)string;</div><div class="line">只是单纯地执行了类型转换，没有进行所有权的转移，也就是说，当string对象被释放的时候，cfString也不能被使用了。</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = (__bridge_retained <span class="built_in">CFStringRef</span>)string;</div><div class="line">...</div><div class="line"><span class="built_in">CFRelease</span>(cfString); <span class="comment">// 由于Core Foundation的对象不属于ARC的管理范畴，所以需要自己release</span></div><div class="line">使用 __bridge_retained 可以通过转换目标处（cfString）的 <span class="keyword">retain</span> 处理，来使所有权转移。即使 string 变量被释放，cfString 还是可以使用具体的对象。只是有一点，由于Core Foundation的对象不属于ARC的管理范畴，所以需要自己release。</div><div class="line"></div><div class="line">实际上，Core Foundation 内部，为了实现Core Foundation对象类型与Objective-C对象类型的相互转换，提供了下面的函数。</div><div class="line"></div><div class="line"><span class="built_in">CFTypeRef</span>  <span class="built_in">CFBridgingRetain</span>(<span class="keyword">id</span>  X)  &#123;</div><div class="line">    <span class="keyword">return</span>  (__bridge_retained  <span class="built_in">CFTypeRef</span>)X;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">id</span>  <span class="built_in">CFBridgingRelease</span>(<span class="built_in">CFTypeRef</span>  X)  &#123;</div><div class="line">    <span class="keyword">return</span>  (__bridge_transfer  <span class="keyword">id</span>)X;</div><div class="line">&#125;</div><div class="line">所以，可以用 <span class="built_in">CFBridgingRetain</span> 替代 __bridge_retained 关键字：</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = <span class="built_in">CFBridgingRetain</span>(string);</div><div class="line">...</div><div class="line"><span class="built_in">CFRelease</span>(cfString); <span class="comment">// 由于Core Foundation不在ARC管理范围内，所以需要主动release。</span></div><div class="line">__bridge_transfer</div><div class="line">所有权被转移的同时，被转换变量将失去对象的所有权。当Core Foundation对象类型向Objective-C对象类型转换的时候，会经常用到 __bridge_transfer 关键字。</div><div class="line"></div><div class="line"><span class="built_in">CFStringRef</span> cfString = <span class="built_in">CFStringCreate</span>...();</div><div class="line"><span class="built_in">NSString</span> *string = (__bridge_transfer <span class="built_in">NSString</span> *)cfString;</div><div class="line"> </div><div class="line"><span class="comment">// CFRelease(cfString); 因为已经用 __bridge_transfer 转移了对象的所有权，所以不需要调用 release</span></div><div class="line">同样，我们可以使用 <span class="built_in">CFBridgingRelease</span>() 来代替 __bridge_transfer 关键字。</div><div class="line"></div><div class="line"><span class="built_in">CFStringRef</span> cfString = <span class="built_in">CFStringCreate</span>...();</div><div class="line"><span class="built_in">NSString</span> *string = <span class="built_in">CFBridgingRelease</span>(cfString);</div></pre></td></tr></table></figure>
+<p>总结<br>由上面的学习我们了解到 ARC 中类型转换的用法，那么我们实际使用中按照怎样的原则或者方法来区分使用呢，下面我总结了几点关键要素。</p>
+<p>明确被转换类型是否是 ARC 管理的对象<br>Core Foundation 对象类型不在 ARC 管理范畴内<br>Cocoa Framework::Foundation 对象类型（即一般使用到的Objectie-C对象类型）在 ARC 的管理范畴内<br>如果不在 ARC 管理范畴内的对象，那么要清楚 release 的责任应该是谁<br>各种对象的生命周期是怎样的</p>
+<ol>
+<li>声明 id obj 的时候，其实是缺省的申明了一个 <strong>strong 修饰的变量，所以编译器自动地加入了 retain 的处理，所以说 </strong>bridge_transfer 关键字只为我们做了 release 处理。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载自：&lt;a href=&quot;http://blog.csdn.NET/weiwangchao_/article/details/7744972&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.NET/weiwangchao_/
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="Core Foundation bridge" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/Core-Foundation-bridge/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>富文本</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/%E5%AF%8C%E6%96%87%E6%9C%AC/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/22/富文本/</id>
+    <published>2017-05-22T11:47:09.000Z</published>
+    <updated>2017-05-22T02:24:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>   NSMutableAttributedString</p>
+<pre><code class="objc">
+<span class="built_in">NSFontAttributeName</span> 
+字体
+<span class="built_in">NSParagraphStyleAttributeName</span> 
+段落格式 
+<span class="built_in">NSForegroundColorAttributeName</span> 
+字体颜色
+<span class="built_in">NSBackgroundColorAttributeName</span>  
+背景颜色
+<span class="built_in">NSStrikethroughStyleAttributeName</span>
+删除线格式
+<span class="built_in">NSUnderlineStyleAttributeName</span>     
+下划线格式
+<span class="built_in">NSStrokeColorAttributeName</span>       
+删除线颜色
+<span class="built_in">NSStrokeWidthAttributeName</span>
+删除线宽度
+<span class="built_in">NSShadowAttributeName</span> 
+阴影
+</code></pre>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   NSMutableAttributedString&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
+&lt;span class=&quot;built_in&quot;&gt;NSFontAttributeName&lt;/span&gt; 
+字体
+&lt;span class=&quot;built_in&quot;&gt;NS
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="NSMutableAttributedString" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/NSMutableAttributedString/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NSDate</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/NSDate/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/22/NSDate/</id>
+    <published>2017-05-22T06:06:12.000Z</published>
+    <updated>2017-05-22T06:12:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>时间戳:从1970年1月1号 00:00:00开始走过的毫秒数</li>
+<li>注意:1秒==1000毫秒</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间字符串 -&gt; 时间戳</span></div><div class="line"><span class="built_in">NSString</span> *string = <span class="string">@"1745645645645"</span>;</div><div class="line"><span class="built_in">NSTimeInterval</span> second = string.longLongValue / <span class="number">1000.0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 时间戳 -&gt; NSDate *</span></div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:second];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, date);</div></pre></td></tr></table></figure>
+<p>1.NSDate的详细介绍<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>通过date方法创建出来的对象,就是当前时间对象;</div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, date);</div><div class="line"></div><div class="line"><span class="number">2.</span>获取当前所处时区</div><div class="line"><span class="built_in">NSTimeZone</span> *zone = [<span class="built_in">NSTimeZone</span> systemTimeZone];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, zone);</div><div class="line"></div><div class="line"><span class="number">3.</span>获取当前时区和指定时间差</div><div class="line"><span class="built_in">NSInteger</span> seconds = [zone secondsFromGMTForDate:date];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"seconds = %lu"</span>, seconds);</div><div class="line"></div><div class="line"><span class="built_in">NSDate</span> *nowDate = [date dateByAddingTimeInterval:seconds];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"nowDate = %@"</span>, nowDate);</div><div class="line"></div><div class="line"><span class="number">4.</span>获取当前时间  <span class="built_in">NSDate</span> --&gt; <span class="built_in">NSString</span></div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line">创建一个时间格式化对象</div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line">按照什么样的格式来格式化时间</div><div class="line">formatter.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒 Z"</span>;</div><div class="line">formatter.dateFormat = <span class="string">@"yyyy/MM/dd HH/mm/ss Z"</span>;</div><div class="line">formatter.dateFormat = <span class="string">@"MM-dd-yyyy HH-mm-ss"</span>;</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *res = [formatter stringFromDate:date];</div></pre></td></tr></table></figure></p>
+<p>2.字符串转时间<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 时间字符串</span></div><div class="line"><span class="built_in">NSString</span> *str = <span class="string">@"2014-03-11 06:44:11 +0800"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样</span></div><div class="line">formatter.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss Z"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.利用时间格式化对象让字符串转换成时间 (自动转换0时区/东加西减)</span></div><div class="line"><span class="built_in">NSDate</span> *date = [formatter dateFromString:str];</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,date);</div></pre></td></tr></table></figure></p>
+<p>3.时间转换成字符串</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 2.设置时间格式化对象的样式</span></div><div class="line">formatter.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒 +0800"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.利用时间格式化对象对时间进行格式化</span></div><div class="line"><span class="built_in">NSString</span> *str = [formatter stringFromDate:now];</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,str);</div></pre></td></tr></table></figure>
+<p>4.利用日历比较两个时间的差值</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  <span class="comment">// 时间字符串</span></div><div class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"2012-03-11 06:44:11 +0800"</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"> <span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"> <span class="comment">// 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样</span></div><div class="line"> formatter.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss Z"</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 3.字符串转换成时间/自动转换0时区/东加西减</span></div><div class="line"> <span class="built_in">NSDate</span> *date = [formatter dateFromString:str];</div><div class="line"> <span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">// 注意获取calendar,应该根据系统版本判断</span></div><div class="line"> <span class="built_in">NSCalendar</span> *calendar = [<span class="built_in">NSCalendar</span> currentCalendar];</div><div class="line"></div><div class="line"> <span class="built_in">NSCalendarUnit</span> type = <span class="built_in">NSCalendarUnitYear</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitMonth</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitDay</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitHour</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitMinute</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitSecond</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 4.获取了时间元素</span></div><div class="line"> <span class="built_in">NSDateComponents</span> *cmps = [calendar components:type fromDate:date toDate:now options:<span class="number">0</span>];</div><div class="line"></div><div class="line"> <span class="built_in">NSLog</span>(<span class="string">@"%ld年%ld月%ld日%ld小时%ld分钟%ld秒钟"</span>, cmps.year, cmps.month, cmps.day, cmps.hour, cmps.minute, cmps.second);</div></pre></td></tr></table></figure>
+<p>5.日期比较<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间字符串</span></div><div class="line"><span class="built_in">NSString</span> *createdAtString = <span class="string">@"2015-11-20 11:10:05"</span>;</div><div class="line"><span class="built_in">NSDateFormatter</span> *fmt = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line">fmt.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss"</span>;</div><div class="line"><span class="built_in">NSDate</span> *createdAtDate = [fmt dateFromString:createdAtString];</div><div class="line"></div><div class="line"><span class="comment">// 手机当前时间</span></div><div class="line"><span class="built_in">NSDate</span> *nowDate = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> NSComparisonResult的取值</div><div class="line"> NSOrderedAscending = -1L, // 升序, 越往右边越大</div><div class="line"> NSOrderedSame,  // 相等</div><div class="line"> NSOrderedDescending // 降序, 越往右边越小</div><div class="line"> */</div><div class="line"><span class="comment">// 获得比较结果(谁大谁小)</span></div><div class="line"><span class="built_in">NSComparisonResult</span> result = [nowDate compare:createdAtDate];</div><div class="line"><span class="keyword">if</span> (result == <span class="built_in">NSOrderedAscending</span>) &#123; <span class="comment">// 升序, 越往右边越大</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate &gt; nowDate"</span>);</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (result == <span class="built_in">NSOrderedDescending</span>) &#123; <span class="comment">// 降序, 越往右边越小</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate &lt; nowDate"</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate == nowDate"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;时间戳:从1970年1月1号 00:00:00开始走过的毫秒数&lt;/li&gt;
+&lt;li&gt;注意:1秒==1000毫秒&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="NSDate" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/NSDate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/#pragma/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/22/#pragma/</id>
+    <published>2017-05-22T02:40:29.000Z</published>
+    <updated>2017-05-22T06:22:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先, #pragma 本质上也是声明，一般常用的功能就是打注释、尤其是分段注释</p>
+<p>但是#pragma 另外一个强大的功能就是处理编译器警告，用的时候可能就没上一个</p>
+<p>功能用的那么多，在代码中处理警告却是极其高效的方法。</p>
+<p>其中 clang diagnostic 便是#pragma 第一个功能常用的命令，步骤如下</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#pragma clang diagnostic push  </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-相关命令"</span>  </span></div><div class="line">    <span class="comment">// 你自己的代码  </span></div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
+<p>常见用法</p>
+<p>1.方法弃用告警</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push    </span></div><div class="line">    </div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wdeprecated-declarations"</span>         </span></div><div class="line">[TestFlight setDeviceIdentifier:[[<span class="built_in">UIDevice</span> currentDevice] uniqueIdentifier]];    </div><div class="line">    </div><div class="line"><span class="meta">#pragma clang diagnostp ic pop</span></div></pre></td></tr></table></figure>
+<p>2.不兼容指针类型</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push     </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wincompatible-pointer-types"</span>     </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
+<p>3.循环引用<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// completionBlock is manually nilled out in AFURLConnectionOperation to break the retain cycle.    </span></div><div class="line"><span class="meta">#pragma clang diagnostic push    </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Warc-retain-cycles"</span>    </span></div><div class="line">    <span class="keyword">self</span>.completionBlock = ^ &#123;    </div><div class="line">        ...    </div><div class="line">    &#125;;    </div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure></p>
+<p>4.未使用变量<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push     </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wunused-variable"</span>     </span></div><div class="line">  <span class="keyword">int</span> a;     </div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure></p>
+<p>#pargma 用法详情：</p>
+<p><a href="http://nshipster.cn/pragma/" target="_blank" rel="external">http://nshipster.cn/pragma/</a></p>
+<p><a href="http://nshipster.com/clang-diagnostics/" target="_blank" rel="external">http://nshipster.com/clang-diagnostics/</a></p>
+<p>相关的命令列表</p>
+<p><a href="http://fuckingclangwarnings.com/" target="_blank" rel="external">http://fuckingclangwarnings.com/</a></p>
+<p>进阶：<br><a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas" target="_blank" rel="external">http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先, #pragma 本质上也是声明，一般常用的功能就是打注释、尤其是分段注释&lt;/p&gt;
+&lt;p&gt;但是#pragma 另外一个强大的功能就是处理编译器警告，用的时候可能就没上一个&lt;/p&gt;
+&lt;p&gt;功能用的那么多，在代码中处理警告却是极其高效的方法。&lt;/p&gt;
+&lt;p&gt;其中 clan
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CGContextRef</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/19/CGContextRef/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/19/CGContextRef/</id>
+    <published>2017-05-19T12:10:39.000Z</published>
+    <updated>2017-05-19T12:14:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Graphics Context是图形上下文,也可以理解为一块画布,我们可以在上面进行绘画操作,绘制完成后,将画布放到我们的view中显示即可,view看作是一个画框.</p>
+<p>写文字</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   - (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="comment">//顶部横线</span></div><div class="line">    <span class="built_in">CGContextMoveToPoint</span>(ctx, <span class="number">0</span>, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextAddLineToPoint</span>(ctx, <span class="keyword">self</span>.bounds.size.width, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextStrokePath</span>(ctx);</div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>画直线</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="comment">//顶部横线</span></div><div class="line">    <span class="built_in">CGContextMoveToPoint</span>(ctx, <span class="number">0</span>, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextAddLineToPoint</span>(ctx, <span class="keyword">self</span>.bounds.size.width, <span class="number">10</span>);</div><div class="line">    <span class="built_in">CGContextStrokePath</span>(ctx);</div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line">画圆</div><div class="line"></div><div class="line">``` objc</div><div class="line"></div><div class="line"></div><div class="line">  - (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="comment">//void CGContextAddArc(CGContextRef c,CGFloat x, CGFloat y,CGFloat radius,CGFloat startAngle,CGFloat endAngle, int clockwise)1弧度＝180°/π （≈57.3°） 度＝弧度×180°/π 360°＝360×π/180 ＝2π 弧度</span></div><div class="line">    <span class="comment">// x,y为圆点坐标，radius半径，startAngle为开始的弧度，endAngle为 结束的弧度，clockwise 0为顺时针，1为逆时针。</span></div><div class="line">    <span class="built_in">CGContextAddArc</span>(ctx, <span class="number">100</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">0</span>, <span class="number">2</span>*M_PI, <span class="number">0</span>); <span class="comment">//添加一个圆</span></div><div class="line">    <span class="built_in">CGContextDrawPath</span>(ctx, kCGPathStroke); <span class="comment">//绘制路径</span></div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>画矩形<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect</div><div class="line">&#123;</div><div class="line">    <span class="comment">//获得当前画板</span></div><div class="line">    <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">    <span class="comment">//颜色</span></div><div class="line">    <span class="built_in">CGContextSetRGBStrokeColor</span>(ctx, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);</div><div class="line">    <span class="comment">//画线的宽度</span></div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, <span class="number">0.25</span>);</div><div class="line">    <span class="built_in">CGContextAddRect</span>(ctx, <span class="built_in">CGRectMake</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="number">30</span>, <span class="number">30</span>));</div><div class="line">    <span class="built_in">CGContextStrokePath</span>(ctx);</div><div class="line">    [<span class="keyword">super</span> drawRect:rect];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Graphics Context是图形上下文,也可以理解为一块画布,我们可以在上面进行绘画操作,绘制完成后,将画布放到我们的view中显示即可,view看作是一个画框.&lt;/p&gt;
+&lt;p&gt;写文字&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="CGContextRef" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/CGContextRef/"/>
+    
+  </entry>
+  
+</feed>
