@@ -68,6 +68,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-#pragma" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/22/#pragma/" class="article-date">
+  <time datetime="2017-05-22T02:40:29.000Z" itemprop="datePublished">2017-05-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先, #pragma 本质上也是声明，一般常用的功能就是打注释、尤其是分段注释</p>
+<p>但是#pragma 另外一个强大的功能就是处理编译器警告，用的时候可能就没上一个</p>
+<p>功能用的那么多，在代码中处理警告却是极其高效的方法。</p>
+<p>其中 clang diagnostic 便是#pragma 第一个功能常用的命令，步骤如下</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#pragma clang diagnostic push  </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-相关命令"</span>  </span></div><div class="line">    <span class="comment">// 你自己的代码  </span></div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
+<p>常见用法</p>
+<p>1.方法弃用告警</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push    </span></div><div class="line">    </div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wdeprecated-declarations"</span>         </span></div><div class="line">[TestFlight setDeviceIdentifier:[[<span class="built_in">UIDevice</span> currentDevice] uniqueIdentifier]];    </div><div class="line">    </div><div class="line"><span class="meta">#pragma clang diagnostp ic pop</span></div></pre></td></tr></table></figure>
+<p>2.不兼容指针类型</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push     </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wincompatible-pointer-types"</span>     </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
+<p>3.循环引用<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// completionBlock is manually nilled out in AFURLConnectionOperation to break the retain cycle.    </span></div><div class="line"><span class="meta">#pragma clang diagnostic push    </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Warc-retain-cycles"</span>    </span></div><div class="line">    <span class="keyword">self</span>.completionBlock = ^ &#123;    </div><div class="line">        ...    </div><div class="line">    &#125;;    </div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure></p>
+<p>4.未使用变量<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push     </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wunused-variable"</span>     </span></div><div class="line">  <span class="keyword">int</span> a;     </div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure></p>
+<p>#pargma 用法详情：</p>
+<p><a href="http://nshipster.cn/pragma/" target="_blank" rel="external">http://nshipster.cn/pragma/</a></p>
+<p><a href="http://nshipster.com/clang-diagnostics/" target="_blank" rel="external">http://nshipster.com/clang-diagnostics/</a></p>
+<p>相关的命令列表</p>
+<p><a href="http://fuckingclangwarnings.com/" target="_blank" rel="external">http://fuckingclangwarnings.com/</a></p>
+<p>进阶：<br><a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas" target="_blank" rel="external">http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/#pragma/" data-id="cj4r0w4pi0000f0mg9ho0fn7s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CGContextRef" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/05/19/CGContextRef/" class="article-date">
@@ -104,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/19/CGContextRef/" data-id="cj4r0ehnc0006cjmg4t7iu2in" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/19/CGContextRef/" data-id="cj4r0w4pv0006f0mgt3b6flj9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li></ul>
@@ -150,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/16/画一个图片/" data-id="cj4r0ehp50031cjmga9r8ufrt" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/16/画一个图片/" data-id="cj4r0w4rq0034f0mg4fb1btlc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/image/">image</a></li></ul>
@@ -194,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/13/YTKNetwork/" data-id="cj4r0eho60018cjmg2antjiuk" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/13/YTKNetwork/" data-id="cj4r0w4qw001bf0mgrjmw3sfi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li></ul>
@@ -246,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/反省/" data-id="cj4r0ehoz002gcjmg69884g12" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/反省/" data-id="cj4r0w4rj002mf0mg9fb6gj3q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li></ul>
@@ -290,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/" data-id="cj4r0ehp60034cjmgqna4s1mf" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/" data-id="cj4r0w4rr0037f0mgwzeum4y1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li></ul>
@@ -352,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/04/捕捉异常/" data-id="cj4r0ehp3002tcjmgxep68r5e" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/04/捕捉异常/" data-id="cj4r0w4ro002xf0mgad3pq2sj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -430,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/26/中英文-字符川长度/" data-id="cj4r0ehow002ecjmgxf6ltmzm" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/26/中英文-字符川长度/" data-id="cj4r0w4ri002gf0mgojjsk9cz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li></ul>
@@ -473,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/NSArry-使用/" data-id="cj4r0ehnr000icjmg06dcrkii" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/NSArry-使用/" data-id="cj4r0w4qh000lf0mgtk4p4hnw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li></ul>
@@ -553,60 +601,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/线程同步——信号量机制/" data-id="cj4r0ehp70037cjmg52cnyx1o" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/线程同步——信号量机制/" data-id="cj4r0w4rs0039f0mgaymvywj1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-UISegmentedControl" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/02/17/UISegmentedControl/" class="article-date">
-  <time datetime="2017-02-17T14:40:58.000Z" itemprop="datePublished">2017-02-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/02/17/UISegmentedControl/">UISegmentedControl</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>初始化的方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//一次性初始化多个control，items可以是图片或者是文字array，系统会自动控制每个单元的大小</span></div><div class="line"> <span class="comment">//也可通过正常View的初始化进行</span></div><div class="line"> - (<span class="keyword">instancetype</span>)initWithItems:(<span class="built_in">NSArray</span> *)items;</div><div class="line">事件添加</div><div class="line"></div><div class="line"> <span class="comment">//通过UIControl的方法来设置，当改变segments的时候通过事件UIControlEventValueChanged，</span></div><div class="line"> <span class="comment">//通过action来处理事件</span></div><div class="line"> [<span class="keyword">self</span>.mySegmentedControl addTarget:<span class="keyword">self</span></div><div class="line">                     action:<span class="keyword">@selector</span>(myAction:)</div><div class="line">           forControlEvents:<span class="built_in">UIControlEventValueChanged</span>];</div></pre></td></tr></table></figure></p>
-<p>Segmented Controls的内容设置<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//通过索引设置以及获取Title和Image          </span></div><div class="line">- (<span class="keyword">void</span>)setTitle:(<span class="built_in">NSString</span> *)title forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">NSString</span> *)titleForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="keyword">void</span>)setImage:(<span class="built_in">UIImage</span> *)image forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">UIImage</span> *)imageForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div></pre></td></tr></table></figure></p>
-<p>Segmented Controls Segments的设置</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在索引点插入一个新的标题的segment</span></div><div class="line">- (<span class="keyword">void</span>)insertSegmentWithTitle:(<span class="built_in">NSString</span> *)title atIndex:(<span class="built_in">NSUInteger</span>)segment animated:(<span class="built_in">BOOL</span>)animated;</div><div class="line"><span class="comment">//在索引点插入一个新的图片的segment</span></div><div class="line">- (<span class="keyword">void</span>)insertSegmentWithImage:(<span class="built_in">UIImage</span> *)image  atIndex:(<span class="built_in">NSUInteger</span>)segment animated:(<span class="built_in">BOOL</span>)animated;</div><div class="line">- (<span class="keyword">void</span>)removeSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment animated:(<span class="built_in">BOOL</span>)animated;</div><div class="line">- (<span class="keyword">void</span>)removeAllSegmens;</div><div class="line"><span class="comment">//Segment的数量</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>) <span class="built_in">NSUInteger</span> numberOfSegments;  </div><div class="line"><span class="comment">//被选中的索引</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> selectedSegmentIndex;</div></pre></td></tr></table></figure>
-<p>Segmented Controls显示和行为设置<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//默认值为NO，即点击后保持选中状态，如果设置为YES则，只是短暂的显示选中状态</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">getter</span>=isMomentary) <span class="built_in">BOOL</span> momentary;</div><div class="line"><span class="comment">//通过索引调整每个segment的width，如果设置为0.0则表示自动调整大小，默认为0.0</span></div><div class="line">- (<span class="keyword">void</span>)setWidth:(<span class="built_in">CGFloat</span>)width forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">CGFloat</span>)widthForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line"><span class="comment">//通过索引调整文字或者图片在segment的offset，默认为（0,0）</span></div><div class="line">- (<span class="keyword">void</span>)setContentOffset:(<span class="built_in">CGSize</span>)offset forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line">- (<span class="built_in">CGSize</span>)contentOffsetForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line"><span class="comment">//设置segment是否能选中</span></div><div class="line">- (<span class="keyword">void</span>)setEnabled:(<span class="built_in">BOOL</span>)enabled forSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;       </div><div class="line">- (<span class="built_in">BOOL</span>)isEnabledForSegmentAtIndex:(<span class="built_in">NSUInteger</span>)segment;</div><div class="line"><span class="comment">//是否根据内容的大小自动调整宽度</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">BOOL</span> apportionsSegmentWidthsByContent <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</div></pre></td></tr></table></figure></p>
-<p>自定义的外观<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置UISegmentedControl的边框，分隔线，文字，点击后的颜色</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">retain</span>) <span class="built_in">UIColor</span> *tintColor;</div><div class="line"><span class="comment">//获取和设置背景图片，通过UIControlState和barMetrics的进行设置和获取，主要需要先设置</span></div><div class="line"><span class="comment">//UIControlStateNormal才会有效果</span></div><div class="line">- (<span class="built_in">UIImage</span> *)backgroundImageForState:(<span class="built_in">UIControlState</span>)state barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics</div><div class="line">- (<span class="keyword">void</span>)setBackgroundImage:(<span class="built_in">UIImage</span> *)backgroundImage forState:(<span class="built_in">UIControlState</span>)state barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics</div><div class="line"><span class="comment">//设置分割线的图片样式，首先需要设置UIControlStateNormal不管左边还是右边，</span></div><div class="line"><span class="comment">//设置完成后再调用设置方法，根据UIControlState显示分割线</span></div><div class="line">- (<span class="keyword">void</span>)setDividerImage:(<span class="built_in">UIImage</span> *)dividerImage forLeftSegmentState:(<span class="built_in">UIControlState</span>)leftState rightSegmentState:(<span class="built_in">UIControlState</span>)rightState barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics</div><div class="line">- (<span class="built_in">UIImage</span> *)dividerImageForLeftSegmentState:(<span class="built_in">UIControlState</span>)leftState rightSegmentState:(<span class="built_in">UIControlState</span>)rightState barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetric        <span class="comment">//设置Title的样式，包括 font, text color,  shadow。通过NSAttributedString.h里面的键值对</span></div><div class="line">- (<span class="keyword">void</span>)setTitleTextAttributes:(<span class="built_in">NSDictionary</span> *)attributes forState:(<span class="built_in">UIControlState</span>)state <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>;</div><div class="line">- (<span class="built_in">NSDictionary</span> *)titleTextAttributesForState:(<span class="built_in">UIControlState</span>)state <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>;</div><div class="line"><span class="comment">//调整title和image的位置，通过给定的segment </span></div><div class="line">- (<span class="keyword">void</span>)setContentPositionAdjustment:(<span class="built_in">UIOffset</span>)adjustment forSegmentType:(<span class="built_in">UISegmentedControlSegment</span>)leftCenterRightOrAlone barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>; </div><div class="line">- (<span class="built_in">UIOffset</span>)contentPositionAdjustmentForSegmentType:(<span class="built_in">UISegmentedControlSegment</span>)leftCenterRightOrAlone barMetrics:(<span class="built_in">UIBarMetrics</span>)barMetrics <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0) <span class="built_in">UI_APPEARANCE_SELECTOR</span>;</div></pre></td></tr></table></figure></p>
-<p>在做ios开发时，经常使用到UISegmentedControl控件，而我们也经常需要去改变UISegmentedControl的颜色，而总是发现无法改变，其实并非无法改变，而是UISegmentedControl的样式选择错了。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">segmentedControl.segmentedControlStyle= <span class="built_in">UISegmentedControlStyleBar</span>;<span class="comment">//设置</span></div><div class="line"></div><div class="line">  segmentedControl.tintColor= [<span class="built_in">UIColorcolorWithRed</span>:<span class="number">0.23</span>green:<span class="number">0.50</span>blue:<span class="number">0.82</span>alpha:<span class="number">0.90</span>];</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/17/UISegmentedControl/" data-id="cj4r0eho20013cjmg0gu4bycd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li></ul>
 
     </footer>
   </div>
@@ -638,7 +636,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
     </div>
   </div>
 
@@ -648,7 +646,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
     </div>
   </div>
 
@@ -670,6 +668,10 @@
       <ul>
         
           <li>
+            <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/">FMDBMigrationManager</a>
+          </li>
+        
+          <li>
             <a href="/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/">hexo：更换电脑，如何继续写博客</a>
           </li>
         
@@ -683,10 +685,6 @@
         
           <li>
             <a href="/yuling.github.io/2017/06/06/IQKeyboardManager/">IQKeyboardManager</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/06/05/autoLayout/">autoLayout</a>
           </li>
         
       </ul>

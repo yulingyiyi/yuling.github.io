@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-07-05T12:58:23.000Z</updated>
+  <updated>2017-07-05T13:12:06.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -16,11 +16,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>FMDBMigrationManager</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/</id>
+    <published>2017-07-05T13:02:40.000Z</published>
+    <updated>2017-07-05T13:12:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p> iOS SQLite 使用FMDBMigrationManager 进行数据库迁移</p>
+<blockquote>
+<p>数据库更新</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/// 数据库管理</div><div class="line"> FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]; </div><div class="line">BOOL resultState=NO; </div><div class="line">NSError * error=nil;</div><div class="line">///创建数据库版本信息表</div><div class="line"> if (!manager.hasMigrationsTable) &#123;</div><div class="line"> resultState=[manager createMigrationsTable:&amp;error]; </div><div class="line">&#125;</div><div class="line">///数据库更新到最新版本</div><div class="line"> resultState=[manager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&amp;error];</div><div class="line"></div><div class="line"> `</div></pre></td></tr></table></figure>
+<blockquote>
+<p>更新方式</p>
+</blockquote>
+<p> 1.添加升级文件:所谓升级文件，就是一些sql文件，在里面写入一些对数据库操作的语句<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意：文件名的格式是固定的 (数字)_(描述性语言).sql,前面的数字就是所谓的版本号，官方建议使用时间戳，也可以使用1，2，3，4，5……升级，保持单调递增即可。文件内写入要对数据库做的操作</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>使用自定义类的形式。第一种方法，每次升级都要建立一个文件，而且大多数时候，文件里面只写一句话，感情上会难以接受，因此我们介绍一种较为简洁的方式。首先定义一个新的类：Migration</p>
+<p>遵循FMDBMigrating协议，与第一种拖入文件的方式相同，name是升级描述，version是版本号，最后一个方法里面，进行操作。<br>由于name和version都是只读的，因此我们要自定义一个init方法，传入描述 版本号和升级语句，升级语句最好用数组的方式传入，因为可能有多个升级语句。</p>
+</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Migration.h</span></div><div class="line"><span class="comment">//  Sqlite</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by LC on 16/10/21.</span></div><div class="line"><span class="comment">//  Copyright © 2016年 LC. All rights reserved.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"FMDBMigrationManager.h"</span></span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Migration</span> : <span class="title">NSObject</span>&lt;<span class="title">FMDBMigrating</span>&gt;</span></div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initWithName:(<span class="built_in">NSString</span> *)name andVersion:(uint64_t)version andExecuteUpdateArray:(<span class="built_in">NSArray</span> *)updateArray;<span class="comment">//自定义方法</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) uint64_t version;</div><div class="line">- (<span class="built_in">BOOL</span>)migrateDatabase:(FMDatabase *)database error:(<span class="keyword">out</span> <span class="built_in">NSError</span> *__autoreleasing *)error;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  Migration.m</div><div class="line">//  Sqlite</div><div class="line">//</div><div class="line">//  Created by LC on 16/10/21.</div><div class="line">//  Copyright © 2016年 LC. All rights reserved.</div><div class="line">//</div><div class="line"></div><div class="line">#import &quot;Migration.h&quot;</div><div class="line"></div><div class="line">@interface Migration()</div><div class="line"></div><div class="line">@property(nonatomic,copy)NSString * myName;</div><div class="line">@property(nonatomic,assign)uint64_t myVersion;</div><div class="line">@property(nonatomic,strong)NSArray * updateArray;</div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation Migration</div><div class="line"></div><div class="line">- (instancetype)initWithName:(NSString *)name andVersion:(uint64_t)version andExecuteUpdateArray:(NSArray *)updateArray</div><div class="line">&#123;</div><div class="line">    if (self=[super init]) &#123;</div><div class="line">        _myName=name;</div><div class="line">        _myVersion=version;</div><div class="line">        _updateArray=updateArray;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)name</div><div class="line">&#123;</div><div class="line">    return _myName;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (uint64_t)version</div><div class="line">&#123;</div><div class="line">    return _myVersion;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)migrateDatabase:(FMDatabase *)database error:(out NSError *__autoreleasing *)error</div><div class="line">&#123;</div><div class="line">    for(NSString * updateStr in _updateArray)</div><div class="line">    &#123;</div><div class="line">        [database executeUpdate:updateStr];</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>使用方法也很简单，将自定义类对象添加进manager即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">NSString *DBPath = [documents stringByAppendingPathComponent:KFMDBName];</div><div class="line"> NSLog(@&quot;%@&quot;,DBPath);</div><div class="line"> //DBPath是要升级的数据库的地址</div><div class="line"> // [NSBundle mainBundle]是保存数据库升级文件的位置 根据自己放文件的位置定 升级文件是什么下面会说</div><div class="line"> FMDBMigrationManager * manager = [FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]];</div><div class="line"></div><div class="line"> Migration * migration_1=[[Migration alloc]initWithName:@&quot;新增USer表&quot; andVersion:1 andExecuteUpdateArray:@[@&quot;create table User(name text,age integer,sex text,phoneNum text)&quot;]];</div><div class="line"> [manager addMigration:migration_1];</div><div class="line"></div><div class="line"> Migration * migration_2=[[Migration alloc]initWithName:@&quot;USer表新增字段email&quot; andVersion:2 andExecuteUpdateArray:@[@&quot;alter table User add email text&quot;]];</div><div class="line"> [manager addMigration:migration_2];</div><div class="line"></div><div class="line"> BOOL resultState=NO;</div><div class="line"> NSError * error=nil;</div><div class="line"> if (!manager.hasMigrationsTable) &#123;</div><div class="line">     resultState=[manager createMigrationsTable:&amp;error];</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> //UINT64_MAX 表示升级到最高版本</div><div class="line"> resultState=[manager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&amp;error];</div><div class="line"></div><div class="line"> NSLog(@&quot;Has `schema_migrations` table?: %@&quot;, manager.hasMigrationsTable ? @&quot;YES&quot; : @&quot;NO&quot;);</div><div class="line"> NSLog(@&quot;Origin Version: %llu&quot;, manager.originVersion);</div><div class="line"> NSLog(@&quot;Current version: %llu&quot;, manager.currentVersion);</div><div class="line"> NSLog(@&quot;All migrations: %@&quot;, manager.migrations);</div><div class="line"> NSLog(@&quot;Applied versions: %@&quot;, manager.appliedVersions);</div><div class="line"> NSLog(@&quot;Pending versions: %@&quot;, manager.pendingVersions);</div></pre></td></tr></table></figure>
+<pre><code>以后还想升级，在加入一个新的自定义对象，注意！！！版本号要保持递增
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">  NSString *DBPath = [documents stringByAppendingPathComponent:KFMDBName];</div><div class="line">NSLog(@&quot;%@&quot;,DBPath);</div><div class="line">//DBPath是要升级的数据库的地址</div><div class="line">// [NSBundle mainBundle]是保存数据库升级文件的位置 根据自己放文件的位置定 升级文件是什么下面会说</div><div class="line">FMDBMigrationManager * manager = [FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]];</div><div class="line"></div><div class="line">Migration * migration_1=[[Migration alloc]initWithName:@&quot;新增USer表&quot; andVersion:1 andExecuteUpdateArray:@[@&quot;create table User(name text,age integer,sex text,phoneNum text)&quot;]];</div><div class="line">[manager addMigration:migration_1];</div><div class="line"></div><div class="line">Migration * migration_2=[[Migration alloc]initWithName:@&quot;USer表新增字段email&quot; andVersion:2 andExecuteUpdateArray:@[@&quot;alter table User add email text&quot;]];</div><div class="line">[manager addMigration:migration_2];</div><div class="line"></div><div class="line">Migration * migration_3=[[Migration alloc]initWithName:@&quot;USer表新增字段address&quot; andVersion:3 andExecuteUpdateArray:@[@&quot;alter table User add address text&quot;]];</div><div class="line">[manager addMigration:migration_3];</div><div class="line"></div><div class="line">BOOL resultState=NO;</div><div class="line">NSError * error=nil;</div><div class="line">if (!manager.hasMigrationsTable) &#123;</div><div class="line">    resultState=[manager createMigrationsTable:&amp;error];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; iOS SQLite 使用FMDBMigrationManager 进行数据库迁移&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数据库更新&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="FMDBMigrationManager" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/FMDBMigrationManager/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo：更换电脑，如何继续写博客</title>
     <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo%EF%BC%9A%E6%9B%B4%E6%8D%A2%E7%94%B5%E8%84%91%EF%BC%8C%E5%A6%82%E4%BD%95%E7%BB%A7%E7%BB%AD%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
     <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/</id>
     <published>2017-07-05T12:46:57.000Z</published>
-    <updated>2017-07-05T12:58:23.000Z</updated>
+    <updated>2017-07-05T13:00:10.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：</p>
@@ -935,47 +982,6 @@ dispatch-3,dispatch-4
     
     
       <category term="NSDate" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/NSDate/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/#pragma/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/22/#pragma/</id>
-    <published>2017-05-22T02:40:29.000Z</published>
-    <updated>2017-05-22T06:22:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先, #pragma 本质上也是声明，一般常用的功能就是打注释、尤其是分段注释</p>
-<p>但是#pragma 另外一个强大的功能就是处理编译器警告，用的时候可能就没上一个</p>
-<p>功能用的那么多，在代码中处理警告却是极其高效的方法。</p>
-<p>其中 clang diagnostic 便是#pragma 第一个功能常用的命令，步骤如下</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#pragma clang diagnostic push  </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-相关命令"</span>  </span></div><div class="line">    <span class="comment">// 你自己的代码  </span></div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
-<p>常见用法</p>
-<p>1.方法弃用告警</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push    </span></div><div class="line">    </div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wdeprecated-declarations"</span>         </span></div><div class="line">[TestFlight setDeviceIdentifier:[[<span class="built_in">UIDevice</span> currentDevice] uniqueIdentifier]];    </div><div class="line">    </div><div class="line"><span class="meta">#pragma clang diagnostp ic pop</span></div></pre></td></tr></table></figure>
-<p>2.不兼容指针类型</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push     </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wincompatible-pointer-types"</span>     </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
-<p>3.循环引用<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// completionBlock is manually nilled out in AFURLConnectionOperation to break the retain cycle.    </span></div><div class="line"><span class="meta">#pragma clang diagnostic push    </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Warc-retain-cycles"</span>    </span></div><div class="line">    <span class="keyword">self</span>.completionBlock = ^ &#123;    </div><div class="line">        ...    </div><div class="line">    &#125;;    </div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure></p>
-<p>4.未使用变量<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#pragma clang diagnostic push     </span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wunused-variable"</span>     </span></div><div class="line">  <span class="keyword">int</span> a;     </div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure></p>
-<p>#pargma 用法详情：</p>
-<p><a href="http://nshipster.cn/pragma/" target="_blank" rel="external">http://nshipster.cn/pragma/</a></p>
-<p><a href="http://nshipster.com/clang-diagnostics/" target="_blank" rel="external">http://nshipster.com/clang-diagnostics/</a></p>
-<p>相关的命令列表</p>
-<p><a href="http://fuckingclangwarnings.com/" target="_blank" rel="external">http://fuckingclangwarnings.com/</a></p>
-<p>进阶：<br><a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas" target="_blank" rel="external">http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先, #pragma 本质上也是声明，一般常用的功能就是打注释、尤其是分段注释&lt;/p&gt;
-&lt;p&gt;但是#pragma 另外一个强大的功能就是处理编译器警告，用的时候可能就没上一个&lt;/p&gt;
-&lt;p&gt;功能用的那么多，在代码中处理警告却是极其高效的方法。&lt;/p&gt;
-&lt;p&gt;其中 clan
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
     
   </entry>
   
