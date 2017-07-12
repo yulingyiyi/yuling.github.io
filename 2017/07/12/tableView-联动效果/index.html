@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>情人节 | yulingyiyi</title>
+  <title>tableView 联动效果 | yulingyiyi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="情人节 今天请人节， 办公室早早的空了， 出去转了一圈，没意思，便回来了  还是会想到你， 你在哪里，海角还是天涯...  已记不清你的容貌，慢慢的模糊； 名字却渐渐深刻，入骨三分， 美人，美人，没人，没人...   明天的太阳， 如往常一般升起。">
-<meta name="keywords" content="情人节">
+  <meta name="description" content="tableView 联动效果 123456789101112131415161718192021- (void)scrollViewDidScroll:(UIScrollView *)scrollView&amp;#123;    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;    for (MLHomeTabl">
+<meta name="keywords" content="tableView">
 <meta property="og:type" content="article">
-<meta property="og:title" content="情人节">
-<meta property="og:url" content="https://yulingyiyi.github.io/yuling.github.io/2017/02/14/情人节/index.html">
+<meta property="og:title" content="tableView 联动效果">
+<meta property="og:url" content="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/index.html">
 <meta property="og:site_name" content="yulingyiyi">
-<meta property="og:description" content="情人节 今天请人节， 办公室早早的空了， 出去转了一圈，没意思，便回来了  还是会想到你， 你在哪里，海角还是天涯...  已记不清你的容貌，慢慢的模糊； 名字却渐渐深刻，入骨三分， 美人，美人，没人，没人...   明天的太阳， 如往常一般升起。">
-<meta property="og:updated_time" content="2017-02-14T12:13:30.000Z">
+<meta property="og:description" content="tableView 联动效果 123456789101112131415161718192021- (void)scrollViewDidScroll:(UIScrollView *)scrollView&amp;#123;    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;    for (MLHomeTabl">
+<meta property="og:updated_time" content="2017-07-12T07:10:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="情人节">
-<meta name="twitter:description" content="情人节 今天请人节， 办公室早早的空了， 出去转了一圈，没意思，便回来了  还是会想到你， 你在哪里，海角还是天涯...  已记不清你的容貌，慢慢的模糊； 名字却渐渐深刻，入骨三分， 美人，美人，没人，没人...   明天的太阳， 如往常一般升起。">
+<meta name="twitter:title" content="tableView 联动效果">
+<meta name="twitter:description" content="tableView 联动效果 123456789101112131415161718192021- (void)scrollViewDidScroll:(UIScrollView *)scrollView&amp;#123;    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;    for (MLHomeTabl">
   
     <link rel="alternate" href="/atom.xml" title="yulingyiyi" type="application/atom+xml">
   
@@ -68,14 +68,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-情人节" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-tableView-联动效果" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/yuling.github.io/2017/02/14/情人节/" class="article-date">
-  <time datetime="2017-02-14T11:55:30.000Z" itemprop="datePublished">2017-02-14</time>
+    <a href="/yuling.github.io/2017/07/12/tableView-联动效果/" class="article-date">
+  <time datetime="2017-07-12T07:07:24.000Z" itemprop="datePublished">2017-07-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/诗/">诗</a>
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
   </div>
 
   </div>
@@ -86,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      情人节
+      tableView 联动效果
     </h1>
   
 
@@ -94,29 +94,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>  情人节
-今天请人节，
-办公室早早的空了，
-出去转了一圈，没意思，便回来了
+        <p>tableView 联动效果</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)scrollViewDidScroll:(<span class="built_in">UIScrollView</span> *)scrollView&#123;</div><div class="line"></div><div class="line">    <span class="built_in">CGFloat</span> viewHeight = scrollView.height + scrollView.contentInset.top;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (MLHomeTableViewCell *cell <span class="keyword">in</span> [_tableView visibleCells]) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">CGFloat</span> y = cell.centerY - scrollView.contentOffset.y;</div><div class="line">        <span class="built_in">CGFloat</span> p = y - viewHeight / <span class="number">2</span>;</div><div class="line">         <span class="built_in">CGFloat</span> scale = cos(p / viewHeight * <span class="number">0.8</span>) * <span class="number">0.95</span>;</div><div class="line">        <span class="keyword">if</span> (kiOS8Later) &#123;</div><div class="line">            [<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">0.15</span> delay:<span class="number">0</span> options:<span class="built_in">UIViewAnimationOptionCurveEaseInOut</span> | <span class="built_in">UIViewAnimationOptionAllowUserInteraction</span> | <span class="built_in">UIViewAnimationOptionBeginFromCurrentState</span> animations:^&#123;</div><div class="line">                cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">            &#125; completion:<span class="literal">NULL</span>];</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-还是会想到你，
-你在哪里，海角还是天涯...
-
-已记不清你的容貌，慢慢的模糊；
-名字却渐渐深刻，入骨三分，
-美人，美人，没人，没人...
-
-
-明天的太阳，
-如往常一般升起。
-</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/14/情人节/" data-id="cj50o2eto002wvdmgki238w8p" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cj50o2et60021vdmgmvbwengc" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li></ul>
 
     </footer>
   </div>
@@ -124,19 +111,10 @@
     
 <nav id="article-nav">
   
-    <a href="/yuling.github.io/2017/02/15/UIMenuController/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          UIMenuController
-        
-      </div>
-    </a>
   
-  
-    <a href="/yuling.github.io/2017/02/13/Photos/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Photos</div>
+      <div class="article-nav-title">FMDBMigrationManager</div>
     </a>
   
 </nav>

@@ -68,6 +68,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-tableView-联动效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/07/12/tableView-联动效果/" class="article-date">
+  <time datetime="2017-07-12T07:07:24.000Z" itemprop="datePublished">2017-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/07/12/tableView-联动效果/">tableView 联动效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>tableView 联动效果</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)scrollViewDidScroll:(<span class="built_in">UIScrollView</span> *)scrollView&#123;</div><div class="line"></div><div class="line">    <span class="built_in">CGFloat</span> viewHeight = scrollView.height + scrollView.contentInset.top;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (MLHomeTableViewCell *cell <span class="keyword">in</span> [_tableView visibleCells]) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">CGFloat</span> y = cell.centerY - scrollView.contentOffset.y;</div><div class="line">        <span class="built_in">CGFloat</span> p = y - viewHeight / <span class="number">2</span>;</div><div class="line">         <span class="built_in">CGFloat</span> scale = cos(p / viewHeight * <span class="number">0.8</span>) * <span class="number">0.95</span>;</div><div class="line">        <span class="keyword">if</span> (kiOS8Later) &#123;</div><div class="line">            [<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">0.15</span> delay:<span class="number">0</span> options:<span class="built_in">UIViewAnimationOptionCurveEaseInOut</span> | <span class="built_in">UIViewAnimationOptionAllowUserInteraction</span> | <span class="built_in">UIViewAnimationOptionBeginFromCurrentState</span> animations:^&#123;</div><div class="line">                cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">            &#125; completion:<span class="literal">NULL</span>];</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cj50o2et60021vdmgmvbwengc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-FMDBMigrationManager" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/" class="article-date">
@@ -115,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj4r13aor000cgcmg87asguym" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj50o2erv000fvdmgrzym3dsx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li></ul>
@@ -166,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cj4r13aqx002igcmgvlgk2zuq" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cj50o2etd002dvdmgothqd0hc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li></ul>
@@ -210,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj4r13ar2002qgcmg0tiwv5bw" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj50o2etc002avdmgshffbtzj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li></ul>
@@ -255,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj4r13aoo000agcmgjyh6o43k" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj50o2eri0006vdmgj9003y5i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li></ul>
@@ -342,7 +386,7 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj4r13ap0000jgcmgjexy0mvp" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj50o2ero0008vdmgqbpieg2e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li></ul>
@@ -381,192 +425,7 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
     <div class="article-entry" itemprop="articleBody">
       
         <p> NSLayoutConstraint</p>
-<pre><code class="objc"> 使用AutoLayout之前需要知道以下两点：
-
-<span class="number">1.</span>必须设置 translatesAutoresizingMaskIntoConstraints为<span class="literal">NO</span>。
-
-<span class="number">2.</span>如果是viewControl则AutoLayout适配写在[- updateViewConstraints]中；
-
-如果是view则AutoLayout适配写在[- updateConstraints]中。
-
-一、 要讲解的方法:
-
- <span class="number">1</span> <span class="comment">/* Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant" 
- 2  If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.
- 3  */</span>
- <span class="number">4</span> +(<span class="keyword">instancetype</span>)constraintWithItem:(<span class="keyword">id</span>)view1 
- <span class="number">5</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr1 
- <span class="number">6</span>                         relatedBy:(<span class="built_in">NSLayoutRelation</span>)relation 
- <span class="number">7</span>                            toItem:(<span class="keyword">id</span>)view2
- <span class="number">8</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr2 
- <span class="number">9</span>                        multiplier:(<span class="built_in">CGFloat</span>)multiplier 
-<span class="number">10</span>                          constant:(<span class="built_in">CGFloat</span>)c;
-参数说明：
-
-第一个参数 view1: 要设置的视图；
-
-第二个参数 attr1: view1要设置的属性，稍后详解；
-
-第三个参数 relation: 视图view1和view2的指定属性之间的关系，稍后详解；
-
-第四个参数 view2: 参照的视图；
-
-第五个参数 attr2: 参照视图view2的属性，稍后详解；
-
-第六个参数 multiplier: 视图view1的指定属性是参照视图view2制定属性的多少倍；
-
-第七个参数 c: 视图view1的指定属性需要加的浮点数。
-
-根据参数的讲解，得出计算公式如下：
-
-view1.attr1 [= , &gt;= , &lt;=] view2.attr2 * multiplier + c;
-
-参数详解：
-
-<span class="number">1</span>、<span class="built_in">NSLayoutAttribute</span>
-
-  <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutAttribute</span>) {
-      <span class="built_in">NSLayoutAttributeLeft</span> = <span class="number">1</span>, 
-      <span class="built_in">NSLayoutAttributeRight</span>,
-      <span class="built_in">NSLayoutAttributeTop</span>,
-      <span class="built_in">NSLayoutAttributeBottom</span>,
-      <span class="built_in">NSLayoutAttributeLeading</span>,
-      <span class="built_in">NSLayoutAttributeTrailing</span>,
-      <span class="built_in">NSLayoutAttributeWidth</span>,
-      <span class="built_in">NSLayoutAttributeHeight</span>,
-     <span class="built_in">NSLayoutAttributeCenterX</span>,
-     <span class="built_in">NSLayoutAttributeCenterY</span>,
-     <span class="built_in">NSLayoutAttributeBaseline</span>,
-     <span class="built_in">NSLayoutAttributeLastBaseline</span> = <span class="built_in">NSLayoutAttributeBaseline</span>,
-     <span class="built_in">NSLayoutAttributeFirstBaseline</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-
-
-     <span class="built_in">NSLayoutAttributeLeftMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-     <span class="built_in">NSLayoutAttributeRightMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeTopMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-     <span class="built_in">NSLayoutAttributeBottomMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeLeadingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeTrailingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeCenterXWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeCenterYWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-
-     <span class="built_in">NSLayoutAttributeNotAnAttribute</span> = <span class="number">0</span>
- };
-分三部分解释 <span class="built_in">NSLayoutAttribute</span>
-
-第一部分：常用的
-
-<span class="built_in">NSLayoutAttributeLeft</span>:  <span class="built_in">CGRectGetMinX</span>(view.frame) ;
-
-<span class="built_in">NSLayoutAttributeRight</span>:  <span class="built_in">CGRectGetMaxX</span>(view.frame);
-
-<span class="built_in">NSLayoutAttributeTop</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
-
-<span class="built_in">NSLayoutAttributeBottom</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
-
-<span class="built_in">NSLayoutAttributeWidth</span>:  <span class="built_in">CGRectGetWidth</span>(view.frame) ;
-
-<span class="built_in">NSLayoutAttributeHeight</span>: <span class="built_in">CGRectGetHeight</span>(view.frame) ;
-
-<span class="built_in">NSLayoutAttribute</span> CenterX : view.center.x ;
-
-<span class="built_in">NSLayoutAttribute</span> CenterY : view.center.y  ;
-
-<span class="built_in">NSLayoutAttributeBaseline</span>: 文本底标线，在大多数视图中等同于<span class="built_in">NSLayoutAttributeBottom</span>； 在少数视图，如<span class="built_in">UILabel</span>，是指字母的底部出现的位置 ;
-
-<span class="built_in">NSLayoutAttributeLastBaseline</span>: 相当于<span class="built_in">NSLayoutAttributeBaseline</span> ;
-
-<span class="built_in">NSLayoutAttributeFirstBaseline</span>: 文本上标线 ;
-
-<span class="built_in">NSLayoutAttribute</span> NotAnAttribute: None ;
-
-第二部分： 根据国家使用习惯不同表示的意思不同
-
-<span class="built_in">NSLayoutAttributeLeading</span>: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span> ;
-
-<span class="built_in">NSLayoutAttribute</span> Trailing: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span> ;
-
-第三部分：ios8新增属性，各种间距，具体用法下节介绍
-
-<span class="built_in">NSLayoutAttributeLeftMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeRightMargin</span>，
-
-<span class="built_in">NSLayoutAttributeTopMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeBottomMargin</span>，
-
-<span class="built_in">NSLayoutAttributeLeadingMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeTrailingMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeCenterXWithinMargins</span>，
-
-<span class="built_in">NSLayoutAttributeCenterYWithinMargins</span>， 
-
-从网上找了一张图，标注以上属性
-
-
-<span class="number">2</span>、 <span class="built_in">NSLayoutRelation</span>
-
-<span class="number">1</span> <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutRelation</span>) {
-<span class="number">2</span>     <span class="built_in">NSLayoutRelationLessThanOrEqual</span> = <span class="number">-1</span>,
-<span class="number">3</span>     <span class="built_in">NSLayoutRelationEqual</span> = <span class="number">0</span>,
-<span class="number">4</span>     <span class="built_in">NSLayoutRelationGreaterThanOrEqual</span> = <span class="number">1</span>,
-<span class="number">5</span> };
-<span class="built_in">NSLayoutRelationLessThanOrEqual</span>: &lt;=;
-
-<span class="built_in">NSLayoutRelationEqual</span>: =;
-
-<span class="built_in">NSLayoutRelationGreaterThanOrEqual</span>: &gt;=;
-
-二、要讲解的方法
-
-<span class="number">1</span>、获取当前view中所有的  <span class="built_in">NSLayoutConstraint</span>
-
-<span class="number">1</span> - (<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);
-<span class="number">2</span>、旧版方法，将指定的<span class="built_in">NSLayoutConstraint</span>添加到页面或者从页面中移除
-
-<span class="number">1</span> <span class="number">1</span> - (<span class="keyword">void</span>)addConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead, set NSLayoutConstraint's active property to YES.</span>
-<span class="number">2</span> <span class="number">2</span> - (<span class="keyword">void</span>)addConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint activateConstraints:].</span>
-<span class="number">3</span> <span class="number">3</span> - (<span class="keyword">void</span>)removeConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead set NSLayoutConstraint's active property to NO.</span>
-<span class="number">4</span> <span class="number">4</span> - (<span class="keyword">void</span>)removeConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint deactivateConstraints:].</span>
-<span class="number">3</span>、ios8新加方法，激活或者停用指定约束
-
-<span class="number">1</span> <span class="comment">/* The receiver may be activated or deactivated by manipulating this property.  Only active constraints affect the calculated layout.  Attempting to activate a constraint whose items have no common ancestor will cause an exception to be thrown.  Defaults to NO for newly created constraints. */</span>
-<span class="number">2</span> <span class="keyword">@property</span> (<span class="keyword">getter</span>=isActive) <span class="built_in">BOOL</span> active <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
-<span class="number">3</span> 
-<span class="number">4</span> <span class="comment">/* Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually. */</span>
-<span class="number">5</span> + (<span class="keyword">void</span>)activateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
-<span class="number">6</span> 
-<span class="number">7</span> <span class="comment">/* Convenience method that deactivates each constraint in the contained array, in the same manner as setting active=NO. This is often more efficient than deactivating each constraint individually. */</span>
-<span class="number">8</span> + (<span class="keyword">void</span>)deactivateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
-三、Coding Time
-
-a&gt; 设置视图view1为 宽度=<span class="number">20</span>的正方形
-
-两种写法，第一种 宽度=<span class="number">20</span>，高度=<span class="number">20</span>
-
-<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
-<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
-第二种 宽度=<span class="number">20</span>， 高度=宽度
-
-<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
-<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]];
-第二种方法的优势是，如果想修改view1的大小，只需要修改一处。
-
-b&gt;设置视图view1.frame. origin.x = 视图view2.frame.origin.x
-
-<span class="built_in">NSLayoutConstraint</span> *leftConstraint = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeLeft</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view2 attribute:<span class="built_in">NSLayoutAttributeLeft</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]；
-
-<span class="comment">//旧版方法</span>
-<span class="comment">//[self addConstraint:leftConstraint];</span>
-
-<span class="comment">//新版方法1</span>
-[<span class="built_in">NSLayoutConstraint</span> activateConstraints:@[leftConstraint]]; 
-<span class="comment">//新版方法2</span>
-leftConstraint.active = <span class="literal">YES</span>;
-</code></pre>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div></pre></td><td class="code"><pre><div class="line"> 使用AutoLayout之前需要知道以下两点：</div><div class="line"></div><div class="line"><span class="number">1.</span>必须设置 translatesAutoresizingMaskIntoConstraints为<span class="literal">NO</span>。</div><div class="line"></div><div class="line"><span class="number">2.</span>如果是viewControl则AutoLayout适配写在[- updateViewConstraints]中；</div><div class="line"></div><div class="line">如果是view则AutoLayout适配写在[- updateConstraints]中。</div><div class="line"></div><div class="line">一、 要讲解的方法:</div><div class="line"></div><div class="line"> <span class="number">1</span> <span class="comment">/* Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant"</span></div><div class="line"> 2  If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.</div><div class="line"> 3  */</div><div class="line"> <span class="number">4</span> +(<span class="keyword">instancetype</span>)constraintWithItem:(<span class="keyword">id</span>)view1</div><div class="line"> <span class="number">5</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr1</div><div class="line"> <span class="number">6</span>                         relatedBy:(<span class="built_in">NSLayoutRelation</span>)relation</div><div class="line"> <span class="number">7</span>                            toItem:(<span class="keyword">id</span>)view2</div><div class="line"> <span class="number">8</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr2</div><div class="line"> <span class="number">9</span>                        multiplier:(<span class="built_in">CGFloat</span>)multiplier</div><div class="line"><span class="number">10</span>                          constant:(<span class="built_in">CGFloat</span>)c;</div><div class="line">参数说明：</div><div class="line"></div><div class="line">第一个参数 view1: 要设置的视图；</div><div class="line"></div><div class="line">第二个参数 attr1: view1要设置的属性，稍后详解；</div><div class="line"></div><div class="line">第三个参数 relation: 视图view1和view2的指定属性之间的关系，稍后详解；</div><div class="line"></div><div class="line">第四个参数 view2: 参照的视图；</div><div class="line"></div><div class="line">第五个参数 attr2: 参照视图view2的属性，稍后详解；</div><div class="line"></div><div class="line">第六个参数 multiplier: 视图view1的指定属性是参照视图view2制定属性的多少倍；</div><div class="line"></div><div class="line">第七个参数 c: 视图view1的指定属性需要加的浮点数。</div><div class="line"></div><div class="line">根据参数的讲解，得出计算公式如下：</div><div class="line"></div><div class="line">view1.attr1 [= , &gt;= , &lt;=] view2.attr2 * multiplier + c;</div><div class="line"></div><div class="line">参数详解：</div><div class="line"></div><div class="line"><span class="number">1</span>、<span class="built_in">NSLayoutAttribute</span></div><div class="line"></div><div class="line">  <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutAttribute</span>) &#123;</div><div class="line">      <span class="built_in">NSLayoutAttributeLeft</span> = <span class="number">1</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeRight</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeTop</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeBottom</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeLeading</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeTrailing</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeWidth</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeHeight</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeCenterX</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeCenterY</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeBaseline</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeLastBaseline</span> = <span class="built_in">NSLayoutAttributeBaseline</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeFirstBaseline</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line"></div><div class="line"></div><div class="line">     <span class="built_in">NSLayoutAttributeLeftMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">     <span class="built_in">NSLayoutAttributeRightMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeTopMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">     <span class="built_in">NSLayoutAttributeBottomMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeLeadingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeTrailingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeCenterXWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeCenterYWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line"></div><div class="line">     <span class="built_in">NSLayoutAttributeNotAnAttribute</span> = <span class="number">0</span></div><div class="line"> &#125;;</div><div class="line">分三部分解释 <span class="built_in">NSLayoutAttribute</span></div><div class="line"></div><div class="line">第一部分：常用的</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeft</span>:  <span class="built_in">CGRectGetMinX</span>(view.frame) ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeRight</span>:  <span class="built_in">CGRectGetMaxX</span>(view.frame);</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeTop</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeBottom</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeWidth</span>:  <span class="built_in">CGRectGetWidth</span>(view.frame) ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeHeight</span>: <span class="built_in">CGRectGetHeight</span>(view.frame) ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> CenterX : view.center.x ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> CenterY : view.center.y  ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeBaseline</span>: 文本底标线，在大多数视图中等同于<span class="built_in">NSLayoutAttributeBottom</span>； 在少数视图，如<span class="built_in">UILabel</span>，是指字母的底部出现的位置 ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLastBaseline</span>: 相当于<span class="built_in">NSLayoutAttributeBaseline</span> ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeFirstBaseline</span>: 文本上标线 ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> NotAnAttribute: None ;</div><div class="line"></div><div class="line">第二部分： 根据国家使用习惯不同表示的意思不同</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeading</span>: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span> ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> Trailing: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span> ;</div><div class="line"></div><div class="line">第三部分：ios8新增属性，各种间距，具体用法下节介绍</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeftMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeRightMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeTopMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeBottomMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeadingMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeTrailingMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeCenterXWithinMargins</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeCenterYWithinMargins</span>，</div><div class="line"></div><div class="line">从网上找了一张图，标注以上属性</div><div class="line"></div><div class="line"></div><div class="line"><span class="number">2</span>、 <span class="built_in">NSLayoutRelation</span></div><div class="line"></div><div class="line"><span class="number">1</span> <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutRelation</span>) &#123;</div><div class="line"><span class="number">2</span>     <span class="built_in">NSLayoutRelationLessThanOrEqual</span> = <span class="number">-1</span>,</div><div class="line"><span class="number">3</span>     <span class="built_in">NSLayoutRelationEqual</span> = <span class="number">0</span>,</div><div class="line"><span class="number">4</span>     <span class="built_in">NSLayoutRelationGreaterThanOrEqual</span> = <span class="number">1</span>,</div><div class="line"><span class="number">5</span> &#125;;</div><div class="line"><span class="built_in">NSLayoutRelationLessThanOrEqual</span>: &lt;=;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutRelationEqual</span>: =;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutRelationGreaterThanOrEqual</span>: &gt;=;</div><div class="line"></div><div class="line">二、要讲解的方法</div><div class="line"></div><div class="line"><span class="number">1</span>、获取当前view中所有的  <span class="built_in">NSLayoutConstraint</span></div><div class="line"></div><div class="line"><span class="number">1</span> - (<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);</div><div class="line"><span class="number">2</span>、旧版方法，将指定的<span class="built_in">NSLayoutConstraint</span>添加到页面或者从页面中移除</div><div class="line"></div><div class="line"><span class="number">1</span> <span class="number">1</span> - (<span class="keyword">void</span>)addConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead, set NSLayoutConstraint's active property to YES.</span></div><div class="line"><span class="number">2</span> <span class="number">2</span> - (<span class="keyword">void</span>)addConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint activateConstraints:].</span></div><div class="line"><span class="number">3</span> <span class="number">3</span> - (<span class="keyword">void</span>)removeConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead set NSLayoutConstraint's active property to NO.</span></div><div class="line"><span class="number">4</span> <span class="number">4</span> - (<span class="keyword">void</span>)removeConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint deactivateConstraints:].</span></div><div class="line"><span class="number">3</span>、ios8新加方法，激活或者停用指定约束</div><div class="line"></div><div class="line"><span class="number">1</span> <span class="comment">/* The receiver may be activated or deactivated by manipulating this property.  Only active constraints affect the calculated layout.  Attempting to activate a constraint whose items have no common ancestor will cause an exception to be thrown.  Defaults to NO for newly created constraints. */</span></div><div class="line"><span class="number">2</span> <span class="keyword">@property</span> (<span class="keyword">getter</span>=isActive) <span class="built_in">BOOL</span> active <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);</div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span> <span class="comment">/* Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually. */</span></div><div class="line"><span class="number">5</span> + (<span class="keyword">void</span>)activateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);</div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">7</span> <span class="comment">/* Convenience method that deactivates each constraint in the contained array, in the same manner as setting active=NO. This is often more efficient than deactivating each constraint individually. */</span></div><div class="line"><span class="number">8</span> + (<span class="keyword">void</span>)deactivateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);</div><div class="line">三、Coding Time</div><div class="line"></div><div class="line">a&gt; 设置视图view1为 宽度=<span class="number">20</span>的正方形</div><div class="line"></div><div class="line">两种写法，第一种 宽度=<span class="number">20</span>，高度=<span class="number">20</span></div><div class="line"></div><div class="line"><span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];</div><div class="line"><span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];</div><div class="line">第二种 宽度=<span class="number">20</span>， 高度=宽度</div><div class="line"></div><div class="line"><span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];</div><div class="line"><span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]];</div><div class="line">第二种方法的优势是，如果想修改view1的大小，只需要修改一处。</div><div class="line"></div><div class="line">b&gt;设置视图view1.frame. origin.x = 视图view2.frame.origin.x</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *leftConstraint = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeLeft</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view2 attribute:<span class="built_in">NSLayoutAttributeLeft</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]；</div><div class="line"></div><div class="line"><span class="comment">//旧版方法</span></div><div class="line"><span class="comment">//[self addConstraint:leftConstraint];</span></div><div class="line"></div><div class="line"><span class="comment">//新版方法1</span></div><div class="line">[<span class="built_in">NSLayoutConstraint</span> activateConstraints:@[leftConstraint]];</div><div class="line"><span class="comment">//新版方法2</span></div><div class="line">leftConstraint.active = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
 <p>Auto Layout 关于更新约束的几个方法</p>
 <p>setNeedsLayout：告知页面需要更新，但是不会立刻开始更新。执行后会立刻调用layoutSubviews。</p>
 <p>layoutIfNeeded：告知页面布局立刻更新。所以一般都会和setNeedsLayout一起使用。如果希望立刻生成新的frame需要调用此方法，利用这点一般布局动画可以在更新布局后直接使用这个方法让动画生效。</p>
@@ -580,7 +439,7 @@ leftConstraint.active = <span class="literal">YES</span>;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj4r13aqi001xgcmgeujh7c7r" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj50o2esn001evdmgfh0zb5kx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li></ul>
@@ -632,7 +491,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cj4r13aog0004gcmg9tgoddtc" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cj50o2erf0005vdmgqmw38yqp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li></ul>
@@ -683,7 +542,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/" data-id="cj4r13aqh001ugcmg4gdh61ko" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/" data-id="cj50o2esp001kvdmgtlf153ss" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li></ul>
@@ -757,97 +616,10 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/" data-id="cj4r13arc0038gcmghwpljzjt" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/" data-id="cj50o2etr0033vdmgla5i29bt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-GCD读取文件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/05/25/GCD读取文件/" class="article-date">
-  <time datetime="2017-05-25T05:29:34.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/05/25/GCD读取文件/">GCD读取文件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code class="objc">
-<span class="comment">//GCD读写文件</span>
-    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
-
-    <span class="keyword">int</span> intbuffer[] = { <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> };
-    <span class="keyword">char</span> charbuffer[]={<span class="string">"fdafdsafsdfasdfa"</span>};
-    dispatch_data_t data = dispatch_data_create(charbuffer, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, <span class="literal">NULL</span>);
-
-    dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);
-    <span class="comment">// Write</span>
-    dispatch_fd_t fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
-
-    printf(<span class="string">"FD: %d\n"</span>, fd);
-
-    dispatch_write(fd, data, queue,^(dispatch_data_t d, <span class="keyword">int</span> e) {
-        printf(<span class="string">"Written %zu bytes!\n"</span>, dispatch_data_get_size(data) - (d ? dispatch_data_get_size(d) : <span class="number">0</span>));
-        printf(<span class="string">"\tError: %d\n"</span>, e);
-        dispatch_semaphore_signal(sem);
-    });
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-
-    close(fd);
-
-    <span class="comment">// Read</span>
-    fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR);
-
-    dispatch_read(fd, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, ^(dispatch_data_t d, <span class="keyword">int</span> e) {
-        printf(<span class="string">"Read %zu bytes!\n"</span>, dispatch_data_get_size(d));
-        <span class="keyword">const</span> <span class="keyword">void</span> *buffer = <span class="literal">NULL</span>;
-        size_t size = dispatch_data_get_size(d);
-        dispatch_data_t tmpData = dispatch_data_create_map(data, &amp;buffer, &amp;size);
-        <span class="built_in">NSData</span> *nsdata = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:size];
-        <span class="built_in">NSString</span> *s=[[<span class="built_in">NSString</span> alloc] initWithData:nsdata encoding:<span class="built_in">NSUTF8StringEncoding</span>];
-        <span class="built_in">NSLog</span>(<span class="string">@"buffer %@"</span>,s);
-        printf(<span class="string">"\tError: %d\n"</span>, e);
-        dispatch_semaphore_signal(sem);
-    });
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-    close(fd);
-
-    <span class="comment">// Exit confirmation</span>
-    getchar();
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD读取文件/" data-id="cj4r13aov000ggcmgrgwvk8y3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li></ul>
 
     </footer>
   </div>
@@ -879,7 +651,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
     </div>
   </div>
 
@@ -889,7 +661,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
     </div>
   </div>
 
@@ -911,6 +683,10 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       <ul>
         
           <li>
+            <a href="/yuling.github.io/2017/07/12/tableView-联动效果/">tableView 联动效果</a>
+          </li>
+        
+          <li>
             <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/">FMDBMigrationManager</a>
           </li>
         
@@ -924,10 +700,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
         
           <li>
             <a href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/">DZNEmptyDataSet</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/06/06/IQKeyboardManager/">IQKeyboardManager</a>
           </li>
         
       </ul>

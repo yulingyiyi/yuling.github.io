@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-07-05T13:17:40.000Z</updated>
+  <updated>2017-07-12T07:10:40.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tableView 联动效果</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-%E8%81%94%E5%8A%A8%E6%95%88%E6%9E%9C/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/</id>
+    <published>2017-07-12T07:07:24.000Z</published>
+    <updated>2017-07-12T07:10:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>tableView 联动效果</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)scrollViewDidScroll:(<span class="built_in">UIScrollView</span> *)scrollView&#123;</div><div class="line"></div><div class="line">    <span class="built_in">CGFloat</span> viewHeight = scrollView.height + scrollView.contentInset.top;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (MLHomeTableViewCell *cell <span class="keyword">in</span> [_tableView visibleCells]) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">CGFloat</span> y = cell.centerY - scrollView.contentOffset.y;</div><div class="line">        <span class="built_in">CGFloat</span> p = y - viewHeight / <span class="number">2</span>;</div><div class="line">         <span class="built_in">CGFloat</span> scale = cos(p / viewHeight * <span class="number">0.8</span>) * <span class="number">0.95</span>;</div><div class="line">        <span class="keyword">if</span> (kiOS8Later) &#123;</div><div class="line">            [<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">0.15</span> delay:<span class="number">0</span> options:<span class="built_in">UIViewAnimationOptionCurveEaseInOut</span> | <span class="built_in">UIViewAnimationOptionAllowUserInteraction</span> | <span class="built_in">UIViewAnimationOptionBeginFromCurrentState</span> animations:^&#123;</div><div class="line">                cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">            &#125; completion:<span class="literal">NULL</span>];</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;tableView 联动效果&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;d
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="tableView" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/tableView/"/>
+    
+  </entry>
   
   <entry>
     <title>FMDBMigrationManager</title>
@@ -214,195 +239,10 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
     <link href="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/"/>
     <id>https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/</id>
     <published>2017-06-05T11:13:21.000Z</published>
-    <updated>2017-06-05T12:43:48.000Z</updated>
+    <updated>2017-07-11T12:56:35.000Z</updated>
     
     <content type="html"><![CDATA[<p> NSLayoutConstraint</p>
-<pre><code class="objc"> 使用AutoLayout之前需要知道以下两点：
-
-<span class="number">1.</span>必须设置 translatesAutoresizingMaskIntoConstraints为<span class="literal">NO</span>。
-
-<span class="number">2.</span>如果是viewControl则AutoLayout适配写在[- updateViewConstraints]中；
-
-如果是view则AutoLayout适配写在[- updateConstraints]中。
-
-一、 要讲解的方法:
-
- <span class="number">1</span> <span class="comment">/* Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant" 
- 2  If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.
- 3  */</span>
- <span class="number">4</span> +(<span class="keyword">instancetype</span>)constraintWithItem:(<span class="keyword">id</span>)view1 
- <span class="number">5</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr1 
- <span class="number">6</span>                         relatedBy:(<span class="built_in">NSLayoutRelation</span>)relation 
- <span class="number">7</span>                            toItem:(<span class="keyword">id</span>)view2
- <span class="number">8</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr2 
- <span class="number">9</span>                        multiplier:(<span class="built_in">CGFloat</span>)multiplier 
-<span class="number">10</span>                          constant:(<span class="built_in">CGFloat</span>)c;
-参数说明：
-
-第一个参数 view1: 要设置的视图；
-
-第二个参数 attr1: view1要设置的属性，稍后详解；
-
-第三个参数 relation: 视图view1和view2的指定属性之间的关系，稍后详解；
-
-第四个参数 view2: 参照的视图；
-
-第五个参数 attr2: 参照视图view2的属性，稍后详解；
-
-第六个参数 multiplier: 视图view1的指定属性是参照视图view2制定属性的多少倍；
-
-第七个参数 c: 视图view1的指定属性需要加的浮点数。
-
-根据参数的讲解，得出计算公式如下：
-
-view1.attr1 [= , &gt;= , &lt;=] view2.attr2 * multiplier + c;
-
-参数详解：
-
-<span class="number">1</span>、<span class="built_in">NSLayoutAttribute</span>
-
-  <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutAttribute</span>) {
-      <span class="built_in">NSLayoutAttributeLeft</span> = <span class="number">1</span>, 
-      <span class="built_in">NSLayoutAttributeRight</span>,
-      <span class="built_in">NSLayoutAttributeTop</span>,
-      <span class="built_in">NSLayoutAttributeBottom</span>,
-      <span class="built_in">NSLayoutAttributeLeading</span>,
-      <span class="built_in">NSLayoutAttributeTrailing</span>,
-      <span class="built_in">NSLayoutAttributeWidth</span>,
-      <span class="built_in">NSLayoutAttributeHeight</span>,
-     <span class="built_in">NSLayoutAttributeCenterX</span>,
-     <span class="built_in">NSLayoutAttributeCenterY</span>,
-     <span class="built_in">NSLayoutAttributeBaseline</span>,
-     <span class="built_in">NSLayoutAttributeLastBaseline</span> = <span class="built_in">NSLayoutAttributeBaseline</span>,
-     <span class="built_in">NSLayoutAttributeFirstBaseline</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-
-
-     <span class="built_in">NSLayoutAttributeLeftMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-     <span class="built_in">NSLayoutAttributeRightMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeTopMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-     <span class="built_in">NSLayoutAttributeBottomMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeLeadingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeTrailingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeCenterXWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-    <span class="built_in">NSLayoutAttributeCenterYWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),
-
-     <span class="built_in">NSLayoutAttributeNotAnAttribute</span> = <span class="number">0</span>
- };
-分三部分解释 <span class="built_in">NSLayoutAttribute</span>
-
-第一部分：常用的
-
-<span class="built_in">NSLayoutAttributeLeft</span>:  <span class="built_in">CGRectGetMinX</span>(view.frame) ;
-
-<span class="built_in">NSLayoutAttributeRight</span>:  <span class="built_in">CGRectGetMaxX</span>(view.frame);
-
-<span class="built_in">NSLayoutAttributeTop</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
-
-<span class="built_in">NSLayoutAttributeBottom</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);
-
-<span class="built_in">NSLayoutAttributeWidth</span>:  <span class="built_in">CGRectGetWidth</span>(view.frame) ;
-
-<span class="built_in">NSLayoutAttributeHeight</span>: <span class="built_in">CGRectGetHeight</span>(view.frame) ;
-
-<span class="built_in">NSLayoutAttribute</span> CenterX : view.center.x ;
-
-<span class="built_in">NSLayoutAttribute</span> CenterY : view.center.y  ;
-
-<span class="built_in">NSLayoutAttributeBaseline</span>: 文本底标线，在大多数视图中等同于<span class="built_in">NSLayoutAttributeBottom</span>； 在少数视图，如<span class="built_in">UILabel</span>，是指字母的底部出现的位置 ;
-
-<span class="built_in">NSLayoutAttributeLastBaseline</span>: 相当于<span class="built_in">NSLayoutAttributeBaseline</span> ;
-
-<span class="built_in">NSLayoutAttributeFirstBaseline</span>: 文本上标线 ;
-
-<span class="built_in">NSLayoutAttribute</span> NotAnAttribute: None ;
-
-第二部分： 根据国家使用习惯不同表示的意思不同
-
-<span class="built_in">NSLayoutAttributeLeading</span>: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span> ;
-
-<span class="built_in">NSLayoutAttribute</span> Trailing: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span> ;
-
-第三部分：ios8新增属性，各种间距，具体用法下节介绍
-
-<span class="built_in">NSLayoutAttributeLeftMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeRightMargin</span>，
-
-<span class="built_in">NSLayoutAttributeTopMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeBottomMargin</span>，
-
-<span class="built_in">NSLayoutAttributeLeadingMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeTrailingMargin</span>， 
-
-<span class="built_in">NSLayoutAttributeCenterXWithinMargins</span>，
-
-<span class="built_in">NSLayoutAttributeCenterYWithinMargins</span>， 
-
-从网上找了一张图，标注以上属性
-
-
-<span class="number">2</span>、 <span class="built_in">NSLayoutRelation</span>
-
-<span class="number">1</span> <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutRelation</span>) {
-<span class="number">2</span>     <span class="built_in">NSLayoutRelationLessThanOrEqual</span> = <span class="number">-1</span>,
-<span class="number">3</span>     <span class="built_in">NSLayoutRelationEqual</span> = <span class="number">0</span>,
-<span class="number">4</span>     <span class="built_in">NSLayoutRelationGreaterThanOrEqual</span> = <span class="number">1</span>,
-<span class="number">5</span> };
-<span class="built_in">NSLayoutRelationLessThanOrEqual</span>: &lt;=;
-
-<span class="built_in">NSLayoutRelationEqual</span>: =;
-
-<span class="built_in">NSLayoutRelationGreaterThanOrEqual</span>: &gt;=;
-
-二、要讲解的方法
-
-<span class="number">1</span>、获取当前view中所有的  <span class="built_in">NSLayoutConstraint</span>
-
-<span class="number">1</span> - (<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);
-<span class="number">2</span>、旧版方法，将指定的<span class="built_in">NSLayoutConstraint</span>添加到页面或者从页面中移除
-
-<span class="number">1</span> <span class="number">1</span> - (<span class="keyword">void</span>)addConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead, set NSLayoutConstraint's active property to YES.</span>
-<span class="number">2</span> <span class="number">2</span> - (<span class="keyword">void</span>)addConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint activateConstraints:].</span>
-<span class="number">3</span> <span class="number">3</span> - (<span class="keyword">void</span>)removeConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead set NSLayoutConstraint's active property to NO.</span>
-<span class="number">4</span> <span class="number">4</span> - (<span class="keyword">void</span>)removeConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint deactivateConstraints:].</span>
-<span class="number">3</span>、ios8新加方法，激活或者停用指定约束
-
-<span class="number">1</span> <span class="comment">/* The receiver may be activated or deactivated by manipulating this property.  Only active constraints affect the calculated layout.  Attempting to activate a constraint whose items have no common ancestor will cause an exception to be thrown.  Defaults to NO for newly created constraints. */</span>
-<span class="number">2</span> <span class="keyword">@property</span> (<span class="keyword">getter</span>=isActive) <span class="built_in">BOOL</span> active <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
-<span class="number">3</span> 
-<span class="number">4</span> <span class="comment">/* Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually. */</span>
-<span class="number">5</span> + (<span class="keyword">void</span>)activateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
-<span class="number">6</span> 
-<span class="number">7</span> <span class="comment">/* Convenience method that deactivates each constraint in the contained array, in the same manner as setting active=NO. This is often more efficient than deactivating each constraint individually. */</span>
-<span class="number">8</span> + (<span class="keyword">void</span>)deactivateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);
-三、Coding Time
-
-a&gt; 设置视图view1为 宽度=<span class="number">20</span>的正方形
-
-两种写法，第一种 宽度=<span class="number">20</span>，高度=<span class="number">20</span>
-
-<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
-<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
-第二种 宽度=<span class="number">20</span>， 高度=宽度
-
-<span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];
-<span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]];
-第二种方法的优势是，如果想修改view1的大小，只需要修改一处。
-
-b&gt;设置视图view1.frame. origin.x = 视图view2.frame.origin.x
-
-<span class="built_in">NSLayoutConstraint</span> *leftConstraint = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeLeft</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view2 attribute:<span class="built_in">NSLayoutAttributeLeft</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]；
-
-<span class="comment">//旧版方法</span>
-<span class="comment">//[self addConstraint:leftConstraint];</span>
-
-<span class="comment">//新版方法1</span>
-[<span class="built_in">NSLayoutConstraint</span> activateConstraints:@[leftConstraint]]; 
-<span class="comment">//新版方法2</span>
-leftConstraint.active = <span class="literal">YES</span>;
-</code></pre>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div></pre></td><td class="code"><pre><div class="line"> 使用AutoLayout之前需要知道以下两点：</div><div class="line"></div><div class="line"><span class="number">1.</span>必须设置 translatesAutoresizingMaskIntoConstraints为<span class="literal">NO</span>。</div><div class="line"></div><div class="line"><span class="number">2.</span>如果是viewControl则AutoLayout适配写在[- updateViewConstraints]中；</div><div class="line"></div><div class="line">如果是view则AutoLayout适配写在[- updateConstraints]中。</div><div class="line"></div><div class="line">一、 要讲解的方法:</div><div class="line"></div><div class="line"> <span class="number">1</span> <span class="comment">/* Create constraints explicitly.  Constraints are of the form "view1.attr1 = view2.attr2 * multiplier + constant"</span></div><div class="line"> 2  If your equation does not have a second view and attribute, use nil and NSLayoutAttributeNotAnAttribute.</div><div class="line"> 3  */</div><div class="line"> <span class="number">4</span> +(<span class="keyword">instancetype</span>)constraintWithItem:(<span class="keyword">id</span>)view1</div><div class="line"> <span class="number">5</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr1</div><div class="line"> <span class="number">6</span>                         relatedBy:(<span class="built_in">NSLayoutRelation</span>)relation</div><div class="line"> <span class="number">7</span>                            toItem:(<span class="keyword">id</span>)view2</div><div class="line"> <span class="number">8</span>                         attribute:(<span class="built_in">NSLayoutAttribute</span>)attr2</div><div class="line"> <span class="number">9</span>                        multiplier:(<span class="built_in">CGFloat</span>)multiplier</div><div class="line"><span class="number">10</span>                          constant:(<span class="built_in">CGFloat</span>)c;</div><div class="line">参数说明：</div><div class="line"></div><div class="line">第一个参数 view1: 要设置的视图；</div><div class="line"></div><div class="line">第二个参数 attr1: view1要设置的属性，稍后详解；</div><div class="line"></div><div class="line">第三个参数 relation: 视图view1和view2的指定属性之间的关系，稍后详解；</div><div class="line"></div><div class="line">第四个参数 view2: 参照的视图；</div><div class="line"></div><div class="line">第五个参数 attr2: 参照视图view2的属性，稍后详解；</div><div class="line"></div><div class="line">第六个参数 multiplier: 视图view1的指定属性是参照视图view2制定属性的多少倍；</div><div class="line"></div><div class="line">第七个参数 c: 视图view1的指定属性需要加的浮点数。</div><div class="line"></div><div class="line">根据参数的讲解，得出计算公式如下：</div><div class="line"></div><div class="line">view1.attr1 [= , &gt;= , &lt;=] view2.attr2 * multiplier + c;</div><div class="line"></div><div class="line">参数详解：</div><div class="line"></div><div class="line"><span class="number">1</span>、<span class="built_in">NSLayoutAttribute</span></div><div class="line"></div><div class="line">  <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutAttribute</span>) &#123;</div><div class="line">      <span class="built_in">NSLayoutAttributeLeft</span> = <span class="number">1</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeRight</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeTop</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeBottom</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeLeading</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeTrailing</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeWidth</span>,</div><div class="line">      <span class="built_in">NSLayoutAttributeHeight</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeCenterX</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeCenterY</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeBaseline</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeLastBaseline</span> = <span class="built_in">NSLayoutAttributeBaseline</span>,</div><div class="line">     <span class="built_in">NSLayoutAttributeFirstBaseline</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line"></div><div class="line"></div><div class="line">     <span class="built_in">NSLayoutAttributeLeftMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">     <span class="built_in">NSLayoutAttributeRightMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeTopMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">     <span class="built_in">NSLayoutAttributeBottomMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeLeadingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeTrailingMargin</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeCenterXWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line">    <span class="built_in">NSLayoutAttributeCenterYWithinMargins</span> <span class="built_in">NS_ENUM_AVAILABLE_IOS</span>(<span class="number">8</span>_0),</div><div class="line"></div><div class="line">     <span class="built_in">NSLayoutAttributeNotAnAttribute</span> = <span class="number">0</span></div><div class="line"> &#125;;</div><div class="line">分三部分解释 <span class="built_in">NSLayoutAttribute</span></div><div class="line"></div><div class="line">第一部分：常用的</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeft</span>:  <span class="built_in">CGRectGetMinX</span>(view.frame) ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeRight</span>:  <span class="built_in">CGRectGetMaxX</span>(view.frame);</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeTop</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeBottom</span>:  <span class="built_in">CGRectGetMinY</span>(view.frame);</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeWidth</span>:  <span class="built_in">CGRectGetWidth</span>(view.frame) ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeHeight</span>: <span class="built_in">CGRectGetHeight</span>(view.frame) ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> CenterX : view.center.x ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> CenterY : view.center.y  ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeBaseline</span>: 文本底标线，在大多数视图中等同于<span class="built_in">NSLayoutAttributeBottom</span>； 在少数视图，如<span class="built_in">UILabel</span>，是指字母的底部出现的位置 ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLastBaseline</span>: 相当于<span class="built_in">NSLayoutAttributeBaseline</span> ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeFirstBaseline</span>: 文本上标线 ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> NotAnAttribute: None ;</div><div class="line"></div><div class="line">第二部分： 根据国家使用习惯不同表示的意思不同</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeading</span>: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span> ;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttribute</span> Trailing: 在习惯由左向右看的地区，相当于<span class="built_in">NSLayoutAttributeRight</span>；在习惯从右至左看的地区，相当于<span class="built_in">NSLayoutAttributeLeft</span> ;</div><div class="line"></div><div class="line">第三部分：ios8新增属性，各种间距，具体用法下节介绍</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeftMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeRightMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeTopMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeBottomMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeLeadingMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeTrailingMargin</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeCenterXWithinMargins</span>，</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutAttributeCenterYWithinMargins</span>，</div><div class="line"></div><div class="line">从网上找了一张图，标注以上属性</div><div class="line"></div><div class="line"></div><div class="line"><span class="number">2</span>、 <span class="built_in">NSLayoutRelation</span></div><div class="line"></div><div class="line"><span class="number">1</span> <span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSLayoutRelation</span>) &#123;</div><div class="line"><span class="number">2</span>     <span class="built_in">NSLayoutRelationLessThanOrEqual</span> = <span class="number">-1</span>,</div><div class="line"><span class="number">3</span>     <span class="built_in">NSLayoutRelationEqual</span> = <span class="number">0</span>,</div><div class="line"><span class="number">4</span>     <span class="built_in">NSLayoutRelationGreaterThanOrEqual</span> = <span class="number">1</span>,</div><div class="line"><span class="number">5</span> &#125;;</div><div class="line"><span class="built_in">NSLayoutRelationLessThanOrEqual</span>: &lt;=;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutRelationEqual</span>: =;</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutRelationGreaterThanOrEqual</span>: &gt;=;</div><div class="line"></div><div class="line">二、要讲解的方法</div><div class="line"></div><div class="line"><span class="number">1</span>、获取当前view中所有的  <span class="built_in">NSLayoutConstraint</span></div><div class="line"></div><div class="line"><span class="number">1</span> - (<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);</div><div class="line"><span class="number">2</span>、旧版方法，将指定的<span class="built_in">NSLayoutConstraint</span>添加到页面或者从页面中移除</div><div class="line"></div><div class="line"><span class="number">1</span> <span class="number">1</span> - (<span class="keyword">void</span>)addConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead, set NSLayoutConstraint's active property to YES.</span></div><div class="line"><span class="number">2</span> <span class="number">2</span> - (<span class="keyword">void</span>)addConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint activateConstraints:].</span></div><div class="line"><span class="number">3</span> <span class="number">3</span> - (<span class="keyword">void</span>)removeConstraint:(<span class="built_in">NSLayoutConstraint</span> *)constraint <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead set NSLayoutConstraint's active property to NO.</span></div><div class="line"><span class="number">4</span> <span class="number">4</span> - (<span class="keyword">void</span>)removeConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0); <span class="comment">// This method will be deprecated in a future release and should be avoided.  Instead use +[NSLayoutConstraint deactivateConstraints:].</span></div><div class="line"><span class="number">3</span>、ios8新加方法，激活或者停用指定约束</div><div class="line"></div><div class="line"><span class="number">1</span> <span class="comment">/* The receiver may be activated or deactivated by manipulating this property.  Only active constraints affect the calculated layout.  Attempting to activate a constraint whose items have no common ancestor will cause an exception to be thrown.  Defaults to NO for newly created constraints. */</span></div><div class="line"><span class="number">2</span> <span class="keyword">@property</span> (<span class="keyword">getter</span>=isActive) <span class="built_in">BOOL</span> active <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);</div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span> <span class="comment">/* Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually. */</span></div><div class="line"><span class="number">5</span> + (<span class="keyword">void</span>)activateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);</div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">7</span> <span class="comment">/* Convenience method that deactivates each constraint in the contained array, in the same manner as setting active=NO. This is often more efficient than deactivating each constraint individually. */</span></div><div class="line"><span class="number">8</span> + (<span class="keyword">void</span>)deactivateConstraints:(<span class="built_in">NSArray</span> *)constraints <span class="built_in">NS_AVAILABLE</span>(<span class="number">10</span>_10, <span class="number">8</span>_0);</div><div class="line">三、Coding Time</div><div class="line"></div><div class="line">a&gt; 设置视图view1为 宽度=<span class="number">20</span>的正方形</div><div class="line"></div><div class="line">两种写法，第一种 宽度=<span class="number">20</span>，高度=<span class="number">20</span></div><div class="line"></div><div class="line"><span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];</div><div class="line"><span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];</div><div class="line">第二种 宽度=<span class="number">20</span>， 高度=宽度</div><div class="line"></div><div class="line"><span class="number">1</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">20</span>]];</div><div class="line"><span class="number">2</span>     [<span class="keyword">self</span> addConstraint:[<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]];</div><div class="line">第二种方法的优势是，如果想修改view1的大小，只需要修改一处。</div><div class="line"></div><div class="line">b&gt;设置视图view1.frame. origin.x = 视图view2.frame.origin.x</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *leftConstraint = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:view1 attribute:<span class="built_in">NSLayoutAttributeLeft</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:view2 attribute:<span class="built_in">NSLayoutAttributeLeft</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>]；</div><div class="line"></div><div class="line"><span class="comment">//旧版方法</span></div><div class="line"><span class="comment">//[self addConstraint:leftConstraint];</span></div><div class="line"></div><div class="line"><span class="comment">//新版方法1</span></div><div class="line">[<span class="built_in">NSLayoutConstraint</span> activateConstraints:@[leftConstraint]];</div><div class="line"><span class="comment">//新版方法2</span></div><div class="line">leftConstraint.active = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
 <p>Auto Layout 关于更新约束的几个方法</p>
 <p>setNeedsLayout：告知页面需要更新，但是不会立刻开始更新。执行后会立刻调用layoutSubviews。</p>
 <p>layoutIfNeeded：告知页面布局立刻更新。所以一般都会和setNeedsLayout一起使用。如果希望立刻生成新的frame需要调用此方法，利用这点一般布局动画可以在更新布局后直接使用这个方法让动画生效。</p>
@@ -417,9 +257,7 @@ leftConstraint.active = <span class="literal">YES</span>;
     <summary type="html">
     
       &lt;p&gt; NSLayoutConstraint&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt; 使用AutoLayout之前需要知道以下两点：
-
-&lt;span class=&quot;number&quot;&gt;1.&lt;/span&gt;必须设置 translatesAutoresizingMaskIn
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/d
     
     </summary>
     
@@ -930,44 +768,6 @@ dispatch-3,dispatch-4
     
     
       <category term="NSMutableAttributedString" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/NSMutableAttributedString/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSDate</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/NSDate/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/22/NSDate/</id>
-    <published>2017-05-22T06:06:12.000Z</published>
-    <updated>2017-05-22T06:12:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
-<li>时间戳:从1970年1月1号 00:00:00开始走过的毫秒数</li>
-<li>注意:1秒==1000毫秒</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间字符串 -&gt; 时间戳</span></div><div class="line"><span class="built_in">NSString</span> *string = <span class="string">@"1745645645645"</span>;</div><div class="line"><span class="built_in">NSTimeInterval</span> second = string.longLongValue / <span class="number">1000.0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 时间戳 -&gt; NSDate *</span></div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:second];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, date);</div></pre></td></tr></table></figure>
-<p>1.NSDate的详细介绍<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>通过date方法创建出来的对象,就是当前时间对象;</div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, date);</div><div class="line"></div><div class="line"><span class="number">2.</span>获取当前所处时区</div><div class="line"><span class="built_in">NSTimeZone</span> *zone = [<span class="built_in">NSTimeZone</span> systemTimeZone];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, zone);</div><div class="line"></div><div class="line"><span class="number">3.</span>获取当前时区和指定时间差</div><div class="line"><span class="built_in">NSInteger</span> seconds = [zone secondsFromGMTForDate:date];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"seconds = %lu"</span>, seconds);</div><div class="line"></div><div class="line"><span class="built_in">NSDate</span> *nowDate = [date dateByAddingTimeInterval:seconds];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"nowDate = %@"</span>, nowDate);</div><div class="line"></div><div class="line"><span class="number">4.</span>获取当前时间  <span class="built_in">NSDate</span> --&gt; <span class="built_in">NSString</span></div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line">创建一个时间格式化对象</div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line">按照什么样的格式来格式化时间</div><div class="line">formatter.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒 Z"</span>;</div><div class="line">formatter.dateFormat = <span class="string">@"yyyy/MM/dd HH/mm/ss Z"</span>;</div><div class="line">formatter.dateFormat = <span class="string">@"MM-dd-yyyy HH-mm-ss"</span>;</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *res = [formatter stringFromDate:date];</div></pre></td></tr></table></figure></p>
-<p>2.字符串转时间<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 时间字符串</span></div><div class="line"><span class="built_in">NSString</span> *str = <span class="string">@"2014-03-11 06:44:11 +0800"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样</span></div><div class="line">formatter.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss Z"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.利用时间格式化对象让字符串转换成时间 (自动转换0时区/东加西减)</span></div><div class="line"><span class="built_in">NSDate</span> *date = [formatter dateFromString:str];</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,date);</div></pre></td></tr></table></figure></p>
-<p>3.时间转换成字符串</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 2.设置时间格式化对象的样式</span></div><div class="line">formatter.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒 +0800"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.利用时间格式化对象对时间进行格式化</span></div><div class="line"><span class="built_in">NSString</span> *str = [formatter stringFromDate:now];</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,str);</div></pre></td></tr></table></figure>
-<p>4.利用日历比较两个时间的差值</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  <span class="comment">// 时间字符串</span></div><div class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"2012-03-11 06:44:11 +0800"</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"> <span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"> <span class="comment">// 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样</span></div><div class="line"> formatter.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss Z"</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 3.字符串转换成时间/自动转换0时区/东加西减</span></div><div class="line"> <span class="built_in">NSDate</span> *date = [formatter dateFromString:str];</div><div class="line"> <span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">// 注意获取calendar,应该根据系统版本判断</span></div><div class="line"> <span class="built_in">NSCalendar</span> *calendar = [<span class="built_in">NSCalendar</span> currentCalendar];</div><div class="line"></div><div class="line"> <span class="built_in">NSCalendarUnit</span> type = <span class="built_in">NSCalendarUnitYear</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitMonth</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitDay</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitHour</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitMinute</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitSecond</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 4.获取了时间元素</span></div><div class="line"> <span class="built_in">NSDateComponents</span> *cmps = [calendar components:type fromDate:date toDate:now options:<span class="number">0</span>];</div><div class="line"></div><div class="line"> <span class="built_in">NSLog</span>(<span class="string">@"%ld年%ld月%ld日%ld小时%ld分钟%ld秒钟"</span>, cmps.year, cmps.month, cmps.day, cmps.hour, cmps.minute, cmps.second);</div></pre></td></tr></table></figure>
-<p>5.日期比较<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间字符串</span></div><div class="line"><span class="built_in">NSString</span> *createdAtString = <span class="string">@"2015-11-20 11:10:05"</span>;</div><div class="line"><span class="built_in">NSDateFormatter</span> *fmt = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line">fmt.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss"</span>;</div><div class="line"><span class="built_in">NSDate</span> *createdAtDate = [fmt dateFromString:createdAtString];</div><div class="line"></div><div class="line"><span class="comment">// 手机当前时间</span></div><div class="line"><span class="built_in">NSDate</span> *nowDate = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> NSComparisonResult的取值</div><div class="line"> NSOrderedAscending = -1L, // 升序, 越往右边越大</div><div class="line"> NSOrderedSame,  // 相等</div><div class="line"> NSOrderedDescending // 降序, 越往右边越小</div><div class="line"> */</div><div class="line"><span class="comment">// 获得比较结果(谁大谁小)</span></div><div class="line"><span class="built_in">NSComparisonResult</span> result = [nowDate compare:createdAtDate];</div><div class="line"><span class="keyword">if</span> (result == <span class="built_in">NSOrderedAscending</span>) &#123; <span class="comment">// 升序, 越往右边越大</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate &gt; nowDate"</span>);</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (result == <span class="built_in">NSOrderedDescending</span>) &#123; <span class="comment">// 降序, 越往右边越小</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate &lt; nowDate"</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate == nowDate"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;时间戳:从1970年1月1号 00:00:00开始走过的毫秒数&lt;/li&gt;
-&lt;li&gt;注意:1秒==1000毫秒&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="NSDate" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/NSDate/"/>
     
   </entry>
   
