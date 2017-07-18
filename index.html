@@ -68,6 +68,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-uilaebl-top-bottom-middle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/" class="article-date">
+  <time datetime="2017-07-18T07:10:33.000Z" itemprop="datePublished">2017-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UILabel 文字布局</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  myUILabel.h  </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yexiaozi_007 on 3/4/13.  </span></div><div class="line"><span class="comment">//  Copyright (c) 2013 yexiaozi_007. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span>  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span>  </div><div class="line">&#123;  </div><div class="line">    VerticalAlignmentTop = <span class="number">0</span>, <span class="comment">// default  </span></div><div class="line">    VerticalAlignmentMiddle,  </div><div class="line">    VerticalAlignmentBottom,  </div><div class="line">&#125; VerticalAlignment;  </div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">myUILabel</span> : <span class="title">UILabel</span>  </span></div><div class="line">&#123;  </div><div class="line"><span class="keyword">@private</span>  </div><div class="line">VerticalAlignment _verticalAlignment;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) VerticalAlignment verticalAlignment;  </div><div class="line"></div><div class="line"><span class="keyword">@end</span>  </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  myUILabel.m  </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yexiaozi_007 on 3/4/13.  </span></div><div class="line"><span class="comment">//  Copyright (c) 2013 yexiaozi_007. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"myUILabel.h"</span>  </span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">myUILabel</span>  </span></div><div class="line"><span class="keyword">@synthesize</span> verticalAlignment = verticalAlignment_;  </div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame &#123;  </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;  </div><div class="line">        <span class="keyword">self</span>.verticalAlignment = VerticalAlignmentMiddle;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setVerticalAlignment:(VerticalAlignment)verticalAlignment &#123;  </div><div class="line">    verticalAlignment_ = verticalAlignment;  </div><div class="line">    [<span class="keyword">self</span> setNeedsDisplay];  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">- (<span class="built_in">CGRect</span>)textRectForBounds:(<span class="built_in">CGRect</span>)bounds limitedToNumberOfLines:(<span class="built_in">NSInteger</span>)numberOfLines &#123;  </div><div class="line">    <span class="built_in">CGRect</span> textRect = [<span class="keyword">super</span> textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];  </div><div class="line">    <span class="keyword">switch</span> (<span class="keyword">self</span>.verticalAlignment) &#123;  </div><div class="line">        <span class="keyword">case</span> VerticalAlignmentTop:  </div><div class="line">            textRect.origin.y = bounds.origin.y;  </div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">        <span class="keyword">case</span> VerticalAlignmentBottom:  </div><div class="line">            textRect.origin.y = bounds.origin.y + bounds.size.height - textRect.size.height;  </div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">        <span class="keyword">case</span> VerticalAlignmentMiddle:  </div><div class="line">            <span class="comment">// Fall through.  </span></div><div class="line">        <span class="keyword">default</span>:  </div><div class="line">            textRect.origin.y = bounds.origin.y + (bounds.size.height - textRect.size.height) / <span class="number">2.0</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> textRect;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)drawTextInRect:(<span class="built_in">CGRect</span>)requestedRect &#123;  </div><div class="line">    <span class="built_in">CGRect</span> actualRect = [<span class="keyword">self</span> textRectForBounds:requestedRect limitedToNumberOfLines:<span class="keyword">self</span>.numberOfLines];  </div><div class="line">    [<span class="keyword">super</span> drawTextInRect:actualRect];  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/" data-id="cj598s7mc002abfmgyfkkxp46" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ios-动画" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/07/14/ios-动画/" class="article-date">
+  <time datetime="2017-07-14T06:31:18.000Z" itemprop="datePublished">2017-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/07/14/ios-动画/">ios 动画</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源：<a href="https://objccn.io/issue-12-1/" target="_blank" rel="external">https://objccn.io/issue-12-1/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/14/ios-动画/" data-id="cj598s7m60021bfmg2ximjzug" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-tableView-联动效果" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/07/12/tableView-联动效果/" class="article-date">
@@ -100,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cj50o2et60021vdmgmvbwengc" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cj598s7mh002kbfmgt36g8rx8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li></ul>
@@ -159,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj50o2erv000fvdmgrzym3dsx" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj598s7kq0008bfmglol3mika" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li></ul>
@@ -210,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cj50o2etd002dvdmgothqd0hc" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cj598s7m90027bfmg5cig6ra9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li></ul>
@@ -254,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj50o2etc002avdmgshffbtzj" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj598s7mc002ebfmgxa9une5x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li></ul>
@@ -299,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj50o2eri0006vdmgj9003y5i" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj598s7kx000fbfmg2pkl9lsd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li></ul>
@@ -386,7 +473,7 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj50o2ero0008vdmgqbpieg2e" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj598s7ks000cbfmgg4diiacm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li></ul>
@@ -439,7 +526,7 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj50o2esn001evdmgfh0zb5kx" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj598s7lq001ebfmg2xav6lj9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li></ul>
@@ -491,135 +578,10 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cj50o2erf0005vdmgqmw38yqp" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cj598s7ke0003bfmg1sy9tpz8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cocoaPods" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/05/26/cocoaPods/" class="article-date">
-  <time datetime="2017-05-26T07:51:08.000Z" itemprop="datePublished">2017-05-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/05/26/cocoaPods/">cocoaPods</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>CocoaPods 【warning: Insecure world writable dir /usr/local/bin in PATH, mode 040777】</p>
-<p>解决方法：</p>
-<p>提示含义：</p>
-<p>目录被赋予777的权限，不安全。</p>
-<p>如何解决：</p>
-<p>将提示权限改为775，问题即可解决。</p>
-<p>具体实现：</p>
-<p>在终端写入下列命令行，即可消除上面的提示。</p>
-<p>sudo chmod go-w /usr/local/bin<br>sudo chmod 775 /usr/local</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/" data-id="cj50o2esp001kvdmgtlf153ss" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-添加pod支持" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/05/26/添加pod支持/" class="article-date">
-  <time datetime="2017-05-26T04:16:01.000Z" itemprop="datePublished">2017-05-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/05/26/添加pod支持/">添加pod支持</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>利用github cocoaPod  创建第三方库文件</p>
-<p>#CY  项目目录</p>
-<ol>
-<li><p>添加项目到github </p>
-</li>
-<li><p>用终端命令 在项目根目录创建podspec 文件</p>
-</li>
-</ol>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$cd CY</div><div class="line">$ pod spec create CY</div></pre></td></tr></table></figure>
-<p>2.用编辑器打开.podspec文件 (我自己用Sublime Text)<br>删除不必要的注释(这里只简单介绍基本用法，所以只用到一部分必须得字段 更多字段请移步<a href="http://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="external">http://guides.cocoapods.org/syntax/podspec.html</a>)</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Pod::Spec.new <span class="keyword">do</span> |s|</div><div class="line">  s.name         = <span class="string">"CY"</span></div><div class="line">  s.version      = <span class="string">"0.0.1"</span></div><div class="line">  <span class="meta">#简单描述</span></div><div class="line">  s.summary      = <span class="string">"all kinds of categories for iOS develop"</span></div><div class="line">  <span class="meta">#简单介绍</span></div><div class="line">  s.description  = &lt;&lt;-DESC</div><div class="line">                      <span class="keyword">this</span> project provide all kinds of categories <span class="keyword">for</span> iOS developer </div><div class="line">                   DESC</div><div class="line">  <span class="meta">#项目主页</span></div><div class="line">  s.homepage     = <span class="string">"https://github.com/yongqianvip/CY"</span></div><div class="line">  <span class="meta">#开源协议 </span></div><div class="line">  s.license      = <span class="string">"MIT"</span></div><div class="line">  s.license      = &#123; :type =&gt; <span class="string">"MIT"</span>， :file =&gt; <span class="string">"LICENSE"</span> &#125;</div><div class="line">  <span class="meta"># 作者信息</span></div><div class="line">  s.author             = &#123; <span class="string">"yongqianvip"</span> =&gt; <span class="string">"yongqianvip@***.com"</span> &#125;</div><div class="line">  <span class="meta"># 版本支持</span></div><div class="line">  s.platform     = :ios</div><div class="line">  <span class="meta">#文件资源</span></div><div class="line">  s.source       = &#123; :git =&gt; <span class="string">"https://github.com/yongqianvip/CY.git"</span>， :tag =&gt; <span class="string">"0.0.1"</span> &#125;</div><div class="line">  s.source_files  = <span class="string">"Classes"</span>， <span class="string">"CY/Classes/**/*.&#123;h，m&#125;"</span></div><div class="line">  s.exclude_files = <span class="string">"Classes/Exclude"</span></div><div class="line">  s.public_header_files = <span class="string">"CY/Classes/UIKit/UI_Categories.h"</span>，<span class="string">"CY/Classes/Foundation/Foundation_Category.h"</span>，<span class="string">"CY/Classes/**/*.h"</span></div><div class="line">  <span class="meta">#是否支持ARC</span></div><div class="line">  s.requires_arc = <span class="literal">true</span></div><div class="line">end</div></pre></td></tr></table></figure>
-<p>3.验证podspec</p>
-<p>编辑完podspec文件后需要验证一下这个文件是否可用podspec文件不允许有任何的Warning或者Error<br>执行命令</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$pod lib lint</div></pre></td></tr></table></figure>
-<p>如果出现</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CY passed validation.</div></pre></td></tr></table></figure>
-<p>则说明验证通过， 否则， 根据提示修改podspec文件再次验证直到验证通过<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">附带说一下，Xcode允许警告存在，所以可以通过命令屏蔽警告</div><div class="line"></div><div class="line">$ pod lib lint --allow-warnings</div><div class="line">如果出现Error但是提示信息不足，可以添加--verbose 以获取更多错误信息</div><div class="line"></div><div class="line">$ pod lib lint --verbose</div></pre></td></tr></table></figure></p>
-<p>….. 填坑 </p>
-<ul>
-<li>ERROR | license: Sample license type.<br>在GitHub项目 根目录上传一个 开源协议license 文件</li>
-<li><p>WARN  | source: The version should be included in the Git tag.<br>在github 项目中tag 标记一下版本 必须和<br>s.version      = “0.0.1”<br>s.source       = { :git =&gt; “<a href="https://github.com/yongqianvip/CY.git&quot;，" target="_blank" rel="external">https://github.com/yongqianvip/CY.git&quot;，</a> :tag =&gt; “0.0.1” }</p>
-<p>中的version 和tag 一致<br>-出现 <code>echo &quot;2.3&quot; &gt; .swift-version</code>:<br>在终端输入 echo “2.3” &gt; .swift-version</p>
-</li>
-</ul>
-<p>4.打tag 上传podspec</p>
-<p>podspec文件中需要指定的tag， 完成上述操作后给项目打tag<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag -m<span class="string">"first release iOS_Category with podspec"</span> <span class="string">"0.0.1"</span></div><div class="line">$ git push --tags</div></pre></td></tr></table></figure></p>
-<p>最后使用pod trunk命令，把podspec文件推送到CocoaPod官方库</p>
-<p>pod trunk 需要注册 具体做法这里不再赘述 请移步CocoaPod官网</p>
-<p>pod trunk 设置完毕后执行命令<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk push iOS_Category.podspec</div></pre></td></tr></table></figure></p>
-<p>这个过程可能会比较耗时，原因你懂的</p>
-<p>4.最后</p>
-<p>如果一切顺利<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search iOS_Category</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/" data-id="cj50o2etr0033vdmgla5i29bt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li></ul>
 
     </footer>
   </div>
@@ -651,7 +613,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
     </div>
   </div>
 
@@ -661,7 +623,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
     </div>
   </div>
 
@@ -683,6 +645,14 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       <ul>
         
           <li>
+            <a href="/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/07/14/ios-动画/">ios 动画</a>
+          </li>
+        
+          <li>
             <a href="/yuling.github.io/2017/07/12/tableView-联动效果/">tableView 联动效果</a>
           </li>
         
@@ -692,14 +662,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
         
           <li>
             <a href="/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/">hexo：更换电脑，如何继续写博客</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/06/21/layoutSubviews/">layoutSubviews</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/">DZNEmptyDataSet</a>
           </li>
         
       </ul>

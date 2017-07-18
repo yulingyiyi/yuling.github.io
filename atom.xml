@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-07-12T07:10:40.000Z</updated>
+  <updated>2017-07-18T07:12:41.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>uilaebl top_bottom_middle</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/</id>
+    <published>2017-07-18T07:10:33.000Z</published>
+    <updated>2017-07-18T07:12:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>UILabel 文字布局</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  myUILabel.h  </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yexiaozi_007 on 3/4/13.  </span></div><div class="line"><span class="comment">//  Copyright (c) 2013 yexiaozi_007. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span>  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span>  </div><div class="line">&#123;  </div><div class="line">    VerticalAlignmentTop = <span class="number">0</span>, <span class="comment">// default  </span></div><div class="line">    VerticalAlignmentMiddle,  </div><div class="line">    VerticalAlignmentBottom,  </div><div class="line">&#125; VerticalAlignment;  </div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">myUILabel</span> : <span class="title">UILabel</span>  </span></div><div class="line">&#123;  </div><div class="line"><span class="keyword">@private</span>  </div><div class="line">VerticalAlignment _verticalAlignment;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) VerticalAlignment verticalAlignment;  </div><div class="line"></div><div class="line"><span class="keyword">@end</span>  </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  myUILabel.m  </span></div><div class="line"><span class="comment">//    </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yexiaozi_007 on 3/4/13.  </span></div><div class="line"><span class="comment">//  Copyright (c) 2013 yexiaozi_007. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"myUILabel.h"</span>  </span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">myUILabel</span>  </span></div><div class="line"><span class="keyword">@synthesize</span> verticalAlignment = verticalAlignment_;  </div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame &#123;  </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame]) &#123;  </div><div class="line">        <span class="keyword">self</span>.verticalAlignment = VerticalAlignmentMiddle;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setVerticalAlignment:(VerticalAlignment)verticalAlignment &#123;  </div><div class="line">    verticalAlignment_ = verticalAlignment;  </div><div class="line">    [<span class="keyword">self</span> setNeedsDisplay];  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">- (<span class="built_in">CGRect</span>)textRectForBounds:(<span class="built_in">CGRect</span>)bounds limitedToNumberOfLines:(<span class="built_in">NSInteger</span>)numberOfLines &#123;  </div><div class="line">    <span class="built_in">CGRect</span> textRect = [<span class="keyword">super</span> textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];  </div><div class="line">    <span class="keyword">switch</span> (<span class="keyword">self</span>.verticalAlignment) &#123;  </div><div class="line">        <span class="keyword">case</span> VerticalAlignmentTop:  </div><div class="line">            textRect.origin.y = bounds.origin.y;  </div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">        <span class="keyword">case</span> VerticalAlignmentBottom:  </div><div class="line">            textRect.origin.y = bounds.origin.y + bounds.size.height - textRect.size.height;  </div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">        <span class="keyword">case</span> VerticalAlignmentMiddle:  </div><div class="line">            <span class="comment">// Fall through.  </span></div><div class="line">        <span class="keyword">default</span>:  </div><div class="line">            textRect.origin.y = bounds.origin.y + (bounds.size.height - textRect.size.height) / <span class="number">2.0</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> textRect;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)drawTextInRect:(<span class="built_in">CGRect</span>)requestedRect &#123;  </div><div class="line">    <span class="built_in">CGRect</span> actualRect = [<span class="keyword">self</span> textRectForBounds:requestedRect limitedToNumberOfLines:<span class="keyword">self</span>.numberOfLines];  </div><div class="line">    [<span class="keyword">super</span> drawTextInRect:actualRect];  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;UILabel 文字布局&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="uilaebl top_bottom_middle" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/uilaebl-top-bottom-middle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ios 动画</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/07/14/ios-%E5%8A%A8%E7%94%BB/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/07/14/ios-动画/</id>
+    <published>2017-07-14T06:31:18.000Z</published>
+    <updated>2017-07-14T09:23:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>来源：<a href="https://objccn.io/issue-12-1/" target="_blank" rel="external">https://objccn.io/issue-12-1/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;来源：&lt;a href=&quot;https://objccn.io/issue-12-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://objccn.io/issue-12-1/&lt;/a&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
+    
+    
+      <category term="动画" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E5%8A%A8%E7%94%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>tableView 联动效果</title>
@@ -680,94 +729,6 @@ dispatch-3,dispatch-4
     
     
       <category term="Runtime" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/Runtime/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>bridge</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/bridge/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/23/bridge/</id>
-    <published>2017-05-23T04:54:47.000Z</published>
-    <updated>2017-05-23T05:21:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>转载自：<a href="http://blog.csdn.NET/weiwangchao_/article/details/7744972" target="_blank" rel="external">http://blog.csdn.NET/weiwangchao_/article/details/7744972</a></p>
-<p>Core Foundation框架 (CoreFoundation.framework) 是一组C语言接口，它们为iOS应用程序提供基本数据管理和服务功能。下面列举该框架支持进行管理的数据以及可提供的服务：<br>群体数据类型 (数组、集合等)<br>程序包<br>字符串管理<br>日期和时间管理<br>原始数据块管理<br>偏好管理<br>URL及数据流操作<br>线程和RunLoop<br>端口和soket通讯<br>Core Foundation框架和Foundation框架紧密相关，它们为相同功能提供接口，但Foundation框架提供Objective-C接口。如果您将Foundation对象和Core Foundation类型掺杂使用，则可利用两个框架之间的 “toll-free bridging”。所谓的Toll-free bridging是说您可以在某个框架的方法或函数同时使用Core Foundatio和Foundation 框架中的某些类型。很多数据类型支持这一特性，其中包括群体和字符串数据类型。每个框架的类和类型描述都会对某个对象是否为 toll-free bridged，应和什么对象桥接进行说明。</p>
-<p>如需进一步信息，请阅读Core Foundation 框架参考。</p>
-<p><strong>bridge<br>为了解决这一问题，我们使用 </strong>bridge 关键字来实现id类型与void*类型的相互转换。看下面的例子。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line"> </div><div class="line"><span class="keyword">void</span> *p = (__bridge <span class="keyword">void</span> *)obj;</div><div class="line"> </div><div class="line"><span class="keyword">id</span> o = (__bridge <span class="keyword">id</span>)p;</div></pre></td></tr></table></figure></p>
-<p>将Objective-C的对象类型用 <strong>bridge 转换为 void* 类型和使用 </strong>unsafe_unretained 关键字修饰的变量是一样的。被代入对象的所有者需要明确对象生命周期的管理，不要出现异常访问的问题。</p>
-<p>除过 <strong>bridge 以外，还有两个 </strong>bridge 相关的类型转换关键字：</p>
-<p><strong>bridge_retained
-</strong>bridge_transfer<br>接下来，我们将看看这两个关键字的区别。</p>
-<p><strong>bridge_retained<br>先来看使用 </strong>bridge_retained 关键字的例子程序：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line"> </div><div class="line"><span class="keyword">void</span> *p = (__bridge_retained <span class="keyword">void</span> *)obj;</div><div class="line"></div><div class="line"></div><div class="line">从名字上我们应该能理解其意义：类型被转换时，其对象的所有权也将被变换后变量所持有。如果不是ARC代码，类似下面的实现：</div><div class="line"></div><div class="line"><span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line"> </div><div class="line"><span class="keyword">void</span> *p = obj;</div><div class="line">[(<span class="keyword">id</span>)p <span class="keyword">retain</span>];</div><div class="line"></div><div class="line"></div><div class="line">可以用一个实际的例子验证，对象所有权是否被持有。</div><div class="line"></div><div class="line"><span class="keyword">void</span> *p = <span class="number">0</span>;</div><div class="line"> </div><div class="line">&#123;</div><div class="line">    <span class="keyword">id</span> obj = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line">    p = (__bridge_retained <span class="keyword">void</span> *)obj;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"class=%@"</span>, [(__bridge <span class="keyword">id</span>)p <span class="keyword">class</span>]);</div><div class="line">出了大括号的范围后，p 仍然指向一个有效的实体。说明他拥有该对象的所有权，该对象没有因为出其定义范围而被销毁。</div></pre></td></tr></table></figure></p>
-<p>_bridge_transfer<br>相反，当想把本来拥有对象所有权的变量，在类型转换后，让其释放原先所有权的时候，需要使用 __bridge_transfer 关键字。文字有点绕口，我们还是来看一段代码吧。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">如果ARC无效的时候，我们可能需要写下面的代码。</div><div class="line"></div><div class="line"><span class="comment">// p 变量原先持有对象的所有权</span></div><div class="line"><span class="keyword">id</span> obj = (<span class="keyword">id</span>)p;</div><div class="line">[obj <span class="keyword">retain</span>];</div><div class="line">[(<span class="keyword">id</span>)p release];</div><div class="line">那么ARC有效后，我们可以用下面的代码来替换：</div><div class="line"></div><div class="line"><span class="comment">// p 变量原先持有对象的所有权</span></div><div class="line"><span class="keyword">id</span> obj = (__bridge_transfer <span class="keyword">id</span>)p;</div><div class="line">可以看出来，__bridge_retained 是编译器替我们做了 <span class="keyword">retain</span> 操作，而 __bridge_transfer 是替我们做了 release1。</div></pre></td></tr></table></figure>
-<p>Toll-Free bridged<br>在iOS世界，主要有两种对象：Objective-C 对象和 Core Foundation 对象0。Core Foundation 对象主要是有C语言实现的 Core Foundation Framework 的对象，其中也有对象引用计数的概念，只是不是 Cocoa Framework::Foundation Framework 的 retain/release，而是自身的 CFRetain/CFRelease 接口。</p>
-<p>这两种对象间可以互相转换和操作，不使用ARC的时候，单纯的用C原因的类型转换，不需要消耗CPU的资源，所以叫做 Toll-Free bridged。比如 NSArray和CFArrayRef, NSString和CFStringRef，他们虽然属于不同的 Framework，但是具有相同的对象结构，所以可以用标准C的类型转换。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">比如不使用ARC时，我们用下面的代码：</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = (<span class="built_in">CFStringRef</span>)string;</div><div class="line">同样，Core Foundation类型向Objective-C类型转换时，也是简单地用标准C的类型转换即可。</div><div class="line"></div><div class="line">但是在ARC有效的情况下，将出现类似下面的编译错误：</div><div class="line"></div><div class="line">    Cast of Objective-C pointer type ‘<span class="built_in">NSString</span> *’ to C pointer type ‘<span class="built_in">CFStringRef</span>’ (aka ‘<span class="keyword">const</span> <span class="keyword">struct</span> __CFString *’) requires a bridged cast</div><div class="line">    Use __bridge to convert directly (no change <span class="keyword">in</span> ownership)</div><div class="line">    Use __bridge_retained to make an ARC object available as a +<span class="number">1</span> ‘<span class="built_in">CFStringRef</span>’ (aka ‘<span class="keyword">const</span> <span class="keyword">struct</span> __CFString *’)</div><div class="line">错误中已经提示了我们需要怎样做：用 __bridge 或者 __bridge_retained 来转型，其差别就是变更对象的所有权。</div><div class="line"></div><div class="line">正因为Objective-C是ARC管理的对象，而Core Foundation不是ARC管理的对象，所以才要特意这样转换，这与<span class="keyword">id</span>类型向<span class="keyword">void</span>*转换是一个概念。也就是说，当这两种类型（有ARC管理，没有ARC管理）在转换时，需要告诉编译器怎样处理对象的所有权。</div><div class="line"></div><div class="line">上面的例子，使用 __bridge/__bridge_retained 后的代码如下：</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = (__bridge <span class="built_in">CFStringRef</span>)string;</div><div class="line">只是单纯地执行了类型转换，没有进行所有权的转移，也就是说，当string对象被释放的时候，cfString也不能被使用了。</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = (__bridge_retained <span class="built_in">CFStringRef</span>)string;</div><div class="line">...</div><div class="line"><span class="built_in">CFRelease</span>(cfString); <span class="comment">// 由于Core Foundation的对象不属于ARC的管理范畴，所以需要自己release</span></div><div class="line">使用 __bridge_retained 可以通过转换目标处（cfString）的 <span class="keyword">retain</span> 处理，来使所有权转移。即使 string 变量被释放，cfString 还是可以使用具体的对象。只是有一点，由于Core Foundation的对象不属于ARC的管理范畴，所以需要自己release。</div><div class="line"></div><div class="line">实际上，Core Foundation 内部，为了实现Core Foundation对象类型与Objective-C对象类型的相互转换，提供了下面的函数。</div><div class="line"></div><div class="line"><span class="built_in">CFTypeRef</span>  <span class="built_in">CFBridgingRetain</span>(<span class="keyword">id</span>  X)  &#123;</div><div class="line">    <span class="keyword">return</span>  (__bridge_retained  <span class="built_in">CFTypeRef</span>)X;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">id</span>  <span class="built_in">CFBridgingRelease</span>(<span class="built_in">CFTypeRef</span>  X)  &#123;</div><div class="line">    <span class="keyword">return</span>  (__bridge_transfer  <span class="keyword">id</span>)X;</div><div class="line">&#125;</div><div class="line">所以，可以用 <span class="built_in">CFBridgingRetain</span> 替代 __bridge_retained 关键字：</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *string = [<span class="built_in">NSString</span> stringWithFormat:...];</div><div class="line"><span class="built_in">CFStringRef</span> cfString = <span class="built_in">CFBridgingRetain</span>(string);</div><div class="line">...</div><div class="line"><span class="built_in">CFRelease</span>(cfString); <span class="comment">// 由于Core Foundation不在ARC管理范围内，所以需要主动release。</span></div><div class="line">__bridge_transfer</div><div class="line">所有权被转移的同时，被转换变量将失去对象的所有权。当Core Foundation对象类型向Objective-C对象类型转换的时候，会经常用到 __bridge_transfer 关键字。</div><div class="line"></div><div class="line"><span class="built_in">CFStringRef</span> cfString = <span class="built_in">CFStringCreate</span>...();</div><div class="line"><span class="built_in">NSString</span> *string = (__bridge_transfer <span class="built_in">NSString</span> *)cfString;</div><div class="line"> </div><div class="line"><span class="comment">// CFRelease(cfString); 因为已经用 __bridge_transfer 转移了对象的所有权，所以不需要调用 release</span></div><div class="line">同样，我们可以使用 <span class="built_in">CFBridgingRelease</span>() 来代替 __bridge_transfer 关键字。</div><div class="line"></div><div class="line"><span class="built_in">CFStringRef</span> cfString = <span class="built_in">CFStringCreate</span>...();</div><div class="line"><span class="built_in">NSString</span> *string = <span class="built_in">CFBridgingRelease</span>(cfString);</div></pre></td></tr></table></figure>
-<p>总结<br>由上面的学习我们了解到 ARC 中类型转换的用法，那么我们实际使用中按照怎样的原则或者方法来区分使用呢，下面我总结了几点关键要素。</p>
-<p>明确被转换类型是否是 ARC 管理的对象<br>Core Foundation 对象类型不在 ARC 管理范畴内<br>Cocoa Framework::Foundation 对象类型（即一般使用到的Objectie-C对象类型）在 ARC 的管理范畴内<br>如果不在 ARC 管理范畴内的对象，那么要清楚 release 的责任应该是谁<br>各种对象的生命周期是怎样的</p>
-<ol>
-<li>声明 id obj 的时候，其实是缺省的申明了一个 <strong>strong 修饰的变量，所以编译器自动地加入了 retain 的处理，所以说 </strong>bridge_transfer 关键字只为我们做了 release 处理。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载自：&lt;a href=&quot;http://blog.csdn.NET/weiwangchao_/article/details/7744972&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.NET/weiwangchao_/
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="Core Foundation bridge" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/Core-Foundation-bridge/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>富文本</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/%E5%AF%8C%E6%96%87%E6%9C%AC/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/22/富文本/</id>
-    <published>2017-05-22T11:47:09.000Z</published>
-    <updated>2017-05-22T02:24:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>   NSMutableAttributedString</p>
-<pre><code class="objc">
-<span class="built_in">NSFontAttributeName</span> 
-字体
-<span class="built_in">NSParagraphStyleAttributeName</span> 
-段落格式 
-<span class="built_in">NSForegroundColorAttributeName</span> 
-字体颜色
-<span class="built_in">NSBackgroundColorAttributeName</span>  
-背景颜色
-<span class="built_in">NSStrikethroughStyleAttributeName</span>
-删除线格式
-<span class="built_in">NSUnderlineStyleAttributeName</span>     
-下划线格式
-<span class="built_in">NSStrokeColorAttributeName</span>       
-删除线颜色
-<span class="built_in">NSStrokeWidthAttributeName</span>
-删除线宽度
-<span class="built_in">NSShadowAttributeName</span> 
-阴影
-</code></pre>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   NSMutableAttributedString&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
-&lt;span class=&quot;built_in&quot;&gt;NSFontAttributeName&lt;/span&gt; 
-字体
-&lt;span class=&quot;built_in&quot;&gt;NS
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="NSMutableAttributedString" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/NSMutableAttributedString/"/>
     
   </entry>
   
