@@ -68,6 +68,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mac-svn-局域网" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/08/21/mac-svn-局域网/" class="article-date">
+  <time datetime="2017-08-21T13:17:19.000Z" itemprop="datePublished">2017-08-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/svn/">svn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/08/21/mac-svn-局域网/">mac svn 局域网</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>mac系统是已经安装了svn服务的，所以这里我们只需要开启就行了。</p>
+<ol>
+<li>验证本地已安装svn服务。</li>
+</ol>
+<p>$ svnserve –version</p>
+<ol>
+<li>创建代码库文件夹LocalSVNServer</li>
+</ol>
+<p>$ sudo mkdir -p ~/Documents/LocalSVNServer</p>
+<ol>
+<li>初始化svn代码库</li>
+</ol>
+<p>$ sudo svnadmin create ~/Documents/LocalSVNServer</p>
+<p>打开LocalSVNServer文件夹，你会发现已经生成了svn服务。</p>
+<ol>
+<li>配置svn用户权限，打开conf/svnserve.conf</li>
+</ol>
+<p>这些要取消注释，注意顶格<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">### This file controls the configuration of the svnserve daemon, if you</div><div class="line">### use it to allow access to this repository.  (If you only allow</div><div class="line">### access through http: and/or file: URLs, then this file is</div><div class="line">### irrelevant.)</div><div class="line"></div><div class="line">### Visit http://subversion.apache.org/ for more information.</div><div class="line"></div><div class="line">[general]</div><div class="line">### The anon-access and auth-access options control access to the</div><div class="line">### repository for unauthenticated (a.k.a. anonymous) users and</div><div class="line">### authenticated users, respectively.</div><div class="line">### Valid values are &quot;write&quot;, &quot;read&quot;, and &quot;none&quot;.</div><div class="line">### Setting the value to &quot;none&quot; prohibits both reading and writing;</div><div class="line">### &quot;read&quot; allows read-only access, and &quot;write&quot; allows complete</div><div class="line">### read/write access to the repository.</div><div class="line">### The sample settings below are the defaults and specify that anonymous</div><div class="line">### users have read-only access to the repository, while authenticated</div><div class="line">### users have read and write access to the repository.</div><div class="line">anon-access = read</div><div class="line">auth-access = write</div><div class="line">### The password-db option controls the location of the password</div><div class="line">### database file.  Unless you specify a path starting with a /,</div><div class="line">### the file&apos;s location is relative to the directory containing</div><div class="line">### this configuration file.</div><div class="line">### If SASL is enabled (see below), this file will NOT be used.</div><div class="line">### Uncomment the line below to use the default password file.</div><div class="line">password-db = passwd</div><div class="line">### The authz-db option controls the location of the authorization</div><div class="line">### rules for path-based access control.  Unless you specify a path</div><div class="line">### starting with a /, the file&apos;s location is relative to the</div><div class="line">### directory containing this file.  The specified path may be a</div><div class="line">### repository relative URL (^/) or an absolute file:// URL to a text</div><div class="line">### file in a Subversion repository.  If you don&apos;t specify an authz-db,</div><div class="line">### no path-based access control is done.</div><div class="line">### Uncomment the line below to use the default authorization file.</div><div class="line">authz-db = authz</div><div class="line">### The groups-db option controls the location of the file with the</div><div class="line">### group definitions and allows maintaining groups separately from the</div><div class="line">### authorization rules.  The groups-db file is of the same format as the</div><div class="line">### authz-db file and should contain a single [groups] section with the</div><div class="line">### group definitions.  If the option is enabled, the authz-db file cannot</div><div class="line">### contain a [groups] section.  Unless you specify a path starting with</div><div class="line">### a /, the file&apos;s location is relative to the directory containing this</div><div class="line">### file.  The specified path may be a repository relative URL (^/) or an</div><div class="line">### absolute file:// URL to a text file in a Subversion repository.</div><div class="line">### This option is not being used by default.</div><div class="line"># groups-db = groups</div><div class="line">### This option specifies the authentication realm of the repository.</div><div class="line">### If two repositories have the same authentication realm, they should</div><div class="line">### have the same password database, and vice versa.  The default realm</div><div class="line">### is repository&apos;s uuid.</div><div class="line">realm = ~/Documents/LocalSVNServer</div><div class="line">### The force-username-case option causes svnserve to case-normalize</div><div class="line">### usernames before comparing them against the authorization rules in the</div><div class="line">### authz-db file configured above.  Valid values are &quot;upper&quot; (to upper-</div><div class="line">### case the usernames), &quot;lower&quot; (to lowercase the usernames), and</div><div class="line">### &quot;none&quot; (to compare usernames as-is without case conversion, which</div><div class="line">### is the default behavior).</div><div class="line"># force-username-case = none</div><div class="line">### The hooks-env options specifies a path to the hook script environment</div><div class="line">### configuration file. This option overrides the per-repository default</div><div class="line">### and can be used to configure the hook script environment for multiple</div><div class="line">### repositories in a single file, if an absolute path is specified.</div><div class="line">### Unless you specify an absolute path, the file&apos;s location is relative</div><div class="line">### to the directory containing this file.</div><div class="line"># hooks-env = hooks-env</div><div class="line"></div><div class="line">[sasl]</div><div class="line">### This option specifies whether you want to use the Cyrus SASL</div><div class="line">### library for authentication. Default is false.</div><div class="line">### This section will be ignored if svnserve is not built with Cyrus</div><div class="line">### SASL support; to check, run &apos;svnserve --version&apos; and look for a line</div><div class="line">### reading &apos;Cyrus SASL authentication is available.&apos;</div><div class="line"># use-sasl = true</div><div class="line">### These options specify the desired strength of the security layer</div><div class="line">### that you want SASL to provide. 0 means no encryption, 1 means</div><div class="line">### integrity-checking only, values larger than 1 are correlated</div><div class="line">### to the effective key length for encryption (e.g. 128 means 128-bit</div><div class="line">### encryption). The values below are the defaults.</div><div class="line"># min-encryption = 0</div><div class="line"># max-encryption = 256</div></pre></td></tr></table></figure></p>
+<p>修改以上位置，其中anon-access = read代表匿名访问的时候是只读的，若改为anon-access = none代表禁止匿名访问，需要帐号密码才能访问</p>
+<ol>
+<li>配置账号passwd文件，打开conf/passwd<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">### This file is an example password file for svnserve.</div><div class="line">### Its format is similar to that of svnserve.conf. As shown in the</div><div class="line">### example below it contains one section labelled [users].</div><div class="line">### The name and password for each user follow, one account per line.</div><div class="line"></div><div class="line">[users]</div><div class="line"># harry = harryssecret</div><div class="line"># sally = sallyssecret</div><div class="line"></div><div class="line">caoyi = caoyi</div><div class="line">guomeng = guomeng</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>caoyi = caoyi<br>[users]标签下面的是用户账号，把需要的 用户名=密码 添加在这里</p>
+<p>6 配置权限authz文件，打开conf/authz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">### This file is an example authorization file for svnserve.</div><div class="line">### Its format is identical to that of mod_authz_svn authorization</div><div class="line">### files.</div><div class="line">### As shown below each section defines authorizations for the path and</div><div class="line">### (optional) repository specified by the section name.</div><div class="line">### The authorizations follow. An authorization line can refer to:</div><div class="line">###  - a single user,</div><div class="line">###  - a group of users defined in a special [groups] section,</div><div class="line">###  - an alias defined in a special [aliases] section,</div><div class="line">###  - all authenticated users, using the &apos;$authenticated&apos; token,</div><div class="line">###  - only anonymous users, using the &apos;$anonymous&apos; token,</div><div class="line">###  - anyone, using the &apos;*&apos; wildcard.</div><div class="line">###</div><div class="line">### A match can be inverted by prefixing the rule with &apos;~&apos;. Rules can</div><div class="line">### grant read (&apos;r&apos;) access, read-write (&apos;rw&apos;) access, or no access</div><div class="line">### (&apos;&apos;).</div><div class="line"></div><div class="line">[aliases]</div><div class="line"># joe = /C=XZ/ST=Dessert/L=Snake City/O=Snake Oil, Ltd./OU=Research Institute/CN=Joe Average</div><div class="line"></div><div class="line">[groups]</div><div class="line"># harry_and_sally = harry,sally</div><div class="line"># harry_sally_and_joe = harry,sally,&amp;joe</div><div class="line"></div><div class="line"># [/foo/bar]</div><div class="line"># harry = rw</div><div class="line"># &amp;joe = r</div><div class="line"># * =</div><div class="line"></div><div class="line"># [repository:/baz/fuz]</div><div class="line"># @harry_and_sally = rw</div><div class="line"># * = r</div><div class="line"></div><div class="line">dev = caoyi,guomeng</div><div class="line"></div><div class="line">[/]</div><div class="line">@dev = rw</div></pre></td></tr></table></figure></p>
+<p>在[groups]下添加dev = liuyanghui标示创建了一个用户组dev，此用户组包含有liuyanghui用户，多个的话逗号连接：dev = liuyanghui,liuyanghui2</p>
+<p>[/]<br>@dev = rw 这两句标示给dev用户组相应的权限</p>
+<p>[/]表示授权的目录路径，这里是根目录，假如根目录下有一个目录叫做test,那么我们如果要编辑此目录的权限那么就要写成[test:/]</p>
+<p>@dev表示给用户组授权，如果要给某一个用户授权则不用写前面的@,r表示可读，w表示可写</p>
+<ol>
+<li>启动svn（启动成功后活动监视器中可以搜索svnserve，会发现存在）</li>
+</ol>
+<p>$ svnserve -d -r ~/Documents/LocalSVNServer<br>关闭SVN__可以在活动监视器里进行搜索：svnserve,停止该服务</p>
+<ol>
+<li><p>Cornerstone添加svn仓库，局域网其他机器svn地址写ip。本机的话localhost</p>
+</li>
+<li><p>如果发现提交svn出现文件夹无权限的话（一般是txn-current-lock无读写权限），增加svn仓库文件夹权限</p>
+</li>
+</ol>
+<p>$ sudo chmod -R a+w ~/Documents/LocalSVNServer/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/08/21/mac-svn-局域网/" data-id="cj6mv7oi6002amupqingih61i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-uilaebl-top-bottom-middle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/" class="article-date">
@@ -100,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/" data-id="cj598s7mc002abfmgyfkkxp46" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/" data-id="cj6mv7oia002kmupqooc39x7z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li></ul>
@@ -143,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/14/ios-动画/" data-id="cj598s7m60021bfmg2ximjzug" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/14/ios-动画/" data-id="cj6mv7oi20021mupqirtb9mbh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li></ul>
@@ -187,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cj598s7mh002kbfmgt36g8rx8" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cj6mv7oic002mmupqy3afxxyz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li></ul>
@@ -246,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj598s7kq0008bfmglol3mika" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cj6mv7ogt000cmupq002kel7w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li></ul>
@@ -297,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cj598s7m90027bfmg5cig6ra9" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cj6mv7oi7002dmupqpy3qzupa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li></ul>
@@ -341,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj598s7mc002ebfmgxa9une5x" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cj6mv7oi9002gmupqu96y4i71" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li></ul>
@@ -386,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj598s7kx000fbfmg2pkl9lsd" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cj6mv7ogl0006mupq0z1zpvgc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li></ul>
@@ -473,7 +555,7 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj598s7ks000cbfmgg4diiacm" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cj6mv7oh5000imupqiup81y9v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li></ul>
@@ -526,62 +608,10 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj598s7lq001ebfmg2xav6lj9" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cj6mv7ohq001emupq61d92dst" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CATransform3D" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/06/04/CATransform3D/" class="article-date">
-  <time datetime="2017-06-04T15:14:21.000Z" itemprop="datePublished">2017-06-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/06/04/CATransform3D/">CATransform3D</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  关于CATransform3D </p>
-<p>  链接：<a href="http://www.jianshu.com/p/69ba0a4b2df9" target="_blank" rel="external">http://www.jianshu.com/p/69ba0a4b2df9</a></p>
-<p>  图层的几个坐标系</p>
-<pre><code>对于iOS来说，坐标系的（0，0）点在左上角，就是越往下，Y值越大。越往右，X值越大。
-一个图层的frame，它是position，bounds，anchorPoint和transform属性的一部分。
-设置一个新的frame将会相应的改变图层的position和bounds，但是frame本身并没有保存。
-position：是一个CGPoint值，它指定图层相当于它父图层的位置，该值基于父图层的坐标系。
-bounds：是一个CGRect值，指定图层的大小（bounds.size）和图层的原点（bounds.origin），这个坐标系是基于自身的。如果改变bounds的origin，那么在该图层的子图层，坐标会跟着改变。也就是说，改变自身的坐标系，本身在父图层的位置不变，但它上的子图层位置变化。
-anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合坐标系的位置。锚点（anchor point）制定了bounds相对于position的值，同时也作为一个变化时候的中心点。锚点使用空间坐标系取值范围是0-1之间的数。默认是0.5，也就是秃瓢的中心点，如果是（0，0）那么，图层向左上方移动。如果是（1，1）就向右下方移动。
-看下面的两个图，就能够够清晰的看出锚点变化所带来的不一样。
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cj598s7ke0003bfmg1sy9tpz8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li></ul>
 
     </footer>
   </div>
@@ -603,7 +633,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/诗/">诗</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/svn/">svn</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/诗/">诗</a></li></ul>
     </div>
   </div>
 
@@ -613,7 +643,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
     </div>
   </div>
 
@@ -623,7 +653,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
     </div>
   </div>
 
@@ -632,7 +662,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/02/">二月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/02/">二月 2017</a></li></ul>
     </div>
   </div>
 
@@ -643,6 +673,10 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/yuling.github.io/2017/08/21/mac-svn-局域网/">mac svn 局域网</a>
+          </li>
         
           <li>
             <a href="/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a>
@@ -658,10 +692,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
         
           <li>
             <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/">FMDBMigrationManager</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/">hexo：更换电脑，如何继续写博客</a>
           </li>
         
       </ul>
