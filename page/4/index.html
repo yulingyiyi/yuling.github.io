@@ -68,6 +68,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-禁止输入表情符号emjoy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/" class="article-date">
+  <time datetime="2017-03-25T11:34:43.000Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/">禁止输入表情符号emjoy </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>// 检查字符串是否包含emoji<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)containsEmoji</div><div class="line">&#123;</div><div class="line">	__block <span class="built_in">BOOL</span> contain = <span class="literal">NO</span>;</div><div class="line">	[<span class="keyword">self</span> enumerateSubstringsInRange:<span class="built_in">NSMakeRange</span>(<span class="number">0</span>, <span class="keyword">self</span>.length) options:<span class="built_in">NSStringEnumerationByComposedCharacterSequences</span> usingBlock:^(<span class="built_in">NSString</span> * _Nullable substring, <span class="built_in">NSRange</span> substringRange, <span class="built_in">NSRange</span> enclosingRange, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">		<span class="keyword">if</span> ([substring isEmoji]) &#123;</div><div class="line">			contain = <span class="literal">YES</span>;</div><div class="line">			*stop = <span class="literal">YES</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;];</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> contain;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>// 检查一个‘字符’是否是emoji表情<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)isEmoji</div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">self</span>.length &lt;= <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">unichar</span> first = [<span class="keyword">self</span> characterAtIndex:<span class="number">0</span>];</div><div class="line">	<span class="keyword">switch</span> (<span class="keyword">self</span>.length) &#123;</div><div class="line">		<span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xa9</span> || first == <span class="number">0xae</span> || first == <span class="number">0x2122</span> ||</div><div class="line">				first == <span class="number">0x3030</span> || (first &gt;= <span class="number">0x25b6</span> &amp;&amp; first &lt;= <span class="number">0x27bf</span>) ||</div><div class="line">				first == <span class="number">0x2328</span> || (first &gt;= <span class="number">0x23e9</span> &amp;&amp; first &lt;= <span class="number">0x23fa</span>)) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unichar</span> c = [<span class="keyword">self</span> characterAtIndex:<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (c == <span class="number">0xfe0f</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first &gt;= <span class="number">0x203c</span> &amp;&amp; first &lt;= <span class="number">0x3299</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (first &gt;= <span class="number">0xd83c</span> &amp;&amp; first &lt;= <span class="number">0xd83e</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unichar</span> c = [<span class="keyword">self</span> characterAtIndex:<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (c == <span class="number">0xfe0f</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first &gt;= <span class="number">0x23</span> &amp;&amp; first &lt;= <span class="number">0x39</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="number">0xd83c</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first == <span class="number">0x26f9</span> || first == <span class="number">0x261d</span> || (first &gt;= <span class="number">0x270a</span> &amp;&amp; first &lt;= <span class="number">0x270d</span>)) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xd83c</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">unichar</span> c = [<span class="keyword">self</span> characterAtIndex:<span class="number">1</span>];</div><div class="line">			<span class="keyword">if</span> (c == <span class="number">0xd83c</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (first == <span class="number">0x261d</span> || first == <span class="number">0x270c</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (first &gt;= <span class="number">0xd83c</span> &amp;&amp; first &lt;= <span class="number">0xd83e</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">5</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xd83d</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">case</span> <span class="number">8</span>:</div><div class="line">		<span class="keyword">case</span> <span class="number">11</span>:</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (first == <span class="number">0xd83d</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">			</div><div class="line">		<span class="keyword">default</span>:</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/25/禁止输入表情符号emjoy/" data-id="cj6t0xlv4003ft6pqpz9kh17b" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-捕捉异常" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/03/04/捕捉异常/" class="article-date">
@@ -118,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/04/捕捉异常/" data-id="cj6mv7oij0038mupqt1te8t3a" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/03/04/捕捉异常/" data-id="cj6t0xlv10038t6pqtirz2tu8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/26/中英文-字符川长度/" data-id="cj6mv7oie002tmupqqm1vcn3e" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/26/中英文-字符川长度/" data-id="cj6t0xlux002tt6pqtcywuwju" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li></ul>
@@ -239,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/NSArry-使用/" data-id="cj6mv7oh8000lmupqcafbnx7o" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/NSArry-使用/" data-id="cj6t0xlti000lt6pqz5lt8pj3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li></ul>
@@ -319,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/线程同步——信号量机制/" data-id="cj6mv7oin003mmupqts08ny3z" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/22/线程同步——信号量机制/" data-id="cj6t0xlv5003it6pq0ftdgt4f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li></ul>
@@ -369,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/17/UISegmentedControl/" data-id="cj6mv7ohn0018mupqea7rblz1" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/17/UISegmentedControl/" data-id="cj6t0xlu00018t6pq554kxbln" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li></ul>
@@ -461,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/16/UISearchViewController/" data-id="cj6mv7ohl0015mupql1ifc2mx" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/16/UISearchViewController/" data-id="cj6t0xlty0015t6pq7olnmelv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li></ul>
@@ -515,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/16/导航栏/" data-id="cj6mv7oii0036mupqj8by6uox" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/16/导航栏/" data-id="cj6t0xlv6003lt6pq8ua61wdl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li></ul>
@@ -559,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/15/UIMenuController/" data-id="cj6mv7ohe000umupqqw8tjc9a" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/15/UIMenuController/" data-id="cj6t0xltu000zt6pqsca2fmmc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li></ul>
@@ -616,90 +660,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/14/情人节/" data-id="cj6mv7oif002wmupqhcmnmjh8" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/14/情人节/" data-id="cj6t0xlv00036t6pql97w2zbe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Photos" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/02/13/Photos/" class="article-date">
-  <time datetime="2017-02-13T13:32:00.000Z" itemprop="datePublished">2017-02-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/02/13/Photos/">Photos</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>iOS 获取图片有三种方法：</p>
-<ol>
-<li>直接调用摄像头<br>2.从相册中选择<br>3.从图库中选择</li>
-</ol>
-<p>UIImagePickerController 是系统提供的用来获取图片和视频的接口；</p>
-<p>用UIImagePickerController 类来获取图片视频，大体分为以下几个步骤：</p>
-<ol>
-<li><p>初始化UIImagePickerController 类；</p>
-</li>
-<li><p>设置UIImagePickerController 实例的数据来源类型（下面解释）；</p>
-</li>
-<li><p>设置设置代理；</p>
-</li>
-<li><p>如果需要做图片修改的话设置allowsEditing =yes。</p>
-</li>
-</ol>
-<p>数据来源类型一共有三种：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">enum</span> &#123;</div><div class="line">   <span class="built_in">UIImagePickerControllerSourceTypePhotoLibrary</span> ,<span class="comment">//来自图库</span></div><div class="line">   <span class="built_in">UIImagePickerControllerSourceTypeCamera</span> ,<span class="comment">//来自相机</span></div><div class="line">   <span class="built_in">UIImagePickerControllerSourceTypeSavedPhotosAlbum</span> <span class="comment">//来自相册</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>在用这些来源的时候最好检测以下设备是否支持；</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span>([<span class="built_in">UIImagePickerController</span> isSourceTypeAvailable:<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>])</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"支持相机"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>([<span class="built_in">UIImagePickerController</span> isSourceTypeAvailable:<span class="built_in">UIImagePickerControllerSourceTypePhotoLibrary</span>])</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"支持图库"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> ([<span class="built_in">UIImagePickerController</span> isSourceTypeAvailable:<span class="built_in">UIImagePickerControllerSourceTypeSavedPhotosAlbum</span>])</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"支持相片库"</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>调用摄像头来获取资源</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">   - (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    picker = [[<span class="built_in">UIImagePickerController</span> alloc]init];</div><div class="line">    picker.view.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">    <span class="built_in">UIImagePickerControllerSourceType</span> sourcheType = <span class="built_in">UIImagePickerControllerSourceTypeCamera</span>;</div><div class="line">    picker.sourceType = sourcheType;</div><div class="line">    picker.delegate = <span class="keyword">self</span>;</div><div class="line">    picker.allowsEditing = <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面只是实例了UIImagePickerController及其属性 在需要获取图片的时候需要弹出窗口调用</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[<span class="keyword">self</span> presentViewController:picker animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<p>我们还需要代理来获取我们选中的图片</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> *)picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span></div><div class="line"> *)info;</div></pre></td></tr></table></figure>
-<p>当用户选取完成后调用；<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker;</div></pre></td></tr></table></figure></p>
-<p>当用户取消选取时调用；</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- (<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> *)picker</div><div class="line"> didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> *)info;</div></pre></td></tr></table></figure>
-<p>选取的信息都在info中，info 是一个字典。</p>
-<p>字典中的键：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerMediaType</span> ;指定用户选择的媒体类型（文章最后进行扩展）</div><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerOriginalImage</span> ;原始图片</div><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerEditedImage</span> ;修改后的图片</div><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerCropRect</span> ;裁剪尺寸</div><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerMediaURL</span> ;媒体的URL</div><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerReferenceURL</span> ;原件的URL</div><div class="line"><span class="built_in">NSString</span> *<span class="keyword">const</span>  <span class="built_in">UIImagePickerControllerMediaMetadata</span>;当来数据来源是照相机的时候这个值才有效</div><div class="line"><span class="built_in">UIImagePickerController</span> 的更多参数参考这里。</div></pre></td></tr></table></figure>
-<p>代理中的功能参考这里。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImagePickerControllerMediaType</span> 包含着KUTTypeImage 和KUTTypeMovie</div><div class="line"></div><div class="line">KUTTypeImage 包含：</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeImage ;抽象的图片类型</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeJPEG ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeJPEG2000 ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeTIFF ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypePICT ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeGIF ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypePNG ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeQuickTimeImage ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeAppleICNS </div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTypeBMP;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeICO;</div></pre></td></tr></table></figure></p>
-<p>KUTTypeMovie 包含：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeAudiovisualContent ;抽象的声音视频</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeMovie ;抽象的媒体格式（声音和视频）</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeVideo ;只有视频没有声音</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeAudio ;只有声音没有视频</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeQuickTimeMovie ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeMPEG ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeMPEG4 ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeMP3 ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeMPEG4Audio ;</div><div class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span>  kUTTypeAppleProtectedMPEG4Audio;</div></pre></td></tr></table></figure></p>
-<p>//系统相册另一种开发框架</p>
-<ul>
-<li><a href="http://www.jianshu.com/p/5fa2e4ca8fd3" target="_blank" rel="external">iOS8 Photos Framework</a> </li>
-</ul>
-<p><a href="http://www.jianshu.com/p/5fa2e4ca8fd3" target="_blank" rel="external">http://www.jianshu.com/p/5fa2e4ca8fd3</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/02/13/Photos/" data-id="cj6mv7ohg000xmupqv5rw3evf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li></ul>
 
     </footer>
   </div>
@@ -731,7 +695,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/想起了你/">想起了你</a></li></ul>
     </div>
   </div>
 
@@ -741,7 +705,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a>
+      <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a> <a href="/yuling.github.io/tags/想起了你/" style="font-size: 10px;">想起了你</a>
     </div>
   </div>
 
@@ -763,6 +727,10 @@
       <ul>
         
           <li>
+            <a href="/yuling.github.io/2017/08/26/想起了你/">想起了你</a>
+          </li>
+        
+          <li>
             <a href="/yuling.github.io/2017/08/21/mac-svn-局域网/">mac svn 局域网</a>
           </li>
         
@@ -776,10 +744,6 @@
         
           <li>
             <a href="/yuling.github.io/2017/07/12/tableView-联动效果/">tableView 联动效果</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/">FMDBMigrationManager</a>
           </li>
         
       </ul>

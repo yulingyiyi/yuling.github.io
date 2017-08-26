@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-08-22T00:41:05.000Z</updated>
+  <updated>2017-08-26T08:08:01.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>想起了你</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/08/26/%E6%83%B3%E8%B5%B7%E4%BA%86%E4%BD%A0/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/08/26/想起了你/</id>
+    <published>2017-08-26T07:47:34.000Z</published>
+    <updated>2017-08-26T08:08:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>旁边播放无声的幻灯片，四方的白墙忽明忽暗；</p>
+<p>前面的女生，侧过了脸，忽然想起了你，你的样子；</p>
+<p>还是记忆中的模样，动人心的，说不出来的，却已忘了大半。</p>
+<p>身半江湖，你心犹在；<br>放浪形骸，我本自在。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;旁边播放无声的幻灯片，四方的白墙忽明忽暗；&lt;/p&gt;
+&lt;p&gt;前面的女生，侧过了脸，忽然想起了你，你的样子；&lt;/p&gt;
+&lt;p&gt;还是记忆中的模样，动人心的，说不出来的，却已忘了大半。&lt;/p&gt;
+&lt;p&gt;身半江湖，你心犹在；&lt;br&gt;放浪形骸，我本自在。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="诗" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E8%AF%97/"/>
+    
+    
+      <category term="想起了你" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E6%83%B3%E8%B5%B7%E4%BA%86%E4%BD%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>mac svn 局域网</title>
@@ -747,33 +777,6 @@ dispatch-3,dispatch-4
     
     
       <category term="GCD" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/GCD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>__unsafe_unretained</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/unsafe-unretained/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/24/unsafe-unretained/</id>
-    <published>2017-05-24T02:28:44.000Z</published>
-    <updated>2017-05-24T02:30:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>转载： <a href="http://www.jianshu.com/p/df0269e0d3c3" target="_blank" rel="external">http://www.jianshu.com/p/df0269e0d3c3</a></p>
-<p>__unsafe_unretained:<br>不会对对象进行retain,当对象销毁时,会依然指向之前的内存空间(野指针)</p>
-<p>__weak: 不会对对象进行retain,当对象销毁时,会自动指向nil</p>
-<p>__strong :  会对对象进行retain release</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载： &lt;a href=&quot;http://www.jianshu.com/p/df0269e0d3c3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/df0269e0d3c3&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;__uns
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="__unsafe_unretained" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/unsafe-unretained/"/>
     
   </entry>
   
