@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-08-26T08:08:01.000Z</updated>
+  <updated>2017-10-05T02:46:57.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>生日</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/10/05/%E7%94%9F%E6%97%A5/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/10/05/生日/</id>
+    <published>2017-10-05T02:28:46.000Z</published>
+    <updated>2017-10-05T02:46:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>  昨天，8.15，无月，有凉风。<br>  今天，晨凉。</p>
+<p>  一个陌生人，在远方为另一个陌生人过生日。</p>
+<p>  在心里说一声，生日快乐。</p>
+<p>  过风渐入骨，高月太放肆。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  昨天，8.15，无月，有凉风。&lt;br&gt;  今天，晨凉。&lt;/p&gt;
+&lt;p&gt;  一个陌生人，在远方为另一个陌生人过生日。&lt;/p&gt;
+&lt;p&gt;  在心里说一声，生日快乐。&lt;/p&gt;
+&lt;p&gt;  过风渐入骨，高月太放肆。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="诗" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E8%AF%97/"/>
+    
+    
+      <category term="生日" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E7%94%9F%E6%97%A5/"/>
+    
+  </entry>
+  
+  <entry>
     <title>想起了你</title>
     <link href="https://yulingyiyi.github.io/yuling.github.io/2017/08/26/%E6%83%B3%E8%B5%B7%E4%BA%86%E4%BD%A0/"/>
     <id>https://yulingyiyi.github.io/yuling.github.io/2017/08/26/想起了你/</id>
     <published>2017-08-26T07:47:34.000Z</published>
-    <updated>2017-08-26T08:08:01.000Z</updated>
+    <updated>2017-08-26T08:14:42.000Z</updated>
     
     <content type="html"><![CDATA[<p>旁边播放无声的幻灯片，四方的白墙忽明忽暗；</p>
 <p>前面的女生，侧过了脸，忽然想起了你，你的样子；</p>
@@ -751,32 +781,6 @@ dispatch-3,dispatch-4
     
     
       <category term="dispatch_barrier_async" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-barrier-async/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dispatch_group_t</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/</id>
-    <published>2017-05-24T05:00:02.000Z</published>
-    <updated>2017-05-24T05:03:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>GCD dispatch_group 实现线程同步</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"></div><div class="line">MyCoreDataObject *coreDataObject;</div><div class="line"></div><div class="line">dispatch_group_enter(group);</div><div class="line">AFHTTPRequestOperation *operation1 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation1 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute1 = responseObject;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line">[operation1 start];</div><div class="line"></div><div class="line">dispatch_group_enter(group);</div><div class="line">AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation2 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute2 = responseObject;</div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line">[operation2 start];</div><div class="line"></div><div class="line">dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</div><div class="line">dispatch_release(group);</div><div class="line"></div><div class="line">[context save:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<p>NSOperationQueue 实现线程同步</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSOperationQueue</span> *operationQueue = [[<span class="built_in">NSOperationQueue</span> alloc] init];</div><div class="line">[operationQueue setMaxConcurrentOperationCount:<span class="number">2</span>];</div><div class="line"></div><div class="line">AFHTTPRequestOperation *operation1 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation1 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute1 = responseObject;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">&#125;];</div><div class="line">[operationQueue addOperation:operation1];</div><div class="line"></div><div class="line">AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation2 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute2 = responseObject;</div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">&#125;];</div><div class="line">[operationQueue addOperation:operation2];</div><div class="line"></div><div class="line">[imageQueue waitUntilAllOperationsAreFinished];</div><div class="line">[context save:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;GCD dispatch_group 实现线程同步&lt;/p&gt;
-&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="GCD" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/GCD/"/>
     
   </entry>
   
