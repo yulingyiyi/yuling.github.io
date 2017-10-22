@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-10-05T02:46:57.000Z</updated>
+  <updated>2017-10-22T13:41:21.000Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>生活</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/10/22/%E7%94%9F%E6%B4%BB/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/10/22/生活/</id>
+    <published>2017-10-22T12:53:02.000Z</published>
+    <updated>2017-10-22T13:41:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>自己的生活到底该是什么样子？<br>自己想要什么样的生活？<br>自己明白生活吗？</p>
+<p>现在我自己越来越想你了，<br>你在哪里？<br>我找不到你，记不起你的样子了，<br>就像忘记了生命中注定的女人，<br>忘的越快，想的越深。</p>
+<p>走过很多地方，<br>想了很多的时间，<br>灯红酒绿的都市，偏居一隅的街巷，<br>跟不上时代的，跟上时代的，<br>善良的，不善良的，</p>
+<p>何为正义？何为邪恶？<br>何为得意？何为失意？<br>我已不知道，我想不通了，<br>父母的言传身教教育了我，<br>我的身上已深深的带着父亲的影子，<br>我崇拜我的父亲，甚至超过那些所谓将军。</p>
+<p>志大才疏，这是我的致命伤。<br>这也是我什么都干不好的原因。</p>
+<p>现在的我，慢慢的在体会生活的意义，<br>平平淡淡，还是轰轰烈烈，<br>我现在很迷茫，找不到方向。</p>
+<p>我的心该放在哪里？</p>
+<p>茫茫人海，我已不奢望再见到你，<br>我不明白你为什么…？</p>
+<p>或许我早已明白，只是自欺欺人罢了。</p>
+<p>我不了解你的一切，<br>却又知道我深深的爱你。</p>
+<p>晨，<br>风过山，拂水，只留下涟漪。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自己的生活到底该是什么样子？&lt;br&gt;自己想要什么样的生活？&lt;br&gt;自己明白生活吗？&lt;/p&gt;
+&lt;p&gt;现在我自己越来越想你了，&lt;br&gt;你在哪里？&lt;br&gt;我找不到你，记不起你的样子了，&lt;br&gt;就像忘记了生命中注定的女人，&lt;br&gt;忘的越快，想的越深。&lt;/p&gt;
+&lt;p&gt;走过很多地方，&lt;
+    
+    </summary>
+    
+      <category term="诗" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E8%AF%97/"/>
+    
+    
+      <category term="生活" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>生日</title>
@@ -722,65 +757,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
     
     
       <category term="dispatch_set_target_queue" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-set-target-queue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dispatch_barrier_async</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/</id>
-    <published>2017-05-25T01:30:44.000Z</published>
-    <updated>2017-05-25T01:34:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>   dispatch_barrier_async<br> 在执行过程中，把队列从并行队列转换成串行队列，<br> 执行完之后，队列恢复成并行队列</p>
-<pre><code class="objc">
- dispatch_queue_t concurrentQueue = dispatch_queue_create("my.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
- dispatch_async(concurrentQueue, ^(){
-     NSLog(@"dispatch-1");
- });
- dispatch_async(concurrentQueue, ^(){
-     NSLog(@"dispatch-2");
- });
- dispatch_barrier_async(concurrentQueue, ^(){
-     NSLog(@"dispatch-barrier"); 
- });
- dispatch_async(concurrentQueue, ^(){
-     NSLog(@"dispatch-3");
- });
- dispatch_async(concurrentQueue, ^(){
-     NSLog(@"dispatch-4");
- });
-
- dispatch_barrier_async 
-
- 作用是在并行队列中，等待前面两个操作并行操作完成，这里是并行输出
-
- dispatch-1，dispatch-2
-
-然后执行
-
- dispatch_barrier_async中的操作，(现在就只会执行这一个操作)
-
- 执行完成后，即输出
-
-"dispatch-barrier，
-最后该并行队列恢复原有执行状态，继续并行执行
-dispatch-3,dispatch-4
-</code></pre>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   dispatch_barrier_async&lt;br&gt; 在执行过程中，把队列从并行队列转换成串行队列，&lt;br&gt; 执行完之后，队列恢复成并行队列&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
- dispatch_queue_t concurrentQueue 
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="dispatch_barrier_async" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-barrier-async/"/>
     
   </entry>
   
