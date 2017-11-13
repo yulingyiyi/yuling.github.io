@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-10-22T13:41:21.000Z</updated>
+  <updated>2017-11-13T03:50:19.116Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>梦——情人</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/11/13/%E6%A2%A6%E2%80%94%E2%80%94%E6%83%85%E4%BA%BA/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/11/13/梦——情人/</id>
+    <published>2017-11-13T03:44:12.000Z</published>
+    <updated>2017-11-13T03:50:19.116Z</updated>
+    
+    <content type="html"><![CDATA[<p>梦——情人</p>
+<p>连续两天梦见我的第一任梦中情人，<br>心情突然变好了许多;</p>
+<p>这么多年，不知道为什么还会想起她,<br>不应该的，我应该梦见是现在的梦中情人,<br>也许是她影响我太多，我触摸不到</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;梦——情人&lt;/p&gt;
+&lt;p&gt;连续两天梦见我的第一任梦中情人，&lt;br&gt;心情突然变好了许多;&lt;/p&gt;
+&lt;p&gt;这么多年，不知道为什么还会想起她,&lt;br&gt;不应该的，我应该梦见是现在的梦中情人,&lt;br&gt;也许是她影响我太多，我触摸不到&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="诗" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E8%AF%97/"/>
+    
+    
+      <category term="梦——情人" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E6%A2%A6%E2%80%94%E2%80%94%E6%83%85%E4%BA%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>生活</title>
@@ -729,34 +757,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
     
     
       <category term="dispatch_get_specific" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-get-specific/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dispatch_set_target_queue</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/</id>
-    <published>2017-05-25T02:20:08.000Z</published>
-    <updated>2017-05-25T02:21:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>dispatch_set_target_queue的两个作用：</p>
-<p>酷用来给新建的queue设置优先级：<br>Java代码  收藏代码<br>dispatch_queue_t serialQueue = dispatch_queue_create(“com.oukavip.www”,NULL);<br>dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0);  </p>
-<p>dispatch_set_target_queue(serialQueue, globalQueue);<br>/<em> </em> 第一个参数为要设置优先级的queue,第二个参数是参照物，既将第一个queue的优先级和第二个queue的优先级设置一样。<br>     */<br>需要注意的是，第一个参数是自定义的queue(默认优先级就是global queue的default)，而不是系统的queue（global/main）。因为你不能给系统的queue设置权限。通过上面设置，serialQueue 就有了与globalQueue一样的优先级。其实这个函数不仅可以设置queue的优先级，还可以设置queue之间的层级结构。</p>
-<p>酷修改用户队列的目标队列，使多个serial queue在目标queue上一次只有一个执行：<br>它会把需要执行的任务对象指定到不同的队列中去处理，这个任务对象可以是dispatch队列，也可以是dispatch源。而且这个过程可以是动态的，可以实现队列的动态调度管理等等。比如说有两个队列dispatchA和dispatchB，这时把dispatchA指派到dispatchB：<br>dispatch_set_target_queue(dispatchA, dispatchB);<br>那么dispatchA上还未运行的block会在dispatchB上运行。这时如果暂停dispatchA运行：<br>dispatch_suspend(dispatchA);<br>则只会暂停dispatchA上原来的block的执行，dispatchB的block则不受影响。而如果暂停dispatchB的运行，则会暂停dispatchA的运行。<br>demo：<br>一般都是把一个任务放到一个串行的queue中，如果这个任务被拆分了，被放置到多个串行的queue中，但实际还是需要这个任务同步执行，那么就会有问题，因为多个串行queue之间是并行的。这时使用dispatch_set_target_queue将多个串行的queue指定到了同一目标，那么着多个串行queue在目标queue上就是同步执行的，不再是并行执行。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  +(<span class="keyword">void</span>)testTargetQueue &#123;  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> targetQueue = dispatch_queue_create(<span class="string">"test.target.queue"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(<span class="string">"test.1"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue2 = dispatch_queue_create(<span class="string">"test.2"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue3 = dispatch_queue_create(<span class="string">"test.3"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">      </div><div class="line">    dispatch_set_target_queue(queue1, targetQueue);  </div><div class="line">    dispatch_set_target_queue(queue2, targetQueue);  </div><div class="line">    dispatch_set_target_queue(queue3, targetQueue);  </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">3.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">  </div><div class="line">    <span class="built_in">dispatch_async</span>(queue2, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">2.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">    <span class="built_in">dispatch_async</span>(queue3, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">输出  </div><div class="line"> <span class="number">1</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">1</span> <span class="keyword">out</span>  </div><div class="line"> <span class="number">2</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">2</span> <span class="keyword">out</span>  </div><div class="line"> <span class="number">3</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">3</span> <span class="keyword">out</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;dispatch_set_target_queue的两个作用：&lt;/p&gt;
-&lt;p&gt;酷用来给新建的queue设置优先级：&lt;br&gt;Java代码  收藏代码&lt;br&gt;dispatch_queue_t serialQueue = dispatch_queue_create(“com.ou
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="dispatch_set_target_queue" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-set-target-queue/"/>
     
   </entry>
   
