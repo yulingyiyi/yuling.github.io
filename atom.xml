@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-11-13T03:50:19.116Z</updated>
+  <updated>2017-11-26T04:37:29.518Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你还好吗？</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/11/26/%E4%BD%A0%E8%BF%98%E5%A5%BD%E5%90%97%EF%BC%9F/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2017/11/26/你还好吗？/</id>
+    <published>2017-11-26T04:28:22.000Z</published>
+    <updated>2017-11-26T04:37:29.518Z</updated>
+    
+    <content type="html"><![CDATA[<p>在北京，你还好吗？</p>
+<p>不知道有多少个想你的日子，<br>慢慢的过去；</p>
+<p>读不懂人生的道理，<br>不知不觉学会了坚强，<br>学会了熟悉自欺欺人的套路；</p>
+<p>你好吗？你快乐吗？你幸福吗？？？？？</p>
+<p>你在哪里？我想你，想和你在一起</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在北京，你还好吗？&lt;/p&gt;
+&lt;p&gt;不知道有多少个想你的日子，&lt;br&gt;慢慢的过去；&lt;/p&gt;
+&lt;p&gt;读不懂人生的道理，&lt;br&gt;不知不觉学会了坚强，&lt;br&gt;学会了熟悉自欺欺人的套路；&lt;/p&gt;
+&lt;p&gt;你好吗？你快乐吗？你幸福吗？？？？？&lt;/p&gt;
+&lt;p&gt;你在哪里？我想你，想和你在一起
+    
+    </summary>
+    
+      <category term="诗" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E8%AF%97/"/>
+    
+    
+      <category term="你还好吗？" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E4%BD%A0%E8%BF%98%E5%A5%BD%E5%90%97%EF%BC%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>梦——情人</title>
@@ -731,32 +762,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
     
     
       <category term="dispatch_suspend/dispatch_resume" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-suspend-dispatch-resume/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dispatch_get_specific</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/</id>
-    <published>2017-05-25T02:23:01.000Z</published>
-    <updated>2017-05-25T02:24:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>dispatch_queue_set_specific就是向指定队列里面设置一个标识 如：</p>
-<p>dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1,NULL);<br>就是向queue1对了中设置一个queueKey1标识。</p>
-<p>dispatch_get_specific就是在当前队列中取出标识，注意iOS中线程和队列的关系，所有的动作都是在队列中执行的！ 如：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  main.m  </span></div><div class="line"><span class="comment">//  gcd  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yongpengliang on 16/2/19.  </span></div><div class="line"><span class="comment">//  Copyright © 2016年 jerry. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line">  </div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></div><div class="line">  </div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </div><div class="line">        <span class="keyword">static</span> voidvoid *queueKey1 = <span class="string">"queueKey1"</span>;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(queueKey1, DISPATCH_QUEUE_SERIAL);  </div><div class="line">        dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1, <span class="literal">NULL</span>);  </div><div class="line">          </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">          </div><div class="line">        <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">            <span class="comment">//当前队列是主队列，不是queue1队列，所以取不到queueKey1对应的值，故而不执行  </span></div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"2. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"3. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_sync</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"4. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">                 <span class="comment">//当前队列是queue1队列，所以能取到queueKey1对应的值，故而执行  </span></div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"5. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"6. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;  </div><div class="line">        &#125;);  </div><div class="line">        <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"7. t当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;);  </div><div class="line">          </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">5</span>];  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"></div><div class="line">输出结果：</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.390</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">1.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.391</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">3.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">24.396</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">4.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">25.400</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">5.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">26.402</span> gcd[<span class="number">96865</span>:<span class="number">820367</span>] <span class="number">7.</span> t当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x100105e10</span>&gt;&#123;number = <span class="number">2</span>, name = (null)&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line">Program ended with exit code: <span class="number">0</span></div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;dispatch_queue_set_specific就是向指定队列里面设置一个标识 如：&lt;/p&gt;
-&lt;p&gt;dispatch_queue_set_specific(queue1, queueKey1, &amp;amp;queueKey1,NULL);&lt;br&gt;就是向queue1对了中
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="dispatch_get_specific" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-get-specific/"/>
     
   </entry>
   
