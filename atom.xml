@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2017-11-26T04:37:29.518Z</updated>
+  <updated>2018-01-02T01:10:38.096Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018.1.2</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2018/01/02/2018-1-2/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2018/01/02/2018-1-2/</id>
+    <published>2018-01-02T01:04:46.000Z</published>
+    <updated>2018-01-02T01:10:38.096Z</updated>
+    
+    <content type="html"><![CDATA[<p>  新的一年，我要新的气象。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  新的一年，我要新的气象。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="2018.1.2" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/2018-1-2/"/>
+    
+  </entry>
   
   <entry>
     <title>你还好吗？</title>
@@ -735,33 +759,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
     
     
       <category term="GCD读取文件" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/GCD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dispatch_suspend/dispatch_resume</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/</id>
-    <published>2017-05-25T02:25:03.000Z</published>
-    <updated>2017-05-25T02:47:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>dispatch_suspend/dispatch_resume </p>
-<p>当追加大量处理到Dispatch Queue时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。<br>在这种情况下，只要挂起Dispatch Queue即可。当可以执行时再恢复。<br>dispatch_suspend函数挂起指定的Dispatch Queue。</p>
-<p>dispatch_suspend(queue);<br>1<br>1<br>dispatch_resume函数恢复指定的Dispatch Queue。</p>
-<p>dispatch_resume(queue);<br>1<br>1<br>这些函数对已经执行的处理没有影响。挂起后，追加到Dispatch Queue中但尚未执行的处理在此之后停止执行。而恢复则使这些处理能够继续执行。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;dispatch_suspend/dispatch_resume &lt;/p&gt;
-&lt;p&gt;当追加大量处理到Dispatch Queue时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。&lt;br&gt;在这种情况下，只要挂起
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="dispatch_suspend/dispatch_resume" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/dispatch-suspend-dispatch-resume/"/>
     
   </entry>
   
