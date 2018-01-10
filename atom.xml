@@ -5,7 +5,7 @@
   <link href="/yuling.github.io/atom.xml" rel="self"/>
   
   <link href="https://yulingyiyi.github.io/yuling.github.io/"/>
-  <updated>2018-01-02T01:10:38.096Z</updated>
+  <updated>2018-01-10T11:06:25.641Z</updated>
   <id>https://yulingyiyi.github.io/yuling.github.io/</id>
   
   <author>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>想起了你，很高兴</title>
+    <link href="https://yulingyiyi.github.io/yuling.github.io/2018/01/10/%E6%83%B3%E8%B5%B7%E4%BA%86%E4%BD%A0%EF%BC%8C%E5%BE%88%E9%AB%98%E5%85%B4/"/>
+    <id>https://yulingyiyi.github.io/yuling.github.io/2018/01/10/想起了你，很高兴/</id>
+    <published>2018-01-10T10:58:28.000Z</published>
+    <updated>2018-01-10T11:06:25.641Z</updated>
+    
+    <content type="html"><![CDATA[<p>偶然看到了之前的聊天，没多少句；<br>心里莫名的高兴升腾了起来，控制不住；</p>
+<p>之前的东西，又记了起来，兴奋又感觉好笑。</p>
+<p>晨，你在哪里？<br>不知道？<br>又有什么关系！</p>
+<p>愿你快乐，谢谢</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;偶然看到了之前的聊天，没多少句；&lt;br&gt;心里莫名的高兴升腾了起来，控制不住；&lt;/p&gt;
+&lt;p&gt;之前的东西，又记了起来，兴奋又感觉好笑。&lt;/p&gt;
+&lt;p&gt;晨，你在哪里？&lt;br&gt;不知道？&lt;br&gt;又有什么关系！&lt;/p&gt;
+&lt;p&gt;愿你快乐，谢谢&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="想起了你，很高兴" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/%E6%83%B3%E8%B5%B7%E4%BA%86%E4%BD%A0%EF%BC%8C%E5%BE%88%E9%AB%98%E5%85%B4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2018.1.2</title>
     <link href="https://yulingyiyi.github.io/yuling.github.io/2018/01/02/2018-1-2/"/>
     <id>https://yulingyiyi.github.io/yuling.github.io/2018/01/02/2018-1-2/</id>
     <published>2018-01-02T01:04:46.000Z</published>
-    <updated>2018-01-02T01:10:38.096Z</updated>
+    <updated>2018-01-02T01:11:24.659Z</updated>
     
     <content type="html"><![CDATA[<p>  新的一年，我要新的气象。</p>
 ]]></content>
@@ -690,75 +720,6 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
     
     
       <category term="Pod" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/Pod/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GCD读取文件</title>
-    <link href="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/"/>
-    <id>https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD读取文件/</id>
-    <published>2017-05-25T05:29:34.000Z</published>
-    <updated>2017-05-25T05:30:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<pre><code class="objc">
-<span class="comment">//GCD读写文件</span>
-    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
-
-    <span class="keyword">int</span> intbuffer[] = { <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> };
-    <span class="keyword">char</span> charbuffer[]={<span class="string">"fdafdsafsdfasdfa"</span>};
-    dispatch_data_t data = dispatch_data_create(charbuffer, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, <span class="literal">NULL</span>);
-
-    dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);
-    <span class="comment">// Write</span>
-    dispatch_fd_t fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
-
-    printf(<span class="string">"FD: %d\n"</span>, fd);
-
-    dispatch_write(fd, data, queue,^(dispatch_data_t d, <span class="keyword">int</span> e) {
-        printf(<span class="string">"Written %zu bytes!\n"</span>, dispatch_data_get_size(data) - (d ? dispatch_data_get_size(d) : <span class="number">0</span>));
-        printf(<span class="string">"\tError: %d\n"</span>, e);
-        dispatch_semaphore_signal(sem);
-    });
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-
-    close(fd);
-
-    <span class="comment">// Read</span>
-    fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR);
-
-    dispatch_read(fd, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, ^(dispatch_data_t d, <span class="keyword">int</span> e) {
-        printf(<span class="string">"Read %zu bytes!\n"</span>, dispatch_data_get_size(d));
-        <span class="keyword">const</span> <span class="keyword">void</span> *buffer = <span class="literal">NULL</span>;
-        size_t size = dispatch_data_get_size(d);
-        dispatch_data_t tmpData = dispatch_data_create_map(data, &amp;buffer, &amp;size);
-        <span class="built_in">NSData</span> *nsdata = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:size];
-        <span class="built_in">NSString</span> *s=[[<span class="built_in">NSString</span> alloc] initWithData:nsdata encoding:<span class="built_in">NSUTF8StringEncoding</span>];
-        <span class="built_in">NSLog</span>(<span class="string">@"buffer %@"</span>,s);
-        printf(<span class="string">"\tError: %d\n"</span>, e);
-        dispatch_semaphore_signal(sem);
-    });
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-    close(fd);
-
-    <span class="comment">// Exit confirmation</span>
-    getchar();
-</code></pre>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;pre&gt;&lt;code class=&quot;objc&quot;&gt;
-&lt;span class=&quot;comment&quot;&gt;//GCD读写文件&lt;/span&gt;
-    &lt;span class=&quot;built_in&quot;&gt;dispatch_queue_t&lt;/span&gt; queue = dispatch_get_glob
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://yulingyiyi.github.io/yuling.github.io/categories/iOS/"/>
-    
-    
-      <category term="GCD读取文件" scheme="https://yulingyiyi.github.io/yuling.github.io/tags/GCD%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/"/>
     
   </entry>
   

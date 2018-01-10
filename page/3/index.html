@@ -68,6 +68,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-GCD读取文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/GCD读取文件/" class="article-date">
+  <time datetime="2017-05-25T05:29:34.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/GCD读取文件/">GCD读取文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code class="objc">
+<span class="comment">//GCD读写文件</span>
+    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
+
+    <span class="keyword">int</span> intbuffer[] = { <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> };
+    <span class="keyword">char</span> charbuffer[]={<span class="string">"fdafdsafsdfasdfa"</span>};
+    dispatch_data_t data = dispatch_data_create(charbuffer, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, <span class="literal">NULL</span>);
+
+    dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);
+    <span class="comment">// Write</span>
+    dispatch_fd_t fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+
+    printf(<span class="string">"FD: %d\n"</span>, fd);
+
+    dispatch_write(fd, data, queue,^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Written %zu bytes!\n"</span>, dispatch_data_get_size(data) - (d ? dispatch_data_get_size(d) : <span class="number">0</span>));
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    close(fd);
+
+    <span class="comment">// Read</span>
+    fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR);
+
+    dispatch_read(fd, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, ^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Read %zu bytes!\n"</span>, dispatch_data_get_size(d));
+        <span class="keyword">const</span> <span class="keyword">void</span> *buffer = <span class="literal">NULL</span>;
+        size_t size = dispatch_data_get_size(d);
+        dispatch_data_t tmpData = dispatch_data_create_map(data, &amp;buffer, &amp;size);
+        <span class="built_in">NSData</span> *nsdata = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:size];
+        <span class="built_in">NSString</span> *s=[[<span class="built_in">NSString</span> alloc] initWithData:nsdata encoding:<span class="built_in">NSUTF8StringEncoding</span>];
+        <span class="built_in">NSLog</span>(<span class="string">@"buffer %@"</span>,s);
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    close(fd);
+
+    <span class="comment">// Exit confirmation</span>
+    getchar();
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD读取文件/" data-id="cjc8ymqan000f1opqas3ux5xm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-dispatch-suspend-dispatch-resume" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" class="article-date">
@@ -102,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" data-id="cjbwxu0e80027zypqo5f2o8s8" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" data-id="cjc8ymqbw00271opq4j203410" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li></ul>
@@ -147,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/" data-id="cjbwxu0dz001vzypqogigpsda" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/" data-id="cjc8ymqbl001v1opqa0tw7o41" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li></ul>
@@ -194,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/" data-id="cjbwxu0e70024zypq8v7sweey" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/" data-id="cjc8ymqbp001y1opqor8e1cvo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li></ul>
@@ -271,7 +358,7 @@ dispatch-3,dispatch-4
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/" data-id="cjbwxu0dv001tzypqllefs8ua" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/" data-id="cjc8ymqbi001t1opqqjmqldx9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li></ul>
@@ -316,7 +403,7 @@ dispatch-3,dispatch-4
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/" data-id="cjbwxu0e1001yzypqmfr38m9v" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/" data-id="cjc8ymqbs00211opq1v32e8up" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li></ul>
@@ -362,7 +449,7 @@ dispatch-3,dispatch-4
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/unsafe-unretained/" data-id="cjbwxu0em002pzypqy9uhmkjb" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/unsafe-unretained/" data-id="cjc8ymqca002t1opqkbm3kv3d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li></ul>
@@ -406,7 +493,7 @@ dispatch-3,dispatch-4
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/Runtime/" data-id="cjbwxu0dd0013zypq7sjnfz6r" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/Runtime/" data-id="cjc8ymqb0000z1opq793kze9t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li></ul>
@@ -467,7 +554,7 @@ dispatch-3,dispatch-4
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/bridge/" data-id="cjbwxu0do001kzypqo2q24vft" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/23/bridge/" data-id="cjc8ymqba001k1opqad6q3uhg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li></ul>
@@ -530,64 +617,10 @@ dispatch-3,dispatch-4
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/富文本/" data-id="cjbwxu0er0035zypqmpl6kvm7" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/富文本/" data-id="cjc8ymqcf00361opqnxz872g4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-NSDate" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/05/22/NSDate/" class="article-date">
-  <time datetime="2017-05-22T06:06:12.000Z" itemprop="datePublished">2017-05-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/05/22/NSDate/">NSDate</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>时间戳:从1970年1月1号 00:00:00开始走过的毫秒数</li>
-<li>注意:1秒==1000毫秒</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间字符串 -&gt; 时间戳</span></div><div class="line"><span class="built_in">NSString</span> *string = <span class="string">@"1745645645645"</span>;</div><div class="line"><span class="built_in">NSTimeInterval</span> second = string.longLongValue / <span class="number">1000.0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 时间戳 -&gt; NSDate *</span></div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:second];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, date);</div></pre></td></tr></table></figure>
-<p>1.NSDate的详细介绍<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>通过date方法创建出来的对象,就是当前时间对象;</div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, date);</div><div class="line"></div><div class="line"><span class="number">2.</span>获取当前所处时区</div><div class="line"><span class="built_in">NSTimeZone</span> *zone = [<span class="built_in">NSTimeZone</span> systemTimeZone];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"now = %@"</span>, zone);</div><div class="line"></div><div class="line"><span class="number">3.</span>获取当前时区和指定时间差</div><div class="line"><span class="built_in">NSInteger</span> seconds = [zone secondsFromGMTForDate:date];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"seconds = %lu"</span>, seconds);</div><div class="line"></div><div class="line"><span class="built_in">NSDate</span> *nowDate = [date dateByAddingTimeInterval:seconds];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"nowDate = %@"</span>, nowDate);</div><div class="line"></div><div class="line"><span class="number">4.</span>获取当前时间  <span class="built_in">NSDate</span> --&gt; <span class="built_in">NSString</span></div><div class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line">创建一个时间格式化对象</div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line">按照什么样的格式来格式化时间</div><div class="line">formatter.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒 Z"</span>;</div><div class="line">formatter.dateFormat = <span class="string">@"yyyy/MM/dd HH/mm/ss Z"</span>;</div><div class="line">formatter.dateFormat = <span class="string">@"MM-dd-yyyy HH-mm-ss"</span>;</div><div class="line"></div><div class="line"><span class="built_in">NSString</span> *res = [formatter stringFromDate:date];</div></pre></td></tr></table></figure></p>
-<p>2.字符串转时间<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 时间字符串</span></div><div class="line"><span class="built_in">NSString</span> *str = <span class="string">@"2014-03-11 06:44:11 +0800"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样</span></div><div class="line">formatter.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss Z"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.利用时间格式化对象让字符串转换成时间 (自动转换0时区/东加西减)</span></div><div class="line"><span class="built_in">NSDate</span> *date = [formatter dateFromString:str];</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,date);</div></pre></td></tr></table></figure></p>
-<p>3.时间转换成字符串</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// 2.设置时间格式化对象的样式</span></div><div class="line">formatter.dateFormat = <span class="string">@"yyyy年MM月dd日 HH时mm分ss秒 +0800"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3.利用时间格式化对象对时间进行格式化</span></div><div class="line"><span class="built_in">NSString</span> *str = [formatter stringFromDate:now];</div><div class="line"></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,str);</div></pre></td></tr></table></figure>
-<p>4.利用日历比较两个时间的差值</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  <span class="comment">// 时间字符串</span></div><div class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"2012-03-11 06:44:11 +0800"</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 1.创建一个时间格式化对象</span></div><div class="line"> <span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line"></div><div class="line"> <span class="comment">// 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样</span></div><div class="line"> formatter.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss Z"</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 3.字符串转换成时间/自动转换0时区/东加西减</span></div><div class="line"> <span class="built_in">NSDate</span> *date = [formatter dateFromString:str];</div><div class="line"> <span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">// 注意获取calendar,应该根据系统版本判断</span></div><div class="line"> <span class="built_in">NSCalendar</span> *calendar = [<span class="built_in">NSCalendar</span> currentCalendar];</div><div class="line"></div><div class="line"> <span class="built_in">NSCalendarUnit</span> type = <span class="built_in">NSCalendarUnitYear</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitMonth</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitDay</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitHour</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitMinute</span> |</div><div class="line"> <span class="built_in">NSCalendarUnitSecond</span>;</div><div class="line"></div><div class="line"> <span class="comment">// 4.获取了时间元素</span></div><div class="line"> <span class="built_in">NSDateComponents</span> *cmps = [calendar components:type fromDate:date toDate:now options:<span class="number">0</span>];</div><div class="line"></div><div class="line"> <span class="built_in">NSLog</span>(<span class="string">@"%ld年%ld月%ld日%ld小时%ld分钟%ld秒钟"</span>, cmps.year, cmps.month, cmps.day, cmps.hour, cmps.minute, cmps.second);</div></pre></td></tr></table></figure>
-<p>5.日期比较<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间字符串</span></div><div class="line"><span class="built_in">NSString</span> *createdAtString = <span class="string">@"2015-11-20 11:10:05"</span>;</div><div class="line"><span class="built_in">NSDateFormatter</span> *fmt = [[<span class="built_in">NSDateFormatter</span> alloc] init];</div><div class="line">fmt.dateFormat = <span class="string">@"yyyy-MM-dd HH:mm:ss"</span>;</div><div class="line"><span class="built_in">NSDate</span> *createdAtDate = [fmt dateFromString:createdAtString];</div><div class="line"></div><div class="line"><span class="comment">// 手机当前时间</span></div><div class="line"><span class="built_in">NSDate</span> *nowDate = [<span class="built_in">NSDate</span> date];</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> NSComparisonResult的取值</div><div class="line"> NSOrderedAscending = -1L, // 升序, 越往右边越大</div><div class="line"> NSOrderedSame,  // 相等</div><div class="line"> NSOrderedDescending // 降序, 越往右边越小</div><div class="line"> */</div><div class="line"><span class="comment">// 获得比较结果(谁大谁小)</span></div><div class="line"><span class="built_in">NSComparisonResult</span> result = [nowDate compare:createdAtDate];</div><div class="line"><span class="keyword">if</span> (result == <span class="built_in">NSOrderedAscending</span>) &#123; <span class="comment">// 升序, 越往右边越大</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate &gt; nowDate"</span>);</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (result == <span class="built_in">NSOrderedDescending</span>) &#123; <span class="comment">// 降序, 越往右边越小</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate &lt; nowDate"</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"createdAtDate == nowDate"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/22/NSDate/" data-id="cjbwxu0d4000rzypq4r8bfvoh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li></ul>
 
     </footer>
   </div>
@@ -619,7 +652,7 @@ dispatch-3,dispatch-4
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/2018-1-2/">2018.1.2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/你还好吗？/">你还好吗？</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/想起了你/">想起了你</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/梦——情人/">梦——情人</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/生日/">生日</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/生活/">生活</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/2018-1-2/">2018.1.2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/你还好吗？/">你还好吗？</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/想起了你/">想起了你</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/想起了你，很高兴/">想起了你，很高兴</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/梦——情人/">梦——情人</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/生日/">生日</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/生活/">生活</a></li></ul>
     </div>
   </div>
 
@@ -629,7 +662,7 @@ dispatch-3,dispatch-4
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/2018-1-2/" style="font-size: 10px;">2018.1.2</a> <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/你还好吗？/" style="font-size: 10px;">你还好吗？</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a> <a href="/yuling.github.io/tags/想起了你/" style="font-size: 10px;">想起了你</a> <a href="/yuling.github.io/tags/梦——情人/" style="font-size: 10px;">梦——情人</a> <a href="/yuling.github.io/tags/生日/" style="font-size: 10px;">生日</a> <a href="/yuling.github.io/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/yuling.github.io/tags/2018-1-2/" style="font-size: 10px;">2018.1.2</a> <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/你还好吗？/" style="font-size: 10px;">你还好吗？</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a> <a href="/yuling.github.io/tags/想起了你/" style="font-size: 10px;">想起了你</a> <a href="/yuling.github.io/tags/想起了你，很高兴/" style="font-size: 10px;">想起了你，很高兴</a> <a href="/yuling.github.io/tags/梦——情人/" style="font-size: 10px;">梦——情人</a> <a href="/yuling.github.io/tags/生日/" style="font-size: 10px;">生日</a> <a href="/yuling.github.io/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
@@ -651,6 +684,10 @@ dispatch-3,dispatch-4
       <ul>
         
           <li>
+            <a href="/yuling.github.io/2018/01/10/想起了你，很高兴/">想起了你，很高兴</a>
+          </li>
+        
+          <li>
             <a href="/yuling.github.io/2018/01/02/2018-1-2/">2018.1.2</a>
           </li>
         
@@ -664,10 +701,6 @@ dispatch-3,dispatch-4
         
           <li>
             <a href="/yuling.github.io/2017/10/22/生活/">生活</a>
-          </li>
-        
-          <li>
-            <a href="/yuling.github.io/2017/10/05/生日/">生日</a>
           </li>
         
       </ul>
