@@ -68,336 +68,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-tableView-联动效果" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/07/12/tableView-联动效果/" class="article-date">
-  <time datetime="2017-07-12T07:07:24.000Z" itemprop="datePublished">2017-07-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/07/12/tableView-联动效果/">tableView 联动效果</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>tableView 联动效果</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)scrollViewDidScroll:(<span class="built_in">UIScrollView</span> *)scrollView&#123;</div><div class="line"></div><div class="line">    <span class="built_in">CGFloat</span> viewHeight = scrollView.height + scrollView.contentInset.top;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (MLHomeTableViewCell *cell <span class="keyword">in</span> [_tableView visibleCells]) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">CGFloat</span> y = cell.centerY - scrollView.contentOffset.y;</div><div class="line">        <span class="built_in">CGFloat</span> p = y - viewHeight / <span class="number">2</span>;</div><div class="line">         <span class="built_in">CGFloat</span> scale = cos(p / viewHeight * <span class="number">0.8</span>) * <span class="number">0.95</span>;</div><div class="line">        <span class="keyword">if</span> (kiOS8Later) &#123;</div><div class="line">            [<span class="built_in">UIView</span> animateKeyframesWithDuration:<span class="number">0.15</span> delay:<span class="number">0</span> options:<span class="built_in">UIViewAnimationOptionCurveEaseInOut</span> | <span class="built_in">UIViewAnimationOptionAllowUserInteraction</span> | <span class="built_in">UIViewAnimationOptionBeginFromCurrentState</span> animations:^&#123;</div><div class="line">                cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">            &#125; completion:<span class="literal">NULL</span>];</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            cell.imageV.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale, scale);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/12/tableView-联动效果/" data-id="cjc8ymqc8002m1opqray4guiv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-FMDBMigrationManager" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/07/05/FMDBMigrationManager/" class="article-date">
-  <time datetime="2017-07-05T13:02:40.000Z" itemprop="datePublished">2017-07-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/07/05/FMDBMigrationManager/">FMDBMigrationManager</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> iOS SQLite 使用FMDBMigrationManager 进行数据库迁移</p>
-<p> 数据库更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/// 数据库管理</div><div class="line"> FMDBMigrationManager * manager=[FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]]; </div><div class="line">BOOL resultState=NO; </div><div class="line">NSError * error=nil;</div><div class="line">///创建数据库版本信息表</div><div class="line"> if (!manager.hasMigrationsTable) &#123;</div><div class="line"> resultState=[manager createMigrationsTable:&amp;error]; </div><div class="line">&#125;</div><div class="line">///数据库更新到最新版本</div><div class="line"> resultState=[manager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&amp;error];</div><div class="line"></div><div class="line"> `</div></pre></td></tr></table></figure>
-<p> 更新方式</p>
-<p> 1.添加升级文件:所谓升级文件，就是一些sql文件，在里面写入一些对数据库操作的语句<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意：文件名的格式是固定的 (数字)_(描述性语言).sql,前面的数字就是所谓的版本号，官方建议使用时间戳，也可以使用1，2，3，4，5……升级，保持单调递增即可。文件内写入要对数据库做的操作</div></pre></td></tr></table></figure></p>
-<ol>
-<li><p>使用自定义类的形式。第一种方法，每次升级都要建立一个文件，而且大多数时候，文件里面只写一句话，感情上会难以接受，因此我们介绍一种较为简洁的方式。首先定义一个新的类：Migration</p>
-<p>遵循FMDBMigrating协议，与第一种拖入文件的方式相同，name是升级描述，version是版本号，最后一个方法里面，进行操作。<br>由于name和version都是只读的，因此我们要自定义一个init方法，传入描述 版本号和升级语句，升级语句最好用数组的方式传入，因为可能有多个升级语句。</p>
-</li>
-</ol>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Migration.h</span></div><div class="line"><span class="comment">//  Sqlite</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by LC on 16/10/21.</span></div><div class="line"><span class="comment">//  Copyright © 2016年 LC. All rights reserved.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"FMDBMigrationManager.h"</span></span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Migration</span> : <span class="title">NSObject</span>&lt;<span class="title">FMDBMigrating</span>&gt;</span></div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initWithName:(<span class="built_in">NSString</span> *)name andVersion:(uint64_t)version andExecuteUpdateArray:(<span class="built_in">NSArray</span> *)updateArray;<span class="comment">//自定义方法</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) uint64_t version;</div><div class="line">- (<span class="built_in">BOOL</span>)migrateDatabase:(FMDatabase *)database error:(<span class="keyword">out</span> <span class="built_in">NSError</span> *__autoreleasing *)error;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  Migration.m</div><div class="line">//  Sqlite</div><div class="line">//</div><div class="line">//  Created by LC on 16/10/21.</div><div class="line">//  Copyright © 2016年 LC. All rights reserved.</div><div class="line">//</div><div class="line"></div><div class="line">#import &quot;Migration.h&quot;</div><div class="line"></div><div class="line">@interface Migration()</div><div class="line"></div><div class="line">@property(nonatomic,copy)NSString * myName;</div><div class="line">@property(nonatomic,assign)uint64_t myVersion;</div><div class="line">@property(nonatomic,strong)NSArray * updateArray;</div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation Migration</div><div class="line"></div><div class="line">- (instancetype)initWithName:(NSString *)name andVersion:(uint64_t)version andExecuteUpdateArray:(NSArray *)updateArray</div><div class="line">&#123;</div><div class="line">    if (self=[super init]) &#123;</div><div class="line">        _myName=name;</div><div class="line">        _myVersion=version;</div><div class="line">        _updateArray=updateArray;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)name</div><div class="line">&#123;</div><div class="line">    return _myName;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (uint64_t)version</div><div class="line">&#123;</div><div class="line">    return _myVersion;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)migrateDatabase:(FMDatabase *)database error:(out NSError *__autoreleasing *)error</div><div class="line">&#123;</div><div class="line">    for(NSString * updateStr in _updateArray)</div><div class="line">    &#123;</div><div class="line">        [database executeUpdate:updateStr];</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>使用方法也很简单，将自定义类对象添加进manager即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">NSString *DBPath = [documents stringByAppendingPathComponent:KFMDBName];</div><div class="line"> NSLog(@&quot;%@&quot;,DBPath);</div><div class="line"> //DBPath是要升级的数据库的地址</div><div class="line"> // [NSBundle mainBundle]是保存数据库升级文件的位置 根据自己放文件的位置定 升级文件是什么下面会说</div><div class="line"> FMDBMigrationManager * manager = [FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]];</div><div class="line"></div><div class="line"> Migration * migration_1=[[Migration alloc]initWithName:@&quot;新增USer表&quot; andVersion:1 andExecuteUpdateArray:@[@&quot;create table User(name text,age integer,sex text,phoneNum text)&quot;]];</div><div class="line"> [manager addMigration:migration_1];</div><div class="line"></div><div class="line"> Migration * migration_2=[[Migration alloc]initWithName:@&quot;USer表新增字段email&quot; andVersion:2 andExecuteUpdateArray:@[@&quot;alter table User add email text&quot;]];</div><div class="line"> [manager addMigration:migration_2];</div><div class="line"></div><div class="line"> BOOL resultState=NO;</div><div class="line"> NSError * error=nil;</div><div class="line"> if (!manager.hasMigrationsTable) &#123;</div><div class="line">     resultState=[manager createMigrationsTable:&amp;error];</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> //UINT64_MAX 表示升级到最高版本</div><div class="line"> resultState=[manager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&amp;error];</div><div class="line"></div><div class="line"> NSLog(@&quot;Has `schema_migrations` table?: %@&quot;, manager.hasMigrationsTable ? @&quot;YES&quot; : @&quot;NO&quot;);</div><div class="line"> NSLog(@&quot;Origin Version: %llu&quot;, manager.originVersion);</div><div class="line"> NSLog(@&quot;Current version: %llu&quot;, manager.currentVersion);</div><div class="line"> NSLog(@&quot;All migrations: %@&quot;, manager.migrations);</div><div class="line"> NSLog(@&quot;Applied versions: %@&quot;, manager.appliedVersions);</div><div class="line"> NSLog(@&quot;Pending versions: %@&quot;, manager.pendingVersions);</div></pre></td></tr></table></figure>
-<pre><code>以后还想升级，在加入一个新的自定义对象，注意！！！版本号要保持递增
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">  NSString *DBPath = [documents stringByAppendingPathComponent:KFMDBName];</div><div class="line">NSLog(@&quot;%@&quot;,DBPath);</div><div class="line">//DBPath是要升级的数据库的地址</div><div class="line">// [NSBundle mainBundle]是保存数据库升级文件的位置 根据自己放文件的位置定 升级文件是什么下面会说</div><div class="line">FMDBMigrationManager * manager = [FMDBMigrationManager managerWithDatabaseAtPath:DBPath migrationsBundle:[NSBundle mainBundle]];</div><div class="line"></div><div class="line">Migration * migration_1=[[Migration alloc]initWithName:@&quot;新增USer表&quot; andVersion:1 andExecuteUpdateArray:@[@&quot;create table User(name text,age integer,sex text,phoneNum text)&quot;]];</div><div class="line">[manager addMigration:migration_1];</div><div class="line"></div><div class="line">Migration * migration_2=[[Migration alloc]initWithName:@&quot;USer表新增字段email&quot; andVersion:2 andExecuteUpdateArray:@[@&quot;alter table User add email text&quot;]];</div><div class="line">[manager addMigration:migration_2];</div><div class="line"></div><div class="line">Migration * migration_3=[[Migration alloc]initWithName:@&quot;USer表新增字段address&quot; andVersion:3 andExecuteUpdateArray:@[@&quot;alter table User add address text&quot;]];</div><div class="line">[manager addMigration:migration_3];</div><div class="line"></div><div class="line">BOOL resultState=NO;</div><div class="line">NSError * error=nil;</div><div class="line">if (!manager.hasMigrationsTable) &#123;</div><div class="line">    resultState=[manager createMigrationsTable:&amp;error];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/FMDBMigrationManager/" data-id="cjc8ymqao000i1opqsb3fpqsu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo：更换电脑，如何继续写博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" class="article-date">
-  <time datetime="2017-07-05T12:46:57.000Z" itemprop="datePublished">2017-07-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/other/">other</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/">hexo：更换电脑，如何继续写博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.将你原来电脑上已经配置好并生成的hexo目录拷到你的新电脑上，注意无需拷全部，只拷如下几个目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_config.yml</div><div class="line">package.json</div><div class="line">scaffolds/</div><div class="line">source/</div><div class="line">themes/</div></pre></td></tr></table></figure>
-<p>将这些目录放到一个目录下，如：hexo／</p>
-<p>2.在你的新电脑上首先配置hexo环境：安装Node.js</p>
-<p>3.安装hexo，执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-<p>4.安装好之后，进入hexo／目录</p>
-<p>5.模块安装，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">npm install hexo-generator-feed --save</div><div class="line">npm install hexo-generator-sitemap --save</div></pre></td></tr></table></figure></p>
-<p>6.部署，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> 　hexo g</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/07/05/hexo：更换电脑，如何继续写博客/" data-id="cjc8ymqby002a1opq230nlyoy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-layoutSubviews" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/06/21/layoutSubviews/" class="article-date">
-  <time datetime="2017-06-21T02:06:38.000Z" itemprop="datePublished">2017-06-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/06/21/layoutSubviews/">layoutSubviews</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> 什么时候调用layoutSubviews</p>
-<p>总结一下什么时候会触发layoutSubviews：<br>layoutSubviews在以下情况下会被调用：<br>1、init初始化不会触发layoutSubviews<br>2、addSubview会触发layoutSubviews<br>3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化<br>4、滚动一个UIScrollView会触发layoutSubviews<br>5、旋转Screen会触发父UIView上的layoutSubviews事件<br>6、改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/21/layoutSubviews/" data-id="cjc8ymqc5002g1opqll1thl11" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-DZNEmptyDataSet" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/" class="article-date">
-  <time datetime="2017-06-06T08:47:29.000Z" itemprop="datePublished">2017-06-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/06/06/DZNEmptyDataSet/">DZNEmptyDataSet</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>DZNEmptyDataSet UITableView 或 UICollectionView 的空白页扩展</p>
-<p>github：  <a href="https://github.com/dzenbot/DZNEmptyDataSet" target="_blank" rel="external">https://github.com/dzenbot/DZNEmptyDataSet</a></p>
-<p>使用</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Import</div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"UIScrollView+EmptyDataSet.h"</span></span></div><div class="line">作为框架导入：</div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;DZNEmptyDataSet/UIScrollView+EmptyDataSet.h&gt;</span></span></div><div class="line">遵循协议</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MainViewController</span> : <span class="title">UITableViewController</span> &lt;<span class="title">DZNEmptyDataSetSource</span>, <span class="title">DZNEmptyDataSetDelegate</span>&gt;</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.tableView.emptyDataSetSource = <span class="keyword">self</span>;</div><div class="line">    <span class="keyword">self</span>.tableView.emptyDataSetDelegate = <span class="keyword">self</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 删除单元格分隔线的一个小技巧</span></div><div class="line">    <span class="keyword">self</span>.tableView.tableFooterView = [<span class="built_in">UIView</span> new];</div><div class="line">&#125;</div><div class="line">实现数据源协议</div><div class="line"></div><div class="line">DZNEmptyDataSetSource</div><div class="line"></div><div class="line">返回想要在空白状态显示的内容，并且充分利用 <span class="built_in">NSAttributedString</span> 功能来自定义文本外观。</div><div class="line">空白页显示图片</div><div class="line">- (<span class="built_in">UIImage</span> *)imageForEmptyDataSet:(<span class="built_in">UIScrollView</span> *)scrollView &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"lion"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/DZNEmptyDataSet/" data-id="cjc8ymqag000c1opql3agc4c3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-IQKeyboardManager" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yuling.github.io/2017/06/06/IQKeyboardManager/" class="article-date">
-  <time datetime="2017-06-06T07:05:54.000Z" itemprop="datePublished">2017-06-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yuling.github.io/2017/06/06/IQKeyboardManager/">IQKeyboardManager</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  IQKeyboardManager的使用</p>
-<pre><code class="objc">
-框架的启用
-- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions {
-  [[IQKeyboardManager sharedManager] setEnable:<span class="literal">YES</span>];
-  [[IQKeyboardManager sharedManager] setEnableAutoToolbar:<span class="literal">YES</span>];
-    <span class="keyword">return</span> <span class="literal">YES</span>;
-}
-enable 控制整个功能是否启用。
-
-shouldResignOnTouchOutside 控制点击背景是否收起键盘。
-
-shouldToolbarUsesTextFieldTintColor 控制键盘上的工具条文字颜色是否用户自定义。
-
-enableAutoToolbar 控制是否显示键盘上的工具条。
-
-以上设置，就启用了这个库。
-
-有时想在某个界面启用,可以在
-
-- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated 和 - (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated 
-
-里面进行开启关闭
-
-<span class="number">1.</span>修改IQKeyBoardManager的右边的Done按钮 
-  manager.toolbarDoneBarButtonItemText = <span class="string">@"1234"</span>;
-或者
-  manager.toolbarDoneBarButtonItemImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"IQKeyboardManagerScreenshot"</span>];
-
-<span class="number">2.</span>修改IQKeyBoardManager的Toolbar颜色等
-  manager.shouldToolbarUsesTextFieldTintColor = <span class="literal">NO</span>;
-  manager.toolbarTintColor = [<span class="built_in">UIColor</span> redColor];
-
-<span class="number">3.</span>是否显示响应者的水印和字号
-  manager.shouldShowTextFieldPlaceholder = <span class="literal">YES</span>;
-  manager.placeholderFont = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">14.0</span>];
-<span class="number">4.</span> 设置键盘textField的距离。不能小于零。默认是<span class="number">10.0</span>。&lt;触发条件是textField需要改变y时 &gt;
-  manager.keyboardDistanceFromTextField = <span class="number">10.0</span>f;
-<span class="number">5.</span>防止IQKeyboardManager让rootview上滑过度,默认是<span class="literal">YES</span>
-  manager.preventShowingBottomBlankSpace = <span class="literal">NO</span>;
-
-
-<span class="number">6.</span> IQKeyBoardManager的右边的Done按钮的响应事件doneAction 事件未公开API,不过可以通过代理
-- (<span class="keyword">void</span>)textFieldDidEndEditing:(<span class="built_in">UITextField</span> *)textField
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/06/IQKeyboardManager/" data-id="cjc8ymqaq000l1opqrownaka3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-autoLayout" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yuling.github.io/2017/06/05/autoLayout/" class="article-date">
@@ -439,7 +109,7 @@ enableAutoToolbar 控制是否显示键盘上的工具条。
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cjc8ymqb9001h1opqvilkycy9" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/05/autoLayout/" data-id="cjexi2q6l001e25pqrata44xh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li></ul>
@@ -491,7 +161,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cjc8ymqa000051opqckka5d1s" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/06/04/CATransform3D/" data-id="cjexi2q5i000625pqpgsadqm7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li></ul>
@@ -542,7 +212,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/" data-id="cjc8ymqbd001n1opq46znzxu8" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/cocoaPods/" data-id="cjexi2q6r001n25pqmksj2ltx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li></ul>
@@ -616,7 +286,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/" data-id="cjc8ymqcz003s1opq5uiinnfs" class="article-share-link">Share</a>
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/26/添加pod支持/" data-id="cjexi2q7q003525pqraw8w5ll" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li></ul>
@@ -628,10 +298,357 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
 
 
   
+    <article id="post-GCD读取文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/GCD读取文件/" class="article-date">
+  <time datetime="2017-05-25T05:29:34.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/GCD读取文件/">GCD读取文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code class="objc">
+<span class="comment">//GCD读写文件</span>
+    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
+
+    <span class="keyword">int</span> intbuffer[] = { <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> };
+    <span class="keyword">char</span> charbuffer[]={<span class="string">"fdafdsafsdfasdfa"</span>};
+    dispatch_data_t data = dispatch_data_create(charbuffer, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, <span class="literal">NULL</span>);
+
+    dispatch_semaphore_t sem = dispatch_semaphore_create(<span class="number">0</span>);
+    <span class="comment">// Write</span>
+    dispatch_fd_t fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+
+    printf(<span class="string">"FD: %d\n"</span>, fd);
+
+    dispatch_write(fd, data, queue,^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Written %zu bytes!\n"</span>, dispatch_data_get_size(data) - (d ? dispatch_data_get_size(d) : <span class="number">0</span>));
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    close(fd);
+
+    <span class="comment">// Read</span>
+    fd = open(<span class="string">"/tmp/data.txt"</span>, O_RDWR);
+
+    dispatch_read(fd, <span class="number">4</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), queue, ^(dispatch_data_t d, <span class="keyword">int</span> e) {
+        printf(<span class="string">"Read %zu bytes!\n"</span>, dispatch_data_get_size(d));
+        <span class="keyword">const</span> <span class="keyword">void</span> *buffer = <span class="literal">NULL</span>;
+        size_t size = dispatch_data_get_size(d);
+        dispatch_data_t tmpData = dispatch_data_create_map(data, &amp;buffer, &amp;size);
+        <span class="built_in">NSData</span> *nsdata = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:size];
+        <span class="built_in">NSString</span> *s=[[<span class="built_in">NSString</span> alloc] initWithData:nsdata encoding:<span class="built_in">NSUTF8StringEncoding</span>];
+        <span class="built_in">NSLog</span>(<span class="string">@"buffer %@"</span>,s);
+        printf(<span class="string">"\tError: %d\n"</span>, e);
+        dispatch_semaphore_signal(sem);
+    });
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    close(fd);
+
+    <span class="comment">// Exit confirmation</span>
+    getchar();
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/GCD读取文件/" data-id="cjexi2q60000i25pq2ggbphnu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-suspend-dispatch-resume" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" class="article-date">
+  <time datetime="2017-05-25T02:25:03.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>dispatch_suspend/dispatch_resume </p>
+<p>当追加大量处理到Dispatch Queue时，在追加处理的过程中，有时希望不执行已追加的处理。例如演算结果被Block截获时，一些处理会对这个演算结果造成影响。<br>在这种情况下，只要挂起Dispatch Queue即可。当可以执行时再恢复。<br>dispatch_suspend函数挂起指定的Dispatch Queue。</p>
+<p>dispatch_suspend(queue);<br>1<br>1<br>dispatch_resume函数恢复指定的Dispatch Queue。</p>
+<p>dispatch_resume(queue);<br>1<br>1<br>这些函数对已经执行的处理没有影响。挂起后，追加到Dispatch Queue中但尚未执行的处理在此之后停止执行。而恢复则使这些处理能够继续执行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-suspend-dispatch-resume/" data-id="cjexi2q76002425pqg5e9hmkd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-get-specific" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/dispatch-get-specific/" class="article-date">
+  <time datetime="2017-05-25T02:23:01.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/dispatch-get-specific/">dispatch_get_specific</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>dispatch_queue_set_specific就是向指定队列里面设置一个标识 如：</p>
+<p>dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1,NULL);<br>就是向queue1对了中设置一个queueKey1标识。</p>
+<p>dispatch_get_specific就是在当前队列中取出标识，注意iOS中线程和队列的关系，所有的动作都是在队列中执行的！ 如：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  main.m  </span></div><div class="line"><span class="comment">//  gcd  </span></div><div class="line"><span class="comment">//  </span></div><div class="line"><span class="comment">//  Created by yongpengliang on 16/2/19.  </span></div><div class="line"><span class="comment">//  Copyright © 2016年 jerry. All rights reserved.  </span></div><div class="line"><span class="comment">//  </span></div><div class="line">  </div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></div><div class="line">  </div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </div><div class="line">        <span class="keyword">static</span> voidvoid *queueKey1 = <span class="string">"queueKey1"</span>;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(queueKey1, DISPATCH_QUEUE_SERIAL);  </div><div class="line">        dispatch_queue_set_specific(queue1, queueKey1, &amp;queueKey1, <span class="literal">NULL</span>);  </div><div class="line">          </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">          </div><div class="line">        <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">            <span class="comment">//当前队列是主队列，不是queue1队列，所以取不到queueKey1对应的值，故而不执行  </span></div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"2. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"3. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="built_in">dispatch_sync</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"4. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span> (dispatch_get_specific(queueKey1)) &#123;  </div><div class="line">                 <span class="comment">//当前队列是queue1队列，所以能取到queueKey1对应的值，故而执行  </span></div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"5. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"6. 当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">                [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">            &#125;  </div><div class="line">        &#125;);  </div><div class="line">        <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"7. t当前线程是: %@, 当前队列是: %@ 。"</span>,[<span class="built_in">NSThread</span> currentThread],dispatch_get_current_queue());  </div><div class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1</span>];  </div><div class="line">        &#125;);  </div><div class="line">          </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">5</span>];  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"></div><div class="line">输出结果：</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.390</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">1.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">23.391</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">3.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: com.apple.main-thread[<span class="number">0x100059ac0</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">24.396</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">4.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">25.400</span> gcd[<span class="number">96865</span>:<span class="number">820267</span>] <span class="number">5.</span>当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x1001053e0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line"><span class="number">2016</span><span class="number">-02</span><span class="number">-19</span> <span class="number">14</span>:<span class="number">31</span>:<span class="number">26.402</span> gcd[<span class="number">96865</span>:<span class="number">820367</span>] <span class="number">7.</span> t当前线程是: &lt;<span class="built_in">NSThread</span>: <span class="number">0x100105e10</span>&gt;&#123;number = <span class="number">2</span>, name = (null)&#125;,当前队列是: &lt;OS_dispatch_queue: queueKey1[<span class="number">0x103000000</span>]&gt;。</div><div class="line"></div><div class="line">Program ended with exit code: <span class="number">0</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-get-specific/" data-id="cjexi2q6w001t25pq6k1z85js" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-set-target-queue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/dispatch-set-target-queue/" class="article-date">
+  <time datetime="2017-05-25T02:20:08.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/dispatch-set-target-queue/">dispatch_set_target_queue</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>dispatch_set_target_queue的两个作用：</p>
+<p>酷用来给新建的queue设置优先级：<br>Java代码  收藏代码<br>dispatch_queue_t serialQueue = dispatch_queue_create(“com.oukavip.www”,NULL);<br>dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0);  </p>
+<p>dispatch_set_target_queue(serialQueue, globalQueue);<br>/<em> </em> 第一个参数为要设置优先级的queue,第二个参数是参照物，既将第一个queue的优先级和第二个queue的优先级设置一样。<br>     */<br>需要注意的是，第一个参数是自定义的queue(默认优先级就是global queue的default)，而不是系统的queue（global/main）。因为你不能给系统的queue设置权限。通过上面设置，serialQueue 就有了与globalQueue一样的优先级。其实这个函数不仅可以设置queue的优先级，还可以设置queue之间的层级结构。</p>
+<p>酷修改用户队列的目标队列，使多个serial queue在目标queue上一次只有一个执行：<br>它会把需要执行的任务对象指定到不同的队列中去处理，这个任务对象可以是dispatch队列，也可以是dispatch源。而且这个过程可以是动态的，可以实现队列的动态调度管理等等。比如说有两个队列dispatchA和dispatchB，这时把dispatchA指派到dispatchB：<br>dispatch_set_target_queue(dispatchA, dispatchB);<br>那么dispatchA上还未运行的block会在dispatchB上运行。这时如果暂停dispatchA运行：<br>dispatch_suspend(dispatchA);<br>则只会暂停dispatchA上原来的block的执行，dispatchB的block则不受影响。而如果暂停dispatchB的运行，则会暂停dispatchA的运行。<br>demo：<br>一般都是把一个任务放到一个串行的queue中，如果这个任务被拆分了，被放置到多个串行的queue中，但实际还是需要这个任务同步执行，那么就会有问题，因为多个串行queue之间是并行的。这时使用dispatch_set_target_queue将多个串行的queue指定到了同一目标，那么着多个串行queue在目标queue上就是同步执行的，不再是并行执行。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  +(<span class="keyword">void</span>)testTargetQueue &#123;  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> targetQueue = dispatch_queue_create(<span class="string">"test.target.queue"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(<span class="string">"test.1"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue2 = dispatch_queue_create(<span class="string">"test.2"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue3 = dispatch_queue_create(<span class="string">"test.3"</span>, DISPATCH_QUEUE_SERIAL);  </div><div class="line">      </div><div class="line">    dispatch_set_target_queue(queue1, targetQueue);  </div><div class="line">    dispatch_set_target_queue(queue2, targetQueue);  </div><div class="line">    dispatch_set_target_queue(queue3, targetQueue);  </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="built_in">dispatch_async</span>(queue1, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">3.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">  </div><div class="line">    <span class="built_in">dispatch_async</span>(queue2, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">2.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">    <span class="built_in">dispatch_async</span>(queue3, ^&#123;  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3 in"</span>);  </div><div class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1.</span>f];  </div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3 out"</span>);  </div><div class="line">    &#125;);  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">输出  </div><div class="line"> <span class="number">1</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">1</span> <span class="keyword">out</span>  </div><div class="line"> <span class="number">2</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">2</span> <span class="keyword">out</span>  </div><div class="line"> <span class="number">3</span> <span class="keyword">in</span>  </div><div class="line"> <span class="number">3</span> <span class="keyword">out</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-set-target-queue/" data-id="cjexi2q74002125pq98s5wqkk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-barrier-async" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/25/dispatch-barrier-async/" class="article-date">
+  <time datetime="2017-05-25T01:30:44.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/25/dispatch-barrier-async/">dispatch_barrier_async</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>   dispatch_barrier_async<br> 在执行过程中，把队列从并行队列转换成串行队列，<br> 执行完之后，队列恢复成并行队列</p>
+<pre><code class="objc">
+ dispatch_queue_t concurrentQueue = dispatch_queue_create("my.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-1");
+ });
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-2");
+ });
+ dispatch_barrier_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-barrier"); 
+ });
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-3");
+ });
+ dispatch_async(concurrentQueue, ^(){
+     NSLog(@"dispatch-4");
+ });
+
+ dispatch_barrier_async 
+
+ 作用是在并行队列中，等待前面两个操作并行操作完成，这里是并行输出
+
+ dispatch-1，dispatch-2
+
+然后执行
+
+ dispatch_barrier_async中的操作，(现在就只会执行这一个操作)
+
+ 执行完成后，即输出
+
+"dispatch-barrier，
+最后该并行队列恢复原有执行状态，继续并行执行
+dispatch-3,dispatch-4
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/25/dispatch-barrier-async/" data-id="cjexi2q70001v25pqbb2wqn5n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dispatch-group-t" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yuling.github.io/2017/05/24/dispatch-group-t/" class="article-date">
+  <time datetime="2017-05-24T05:00:02.000Z" itemprop="datePublished">2017-05-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/yuling.github.io/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yuling.github.io/2017/05/24/dispatch-group-t/">dispatch_group_t</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>GCD dispatch_group 实现线程同步</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"></div><div class="line">MyCoreDataObject *coreDataObject;</div><div class="line"></div><div class="line">dispatch_group_enter(group);</div><div class="line">AFHTTPRequestOperation *operation1 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation1 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute1 = responseObject;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line">[operation1 start];</div><div class="line"></div><div class="line">dispatch_group_enter(group);</div><div class="line">AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation2 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute2 = responseObject;</div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line">[operation2 start];</div><div class="line"></div><div class="line">dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</div><div class="line">dispatch_release(group);</div><div class="line"></div><div class="line">[context save:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<p>NSOperationQueue 实现线程同步</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSOperationQueue</span> *operationQueue = [[<span class="built_in">NSOperationQueue</span> alloc] init];</div><div class="line">[operationQueue setMaxConcurrentOperationCount:<span class="number">2</span>];</div><div class="line"></div><div class="line">AFHTTPRequestOperation *operation1 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation1 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute1 = responseObject;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">&#125;];</div><div class="line">[operationQueue addOperation:operation1];</div><div class="line"></div><div class="line">AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request1];</div><div class="line">[operation2 setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</div><div class="line">    coreDataObject.attribute2 = responseObject;</div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">&#125;];</div><div class="line">[operationQueue addOperation:operation2];</div><div class="line"></div><div class="line">[imageQueue waitUntilAllOperationsAreFinished];</div><div class="line">[context save:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yulingyiyi.github.io/yuling.github.io/2017/05/24/dispatch-group-t/" data-id="cjexi2q72001y25pqtzz2fbqj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/yuling.github.io/">&laquo; __('prev')</a><a class="page-number" href="/yuling.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/yuling.github.io/page/3/">3</a><a class="page-number" href="/yuling.github.io/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/yuling.github.io/page/6/">6</a><a class="extend next" rel="next" href="/yuling.github.io/page/3/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/yuling.github.io/">&laquo; __('prev')</a><a class="page-number" href="/yuling.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/yuling.github.io/page/3/">3</a><a class="page-number" href="/yuling.github.io/page/4/">4</a><a class="page-number" href="/yuling.github.io/page/5/">5</a><a class="extend next" rel="next" href="/yuling.github.io/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -641,7 +658,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/svn/">svn</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/诗/">诗</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/随笔/">随笔</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/svn/">svn</a></li><li class="category-list-item"><a class="category-list-link" href="/yuling.github.io/categories/随笔/">随笔</a></li></ul>
     </div>
   </div>
 
@@ -651,7 +668,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/2018-1-2/">2018.1.2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSString/">NSString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/你还好吗？/">你还好吗？</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/反省/">反省</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/情人节/">情人节</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/想起了你/">想起了你</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/想起了你，很高兴/">想起了你，很高兴</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/梦——情人/">梦——情人</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/生日/">生日</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/生活/">生活</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/2018-1-2/">2018.1.2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AFNetwork3-0/">AFNetwork3.0+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/AirPrint/">AirPrint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CATransform3D/">CATransform3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/CGContextRef/">CGContextRef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Core-Foundation-bridge/">Core Foundation bridge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/DZNEmptyDataSet/">DZNEmptyDataSet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/FMDBMigrationManager/">FMDBMigrationManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/GCD读取文件/">GCD读取文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/IQKeyboardManager/">IQKeyboardManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSArray/">NSArray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSDate/">NSDate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/NSMutableAttributedString/">NSMutableAttributedString</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Pod/">Pod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/Runtime/">Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UIMenuController/">UIMenuController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISearchViewController/">UISearchViewController</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UISegmentedControl/">UISegmentedControl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/UUID/">UUID</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/YTKNetwork/">YTKNetwork</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/unsafe-unretained/">__unsafe_unretained</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/autoLayout/">autoLayout</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/cocoaPods/">cocoaPods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch/">dispatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-barrier-async/">dispatch_barrier_async</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-get-specific/">dispatch_get_specific</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-set-target-queue/">dispatch_set_target_queue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/">dispatch_suspend/dispatch_resume</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/emjoy/">emjoy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/image/">image</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/layoutSubviews/">layoutSubviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/photos/">photos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/svn-mac上搭建/">svn mac上搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/tableView/">tableView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/二维码-条形码-扫描/">二维码 条形码 扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yuling.github.io/tags/导航栏/">导航栏</a></li></ul>
     </div>
   </div>
 
@@ -661,7 +678,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/yuling.github.io/tags/2018-1-2/" style="font-size: 10px;">2018.1.2</a> <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/NSString/" style="font-size: 10px;">NSString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/你还好吗？/" style="font-size: 10px;">你还好吗？</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/反省/" style="font-size: 10px;">反省</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a> <a href="/yuling.github.io/tags/情人节/" style="font-size: 10px;">情人节</a> <a href="/yuling.github.io/tags/想起了你/" style="font-size: 10px;">想起了你</a> <a href="/yuling.github.io/tags/想起了你，很高兴/" style="font-size: 10px;">想起了你，很高兴</a> <a href="/yuling.github.io/tags/梦——情人/" style="font-size: 10px;">梦——情人</a> <a href="/yuling.github.io/tags/生日/" style="font-size: 10px;">生日</a> <a href="/yuling.github.io/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/yuling.github.io/tags/2018-1-2/" style="font-size: 10px;">2018.1.2</a> <a href="/yuling.github.io/tags/AFNetwork3-0/" style="font-size: 10px;">AFNetwork3.0+</a> <a href="/yuling.github.io/tags/AirPrint/" style="font-size: 10px;">AirPrint</a> <a href="/yuling.github.io/tags/CATransform3D/" style="font-size: 10px;">CATransform3D</a> <a href="/yuling.github.io/tags/CGContextRef/" style="font-size: 10px;">CGContextRef</a> <a href="/yuling.github.io/tags/Core-Foundation-bridge/" style="font-size: 10px;">Core Foundation bridge</a> <a href="/yuling.github.io/tags/DZNEmptyDataSet/" style="font-size: 10px;">DZNEmptyDataSet</a> <a href="/yuling.github.io/tags/FMDBMigrationManager/" style="font-size: 10px;">FMDBMigrationManager</a> <a href="/yuling.github.io/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/yuling.github.io/tags/GCD读取文件/" style="font-size: 10px;">GCD读取文件</a> <a href="/yuling.github.io/tags/IQKeyboardManager/" style="font-size: 10px;">IQKeyboardManager</a> <a href="/yuling.github.io/tags/NSArray/" style="font-size: 10px;">NSArray</a> <a href="/yuling.github.io/tags/NSDate/" style="font-size: 10px;">NSDate</a> <a href="/yuling.github.io/tags/NSMutableAttributedString/" style="font-size: 10px;">NSMutableAttributedString</a> <a href="/yuling.github.io/tags/Pod/" style="font-size: 10px;">Pod</a> <a href="/yuling.github.io/tags/Runtime/" style="font-size: 10px;">Runtime</a> <a href="/yuling.github.io/tags/UIMenuController/" style="font-size: 10px;">UIMenuController</a> <a href="/yuling.github.io/tags/UISearchViewController/" style="font-size: 10px;">UISearchViewController</a> <a href="/yuling.github.io/tags/UISegmentedControl/" style="font-size: 10px;">UISegmentedControl</a> <a href="/yuling.github.io/tags/UUID/" style="font-size: 10px;">UUID</a> <a href="/yuling.github.io/tags/YTKNetwork/" style="font-size: 10px;">YTKNetwork</a> <a href="/yuling.github.io/tags/unsafe-unretained/" style="font-size: 10px;">__unsafe_unretained</a> <a href="/yuling.github.io/tags/autoLayout/" style="font-size: 10px;">autoLayout</a> <a href="/yuling.github.io/tags/cocoaPods/" style="font-size: 10px;">cocoaPods</a> <a href="/yuling.github.io/tags/dispatch/" style="font-size: 10px;">dispatch</a> <a href="/yuling.github.io/tags/dispatch-barrier-async/" style="font-size: 10px;">dispatch_barrier_async</a> <a href="/yuling.github.io/tags/dispatch-get-specific/" style="font-size: 10px;">dispatch_get_specific</a> <a href="/yuling.github.io/tags/dispatch-set-target-queue/" style="font-size: 10px;">dispatch_set_target_queue</a> <a href="/yuling.github.io/tags/dispatch-suspend-dispatch-resume/" style="font-size: 10px;">dispatch_suspend/dispatch_resume</a> <a href="/yuling.github.io/tags/emjoy/" style="font-size: 10px;">emjoy</a> <a href="/yuling.github.io/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/yuling.github.io/tags/image/" style="font-size: 10px;">image</a> <a href="/yuling.github.io/tags/layoutSubviews/" style="font-size: 10px;">layoutSubviews</a> <a href="/yuling.github.io/tags/photos/" style="font-size: 10px;">photos</a> <a href="/yuling.github.io/tags/svn-mac上搭建/" style="font-size: 10px;">svn mac上搭建</a> <a href="/yuling.github.io/tags/tableView/" style="font-size: 10px;">tableView</a> <a href="/yuling.github.io/tags/uilaebl-top-bottom-middle/" style="font-size: 10px;">uilaebl top_bottom_middle</a> <a href="/yuling.github.io/tags/二维码-条形码-扫描/" style="font-size: 10px;">二维码 条形码 扫描</a> <a href="/yuling.github.io/tags/动画/" style="font-size: 10px;">动画</a> <a href="/yuling.github.io/tags/导航栏/" style="font-size: 20px;">导航栏</a>
     </div>
   </div>
 
@@ -670,7 +687,7 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/02/">二月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/yuling.github.io/archives/2017/02/">二月 2017</a></li></ul>
     </div>
   </div>
 
@@ -683,23 +700,23 @@ anchorPoint：是一个CGPoint值，它是指定了一个基于bounds的符合�
       <ul>
         
           <li>
-            <a href="/yuling.github.io/2018/01/10/想起了你，很高兴/">想起了你，很高兴</a>
-          </li>
-        
-          <li>
             <a href="/yuling.github.io/2018/01/02/2018-1-2/">2018.1.2</a>
           </li>
         
           <li>
-            <a href="/yuling.github.io/2017/11/26/你还好吗？/">你还好吗？</a>
+            <a href="/yuling.github.io/2017/08/21/mac-svn-局域网/">mac svn 局域网</a>
           </li>
         
           <li>
-            <a href="/yuling.github.io/2017/11/13/梦——情人/">梦——情人</a>
+            <a href="/yuling.github.io/2017/07/18/uilaebl-top-bottom-middle/">uilaebl top_bottom_middle</a>
           </li>
         
           <li>
-            <a href="/yuling.github.io/2017/10/22/生活/">生活</a>
+            <a href="/yuling.github.io/2017/07/14/ios-动画/">ios 动画</a>
+          </li>
+        
+          <li>
+            <a href="/yuling.github.io/2017/07/12/tableView-联动效果/">tableView 联动效果</a>
           </li>
         
       </ul>
